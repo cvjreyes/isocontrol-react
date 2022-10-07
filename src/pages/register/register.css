@@ -1,0 +1,21 @@
+.register__form__container{
+    padding: 30px 40px 20px 40px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: white;
+    position:absolute;
+    margin-top: 8%;
+    width: 500px;
+    font-family: 'Quicksand', sans-serif;
+    top: 20%;
+    left: 40%;
+    margin-top: -40px;
+    margin-left: -40px;
+}
+
+.destination__select{
+    position: relative;
+    float:left;
+    margin: 0px 0px 0px 0px;
+    font-size: 17px;
+    padding: 4px 4px 4px 8px;
+}

@@ -1,0 +1,24 @@
+.myTrayBtn__container{
+    width: 180px;
+}
+
+.myTray__button{
+    border-radius: 10px 0px 0px 10px;
+    width: 116%;
+    margin-left: -9px;
+    border: 0;
+    padding-right: 100px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 4px;
+    transition: 0.3s;
+    background-color: white;
+    padding-left: 10px;
+    height: 36px;
+}
+
+.myTray__button:hover{
+    background-color: #99C6F8;
+}
+

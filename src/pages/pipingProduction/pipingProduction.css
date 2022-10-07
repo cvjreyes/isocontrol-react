@@ -1,0 +1,1613 @@
+.back__button{
+    height: 40px;
+    width: 60px;
+    border: 0;
+    background-color: transparent;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-family: 'Quicksand', sans-serif;
+
+    background-color: white;
+}
+
+.users__button{
+    height: 40px;
+    width: 100px;
+    border: 1px solid #0070ED;
+    background-color: transparent;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    margin-left: 20px;
+    background-color: white;
+    color: #0070ED;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.users__button__inUsers{
+    height: 40px;
+    width: 100px;
+    background-color: #99C6F8;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    margin-left: 20px;
+    color: #0070ED;
+    font-weight: bold;
+    border: 0px;
+    font-size: 15px;
+
+}
+
+.users__button:hover{
+    height: 40px;
+    width: 100px;
+    background-color: #99C6F8;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    margin-left: 20px;
+    color: #0070ED;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.production__button{
+    height: 40px;
+    width: 100px;
+    border: 1px solid #0070ED;
+    background-color: transparent;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    margin-left: 20px;
+    background-color: white;
+    color: #0070ED;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.production__button__inProduction{
+    height: 40px;
+    width: 100px;
+    background-color: #99C6F8;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    margin-left: 20px;
+    color: #0070ED;
+    font-size: 15px;
+    font-weight: bold;
+    border: 0px;
+}
+
+.production__button:hover{
+    height: 40px;
+    width: 100px;
+    background-color: #99C6F8;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    margin-left: 20px;
+    color: #0070ED;
+    font-size: 15px;
+
+}
+
+.right__button{
+    height: 40px;
+    width: 60px;
+    border: 1px solid #0070ED;
+    background-color: transparent;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-family: 'Quicksand', sans-serif;
+
+    background-color: white;
+}
+
+.reporting__tab__button{
+    width: 40px;
+    height: 40px;
+    margin-top: 85px;
+    margin-left: 30px;
+    border: 0;
+    background-color: transparent;
+    border-radius: 0.3em 0.3em 0.3em 0.3em;
+    transition: 0.3s;
+    font-family: 'Quicksand', sans-serif;
+    
+    background-color:#99C6F8;
+}
+
+.reporting__tab__button:hover{
+    background-color: #0070ED;
+    color: white;
+}
+
+.right__button:hover{
+    background-color: #99C6F8;
+}
+
+.right__button__text{
+    font-size: 15px;
+    margin-top: 6px;
+    font-weight: 600;
+    color: #0070ED;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.back__button__text{
+    font-size: 18px;
+    margin-top: 7px;
+    font-weight: 600;
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.materials__tables__container{
+    margin-left: 100px;
+    height: 300px;
+    overflow: scroll;
+    margin-top: 10px;
+}
+
+.users__tables__container{
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+.management__container{
+    margin-left: 100px;
+}
+
+.materials__title{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.graph__container{
+    height: 490px;
+    margin-left: 3px;
+    margin-top: 190px;
+    width: 1750px;
+    border: 10px solid #FAFAFA;
+    padding: 5px 5px 10px 5px;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.materials__pc__container{
+    height: 600px;
+    width: 500px;
+    margin-left: 70px;
+
+}
+
+.top__container{
+    display: flex;
+    resize: vertical;
+    overflow: hidden;
+    margin-left: 5%;
+}
+
+.save__button{
+    height: 27px;
+    width: 27px;
+    border: 0;
+    background-color:#99C6F8;
+    margin-left: 15px;
+    border-radius: 0.5em;
+    transition: 0.3s;
+}
+
+.save__button:hover{
+    background-color:#0070ED;
+}
+
+.save__icon{
+    height: 25px;
+    width: auto;
+    margin-left: 2px;
+}
+
+.warning__text{
+    color: red;
+    font-size: 15px;
+}
+
+.user__productivity__tables__container{
+    height: 550px;
+    min-width: 1770px;
+    overflow-y: scroll;
+}
+
+.user__productivity__tables__container::-webkit-scrollbar {
+    display: none;
+}
+
+.project__management span.colHeader{
+    font-size: 14px;
+    color: white;
+}
+
+.project__management th{
+    font-size: 14px;
+    color: white;
+    background-color: #338DF1;
+}
+
+.project__management tbody tr{
+    font-size: 14px;
+    text-align: center;
+}
+
+.project__management tbody td{
+    font-size: 14px
+}
+
+.project__management tr:first-child th:first-child { 
+    border-top-left-radius:  6.99824px; 
+}
+
+.project__management tr:last-child th:last-child { 
+    border-top-right-radius:  6.99824px; 
+}
+
+.project__management tr:last-child td:last-child { 
+    border-bottom-right-radius:  6.99824px; 
+}
+
+.project__management tr:first-child td:first-child { 
+    border-bottom-left-radius:  6.99824px; 
+}
+
+.materials__management span.colHeader{
+    font-size: 14px;
+    color: white;
+}
+
+.materials__management th{
+    font-size: 14px;
+    color: white;
+    background-color: #338DF1;
+}
+
+.materials__management tbody tr{
+    font-size: 14px;
+    text-align: center;
+}
+
+.materials__management tbody td{
+    font-size: 14px
+}
+
+.materials__management tr:first-child th:first-child { 
+    border-top-left-radius:  6.99824px; 
+}
+
+.materials__management tr:last-child th:last-child { 
+    border-top-right-radius:  6.99824px; 
+}
+
+.materials__management tr:last-child td:first-child { 
+    border-bottom-left-radius:  6.99824px; 
+    border-bottom-right-radius:  6.99824px; 
+}
+
+.pipingclass__management span.colHeader{
+    font-size: 14px;
+    color: white;
+}
+
+.pipingclass__management th{
+    font-size: 14px;
+    color: white;
+    background-color: #338DF1;
+}
+
+.pipingclass__management tbody tr{
+    font-size: 14px;
+    text-align: center;
+}
+
+.pipingclass__management tbody td{
+    font-size: 14px
+}
+
+.pipingclass__management tr:first-child th:first-child { 
+    border-top-left-radius:  6.99824px; 
+}
+
+.pipingclass__management tr:last-child th:last-child { 
+    border-top-right-radius:  6.99824px; 
+}
+
+.pipingclass__management tr:last-child td:first-child { 
+    border-bottom-left-radius:  6.99824px; 
+}
+
+.pipingclass__management tr:last-child td:last-child { 
+    border-bottom-right-radius:  6.99824px; 
+}
+
+.isoCount__text{
+    float: right;
+    margin-right: 180px;
+    margin-top: 10px;
+    font-size: 17px
+}
+
+/*Boton de save*/
+.projects__button__save{
+    height: 32px;
+    width: 90px;
+    border: 0;
+    background-color: transparent;
+    border-radius: 8px;
+    transition: 0.3s; 
+    color: white;
+    background-color:#338DF1;
+    font-weight: bold;
+}
+
+.projects__button__save:hover{
+    background-color: #99C6F8;
+    color: black;
+}
+
+.projects__add__button{
+    height: 32px;
+    width: 100px;
+    border: 0;
+    background-color: transparent;
+    margin-left: 113px;
+    border-radius: 8px;
+    transition: 0.3s; 
+    margin-right: 10px;
+}
+
+.navBar__icon__save{
+    height: 16px;
+    width: 16px;
+    margin-left: 14px;
+    margin-top: 7px;
+}
+
+.projects__button__text{
+    font-size: 12px;
+    margin-top: 7px;
+    font-family: 'Montserrat', sans-serif;    
+}
+
+
+.projects__add__button__text{
+    font-size: 12px;  
+    color: #0070ED;
+    font-style: normal;
+    font-weight: bold;
+
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 24px;
+    gap: 8px;
+
+
+    border: 1px solid #0070ED;
+    border-radius: 8px;
+}
+
+.overall-table thead th:first-child{
+    border-radius: 8px 0px 0px 0px;
+}
+
+
+
+.progress-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.progress-table tbody tr:nth-child(1) th{
+  background-color:rgb(147,112,219);
+  color:black;
+  font-size: 14px;
+}
+
+.progress-table tbody tr:nth-child(2) th {
+    background-color:rgb(255,80,80);
+    color:black;
+    font-size: 14px;
+}
+
+.progress-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);;
+    font-size: 14px;
+    color:black;
+}
+
+.progress-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.progress-table tbody tr:nth-child(3) th {
+    background-color:	rgb(34,139,34, 0.8);;
+    font-size: 14px;
+    font-weight: bold;
+    color:black;
+}
+
+.progress-table tbody tr:nth-child(3) td {
+    background-color:	rgb(34,139,34, 0.6);
+    font-size: 14px;
+    color:black;
+}
+
+.progress-table tbody tr:nth-child(1) th {
+    background-color:	rgb(147,112,219, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.progress-table tbody tr:nth-child(1) td {
+    background-color:	rgb(147,112,219, 0.4);
+    font-size: 14px;
+    color: black;
+    
+}
+
+.progress-table tbody tr:nth-child(2) th {
+    background-color:	rgb(255,80,80, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.progress-table tbody tr:nth-child(2) td {
+    background-color:	rgb(255,80,80, 0.4);
+    color: black;;
+    font-size: 14px;
+}
+
+.handsontable .progress-table{
+    font-size: 14px;
+}
+
+.progress-table span.colHeader {
+    font-size: 14px;
+}
+
+
+
+.overall-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.overall-table tbody tr:nth-child(3) th{
+  background-color:rgb(147,112,219);
+  color:black;
+  font-size: 14px;
+}
+
+.overall-table tbody tr:nth-child(4) th {
+    background-color:rgb(255,80,80);
+    color:black;
+    font-size: 14px;
+    border-radius: 0px 0px 0px 8px;
+}
+
+.overall-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);;
+    font-size: 14px;
+    color:black;
+}
+
+.overall-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.overall-table tbody tr:nth-child(2) th {
+    background-color:	rgb(252,252,252);;
+    font-size: 14px;
+    color:black;
+}
+
+.overall-table tbody tr:nth-child(2) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.overall-table tbody tr:nth-child(3) th {
+    background-color:	rgb(147,112,219, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.overall-table tbody tr:nth-child(3) td {
+    background-color:	rgb(147,112,219, 0.4);
+    font-size: 14px;
+    color: black;
+    
+}
+
+.overall-table tbody tr:nth-child(4) th {
+    background-color:	rgb(255,80,80, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.overall-table tbody tr:nth-child(4) td {
+    background-color:	rgb(255,80,80, 0.4);
+    color: black;;
+    font-size: 14px;
+}
+
+.handsontable .overall-table{
+    font-size: 14px;
+}
+
+.overall-table span.colHeader {
+    font-size: 14px;
+}
+
+.overallWeight-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.overallWeight-table tbody tr:nth-child(3) th {
+    background-color:rgb(60,179,113);
+    color:black;
+    font-size: 14px;
+}
+
+.overallWeight-table tbody tr:nth-child(4) th {
+    background-color:rgb(147,112,219);
+    color:black;
+    font-size: 14px;
+}
+
+.overallWeight-table tbody tr:nth-child(5) th {
+    background-color:rgb(255,80,80);
+    color:black;
+    font-size: 14px;
+}
+
+.overallWeight-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);;
+    font-size: 14px;
+    color:black;
+}
+
+.overallWeight-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.overallWeight-table tbody tr:nth-child(2) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.overallWeight-table tbody tr:nth-child(2) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.overallWeight-table tbody tr:nth-child(3) th {
+    background-color:	rgb(60,179,113, 0.8);
+    font-size: 14px;
+}
+
+.overallWeight-table tbody tr:nth-child(3) td {
+    background-color:	rgb(60,179,113, 0.4);
+    
+    font-size: 14px;
+}
+
+.overallWeight-table tbody tr:nth-child(4) th {
+    background-color:	rgb(147,112,219, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.overallWeight-table tbody tr:nth-child(4) td {
+    background-color:	rgb(147,112,219, 0.4);;
+    font-size: 14px;
+    color: black;
+}
+
+.overallWeight-table tbody tr:nth-child(5) th {
+    background-color:	rgb(255,80,80, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.overallWeight-table tbody tr:nth-child(5) td {
+    background-color:	rgb(255,80,80, 0.4);
+    color: black;;
+    font-size: 14px;
+}
+
+.handsontable .overallWeight-table{
+    font-size: 14px;
+}
+
+.overallWeight-table span.colHeader {
+    font-size: 14px;
+}
+
+.mat1-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.mat1-table span.colHeader {
+    font-size: 14px;
+}
+
+.mat1-table tbody tr:nth-child(5) th {
+    color:black;
+    font-size: 14px;
+}
+
+.mat1-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat1-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+    
+}
+
+.mat1-table tbody tr:nth-child(2) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat1-table tbody tr:nth-child(2) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat1-table tbody tr:nth-child(3) th {
+    font-size: 14px;
+    color:black;
+}
+
+.mat1-table tbody tr:nth-child(3) th {
+    background-color:	rgb(0,191,255, 0.8);
+    font-size: 14px;
+}
+
+.mat1-table tbody tr:nth-child(3) td {
+    background-color:	rgb(0,191,255, 0.4);
+    font-size: 14px;
+    color: black;
+}
+
+.mat1-table tbody tr:nth-child(4) th {
+    background-color:	rgb(65,105,225, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+
+.mat1-table tbody tr:nth-child(4) td {
+    background-color:	rgb(65,105,225, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat1-table tbody tr:nth-child(5) th {
+    background-color:	rgb(176,224,230, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.mat1-table tbody tr:nth-child(5) td {
+    background-color:	rgb(176,224,230, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.wmat1-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.wmat1-table span.colHeader {
+    font-size: 14px;
+}
+
+.wmat1-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color: black;
+}
+
+.wmat1-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.wmat1-table tbody tr:nth-child(2) th {
+    background-color:	rgb(176,224,230, 0.8);
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.wmat1-table tbody tr:nth-child(2) td {
+    background-color:	rgb(176,224,230, 0.4);
+    font-size: 14px;
+}
+
+.mat2-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.mat2-table span.colHeader {
+    font-size: 14px;
+}
+
+.mat2-table tbody tr:nth-child(5) th {
+    color:black;
+    font-size: 14px;
+}
+
+.mat2-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat2-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat2-table tbody tr:nth-child(2) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat2-table tbody tr:nth-child(2) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat2-table tbody tr:nth-child(3) th {
+    background-color:	rgb(50,205,50, 0.8);
+    font-size: 14px;
+    color:black;
+}
+
+.mat2-table tbody tr:nth-child(3) td {
+    background-color:	rgb(50,205,50, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat2-table tbody tr:nth-child(4) th {
+    background-color:	rgb(0,128,0, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+    color:black;
+}
+
+.mat2-table tbody tr:nth-child(4) td {
+    background-color:	rgb(0,128,0, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat2-table tbody tr:nth-child(5) th {
+    background-color:	rgb(152,251,152, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.mat2-table tbody tr:nth-child(5) td {
+    background-color:	rgb(152,251,152, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.wmat2-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.wmat2-table span.colHeader {
+    font-size: 14px;
+}
+
+.wmat2-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color: black;
+}
+
+.wmat2-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.wmat2-table tbody tr:nth-child(2) th {
+    background-color:	rgb(152,251,152, 0.8);
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.wmat2-table tbody tr:nth-child(2) td {
+    background-color:	rgb(152,251,152, 0.4);
+    font-size: 14px;
+}
+
+.mat3-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.mat3-table span.colHeader {
+    font-size: 14px;
+}
+
+.mat3-table tbody tr:nth-child(5) th {
+    color:black;
+    font-size: 14px;
+}
+
+.mat3-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat3-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat3-table tbody tr:nth-child(2) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat3-table tbody tr:nth-child(2) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat3-table tbody tr:nth-child(3) th {
+    background-color:	rgb(255,165,0, 0.8);
+    font-size: 14px;
+    color:black;
+}
+
+.mat3-table tbody tr:nth-child(3) td {
+    background-color:	rgb(255,165,0, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat3-table tbody tr:nth-child(4) th {
+    background-color:	rgb(255,140,0, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+    color:black;
+}
+
+.mat3-table tbody tr:nth-child(4) td {
+    background-color:	rgb(255,140,0, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat3-table tbody tr:nth-child(5) th {
+    background-color:	rgb(255,215,0, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+.mat3-table tbody tr:nth-child(5) td {
+    background-color:	rgb(255,215,0, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+
+.wmat3-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.wmat3-table span.colHeader {
+    font-size: 14px;
+}
+
+.wmat3-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color: black;
+}
+
+.wmat3-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.wmat3-table tbody tr:nth-child(2) th {
+    background-color:	rgb(255,215,0, 0.8);
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.wmat3-table tbody tr:nth-child(2) td {
+    background-color:	rgb(255,215,0, 0.4);
+    font-size: 14px;
+}
+
+
+.mat4-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.mat4-table span.colHeader {
+    font-size: 14px;
+}
+
+.mat4-table tbody tr:nth-child(5) th {
+    color:black;
+    font-size: 14px;
+}
+
+.mat4-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat4-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat4-table tbody tr:nth-child(2) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+    font-weight: bold;
+}
+
+.mat4-table tbody tr:nth-child(2) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat4-table tbody tr:nth-child(3) th {
+    background-color:	rgb(255,192,203, 0.8);
+    font-size: 14px;
+    color:black;
+}
+
+.mat4-table tbody tr:nth-child(3) td {
+    background-color:	rgb(255,192,203, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat4-table tbody tr:nth-child(4) th {
+    background-color:	rgb(255,20,147, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+    color:black;
+}
+
+.mat4-table tbody tr:nth-child(4) td {
+    background-color:	rgb(255,20,147, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat4-table tbody tr:nth-child(5) th {
+    background-color:	rgb(255,105,180, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+.mat4-table tbody tr:nth-child(5) td {
+    background-color:	rgb(255,105,180, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+
+.wmat4-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.wmat4-table span.colHeader {
+    font-size: 14px;
+}
+
+.wmat4-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color: black;
+}
+
+.wmat4-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.wmat4-table tbody tr:nth-child(2) th {
+    background-color:	rgb(255,105,180, 0.8);
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.wmat4-table tbody tr:nth-child(2) td {
+    background-color:	rgb(255,105,180, 0.4);
+    font-size: 14px;
+}
+
+
+
+.mat5-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.mat5-table span.colHeader {
+    font-size: 14px;
+}
+
+.mat5-table tbody tr:nth-child(5) th {
+    color:black;
+    font-size: 14px;
+}
+
+.mat5-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat5-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat5-table tbody tr:nth-child(2) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.mat5-table tbody tr:nth-child(2) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.mat5-table tbody tr:nth-child(3) th {
+    background-color:	rgb(220,220,220, 0.8);
+    font-size: 14px;
+    color:black;
+}
+
+.mat5-table tbody tr:nth-child(3) td {
+    background-color:	rgb(220,220,220, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat5-table tbody tr:nth-child(4) th {
+    background-color:	rgb(112,128,144, 0.8);
+    font-size: 14px;
+    color:black;
+    font-weight: bold;
+}
+
+.mat5-table tbody tr:nth-child(4) td {
+    background-color:	rgb(112,128,144, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat5-table tbody tr:nth-child(5) th {
+    background-color:	rgb(169,169,169, 0.8);
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+.mat5-table tbody tr:nth-child(5) td {
+    background-color:	rgb(169,169,169, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.wmat5-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.wmat5-table span.colHeader {
+    font-size: 14px;
+}
+
+.wmat5-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color: black;
+}
+
+.wmat5-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.wmat5-table tbody tr:nth-child(2) th {
+    background-color:	rgb(169,169,169, 0.8);
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.wmat5-table tbody tr:nth-child(2) td {
+    background-color:	rgb(169,169,169, 0.4);
+    font-size: 14px;
+}
+
+
+.mat6-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.mat6-table span.colHeader {
+    font-size: 14px;
+}
+
+.mat6-table tbody tr:nth-child(5) th {
+    color:black;
+    font-size: 14px;
+}
+
+.mat6-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat6-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat6-table tbody tr:nth-child(2) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.mat6-table tbody tr:nth-child(2) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color:black;
+}
+
+.mat6-table tbody tr:nth-child(3) th {
+    background-color:rgb(175,238,238, 0.8);
+    font-size: 14px;
+    color:black;
+}
+
+.mat6-table tbody tr:nth-child(3) td {
+    background-color:rgb(175,238,238, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat6-table tbody tr:nth-child(4) th {
+    background-color:rgb(32,178,170, 0.8);
+    font-size: 14px;
+    color:black;
+    font-weight: bold;
+}
+
+.mat6-table tbody tr:nth-child(4) td {
+    background-color:rgb(32,178,170, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+.mat6-table tbody tr:nth-child(5) th {
+    background-color:	rgb(0,206,209, 0.8);
+    font-size: 14px;
+    color:black;
+    font-weight: bold;
+}
+
+.mat6-table tbody tr:nth-child(5) td {
+    background-color:	rgb(0,206,209, 0.4);
+    color: black;
+    font-size: 14px;
+}
+
+
+.wmat6-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+.wmat6-table span.colHeader {
+    font-size: 14px;
+}
+
+.wmat6-table tbody tr:nth-child(1) th {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+    color: black;
+}
+
+.wmat6-table tbody tr:nth-child(1) td {
+    background-color:	rgb(252,252,252);
+    font-size: 14px;
+}
+
+.wmat6-table tbody tr:nth-child(2) th {
+    background-color:	rgb(0,206,209, 0.8);
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.wmat6-table tbody tr:nth-child(2) td {
+    background-color:	rgb(0,206,209, 0.4);
+    font-size: 14px;
+    
+}
+
+.users-table thead{
+    overflow: hidden;
+}
+
+.users-table th:first-child{
+    border-radius: 8px 0px 0px 0px;
+    overflow: hidden;
+}
+
+.users-table th{
+    background-color:#338DF1;;
+    color:white;
+    font-size: 14px;
+}
+
+
+
+.users-table tbody tr:nth-child(1) th {
+    background-color:	#FFFF0060;
+    font-size: 14px;
+    color: black;
+    border-radius: 0;
+}
+
+.users-table tbody tr:nth-child(1) td {
+    background-color:		#FFFF0040;
+    font-size: 14px;
+    color: black;
+}
+
+.users-table tbody tr:nth-child(2) th {
+    background-color:	#D4F1DD;
+    font-size: 14px;
+    color: black;
+    border-radius: 0;
+}
+
+.users-table tbody tr:nth-child(2) td {
+    background-color:	#D4F1DD66;
+    font-size: 14px;
+    color: black;
+}
+
+.users-table tbody tr:nth-child(3) th {
+    background-color:	#FF335890;
+    font-size: 14px;
+    color: black;
+    border-radius: 0;
+}
+
+.users-table tbody tr:nth-child(3) td {
+    background-color:	#FF335840;
+    color: black;
+    font-size: 14px;
+}
+
+.users-table tbody tr:nth-child(4) th {
+    background-color:	#00CED190;
+    font-size: 14px;
+    color: black;
+    border-radius: 0px 0px 0px 8px;
+}
+
+.users-table tbody tr:nth-child(4) td {
+    background-color:	#00CED140;
+    font-size: 14px;
+    color: black;
+}
+
+.handsontable .users-table{
+    font-size: 14px;
+}
+
+.users-table span.colHeader {
+    font-size: 14px;
+}
+
+.Cabecera {
+    background: #F3F3F3;
+    padding: 1em;
+    margin-top: 10.5%;
+    height: 490px;
+
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.Cabecera__button {
+    border: 0px solid black;
+}
+
+.Cabecera__titulo {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 10px;
+    color: black;
+    font-weight: bold;
+    border: 0px;
+    background: transparent;
+}
+
+.Cabecera__titulo:hover {
+    color: black;
+    text-decoration: none;
+
+}
+.Cabecera__ul {
+    display: none;
+}
+
+.Cabecera__li {
+    list-style: none;
+    margin: 0 .5em;
+    width: 120px;
+}
+
+.Cabecera__a {
+    color: black;
+    
+}
+
+.Cabecera__a:hover {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.Cabecera__svg {
+    fill: black;
+    border: 0px;
+}
+
+.Cabecera__navBar__icon{
+    width: auto;
+    margin-right: -10px;
+    margin-left: 5px
+}
+
+@media screen {
+    
+    .Cabecera {
+        width: 6vh;
+        transition: all .5s ease;
+    }
+
+    .Cabecera.isActive {
+        width: 18vh;
+        transition: all .5s ease;
+    }
+
+    .Cabecera__titulo {
+        width: 0vh;
+        transition: all .5s ease;
+
+    }
+
+    .Cabecera__titulo.isActiveUsers {
+        width: 20vh;
+        height: 3vh;
+        transition: all .5s ease;
+        border: 0px;
+
+    }
+
+    .Cabecera__titulo.isActiveProduction {
+        width: 20vh;
+        height: 3vh;
+        transition: all .5s ease;
+        border: 0px;
+
+    }
+
+    .Cabecera__nav {
+        opacity: 0;
+        overflow: hidden;
+        transition: all .5s ease;
+    }
+
+    .Cabecera__nav.isActive{
+        height: 52vh;
+        opacity: 1;
+        transition: all .5s ease;
+    }
+
+    .Cabecera__ul {
+        flex-direction: column;
+        margin-left: 20px;
+    }
+
+    .Cabecera__ul.isActiveUsers {
+        display: flex;
+    }
+
+    .Cabecera__ul.isActiveProduction {
+        display: flex;
+    }
+
+    /* Eliminar si queremos poner un titulo*/
+    .Cabecera__ul.isActive {
+        display: flex;
+        width: 122vh;
+        transition: all .5s ease;
+    }
+
+    .Cabecera__li{
+        margin: .5em 0;
+    }
+
+    .graph__container.isActive {
+        width: 110vh;
+        transition: all .5s ease;
+    }
+}
+
+/* Users Tabs */
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container-tabs {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 500px;
+    height: 300px;
+    margin-top: 50px;
+    background: #f1f1f1;
+    word-break: break-all;
+}
+  
+.bloc-tabs {
+    display: flex;
+}
+.tabs {
+    padding: 15px;
+    text-align: center;
+    background: white;
+    width: 50%;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-sizing: content-box;
+    position: relative;
+    outline: none;
+    float:none;
+    display:inline-block;
+    font-size: 18px;
+}
+
+.tabs-nohover {
+    padding: 15px;
+    text-align: center;
+    background: white;
+    width: 50%;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-sizing: content-box;
+    position: relative;
+    outline: none;
+    float:none;
+    display:inline-block;
+    font-size: 18px;
+}
+
+.active-tabs  {
+    border-bottom: 3px solid #0070ED;
+    border-radius: 8px 8px 0px 0px;
+    transition: all .15s ease;
+}
+
+.tabs:hover  {
+    transition: all .15s ease;
+    border-bottom: 3px solid #0070ED;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.content-tabs {
+    flex-grow : 1;
+    background: white;
+}
+
+.content {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: white;
+}
+.active-content {
+    display: block;
+    background: white;
+}

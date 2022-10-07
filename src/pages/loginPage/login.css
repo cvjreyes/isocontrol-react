@@ -1,0 +1,14 @@
+.login__form__container{
+    padding: 30px 40px 20px 40px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: white;
+    position:absolute;
+    margin-top: 8%;
+    width: 500px;
+    font-family: 'Quicksand', sans-serif;
+    top: 20%;
+    left: 40%;
+    margin-top: -40px;
+    margin-left: -40px;
+}
+

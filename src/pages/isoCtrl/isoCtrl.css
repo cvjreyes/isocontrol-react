@@ -1,0 +1,122 @@
+.isoCtrl__container{
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    display: block;
+    position: static;
+    margin-top: 85px;
+}
+
+.iso__title{
+    box-sizing: border-box;
+    font-size: 30px;
+    font-family: 'Quicksand', sans-serif;
+    line-height: 1.1;
+    color: rgb(99, 107, 111);
+    text-align: -webkit-center;
+    background-color: white;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.title__container{
+    margin-top: 22px;
+    margin-bottom: 11px;
+    font-size: 30px;
+}
+
+.iso__subtitle{
+    font-size: 24px;
+    margin-top: 22px;
+    margin-bottom: 25px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: rgb(99, 107, 111);
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Quicksand',sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #636b6f;
+    background-color: white;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+}
+
+.navBtns__center{
+    margin-top:80px;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: block;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    height: 45px;
+    line-height: 22.4px;
+    text-align: -webkit-center;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.progress__text{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color:rgb(99, 107, 111);
+}
+
+.actionBtns__container{
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.commentBox__container{
+    height: 10px;
+}
+
+.reportBtns__container{
+    padding-right:"0px";
+    width:"380px";
+}
+
+.stateTable__container{
+    float: right;
+    right: 0;
+    margin-bottom: 20px;
+    border-radius: 2em;
+}
+
+.roleSelector__container{
+    width: 130px;
+    position: absolute;
+}
+
+.reports__container{
+    margin-top: 50px;
+    border: 1px solid black;
+    display: table;
+    height:400px;
+    width: 100%;
+    background-color:rgb(255,255,255,0.5);
+    
+}
+
+.isoTrackerLogo__image{
+    width: 343.57px;
+    height: auto;
+}
+
+.css-4ea4zf-MuiTypography-root{
+    font-family: 'Quicksand' !important;
+    font-size: 28px !important;
+}

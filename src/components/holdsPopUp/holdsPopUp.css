@@ -1,0 +1,21 @@
+.holds__container{
+    padding: 20px;
+    display: inline-block;
+}
+
+.holds__row{
+    display: flex;
+    display:inherit;
+}
+
+.holds__hold__text{
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.holds__description__text{
+    font-size: 15px;
+    font-weight: 300;
+    margin: 5px 5px 5px 5px
+}

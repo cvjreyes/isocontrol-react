@@ -1,0 +1,42 @@
+.nav__button{
+    border-radius: 10px 0px 0px 10px;
+    width: 104%;
+    margin-left: -8px;
+    border: 0;
+    padding-right: 60px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 4px;
+    transition: 0.3s;
+    background-color: white;
+    padding-left: 10px;
+    height: 36px;
+}
+
+.nav__button:hover{
+    background-color: #99C6F8;
+}
+
+.nav__button__title{
+    border-radius: 10px 0px 0px 10px;
+    width: 104%;
+    margin-left: -8px;
+    border: 0;
+    padding-right: 60px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    padding-left: 4px;
+    transition: 0.3s;
+    background-color: white;
+    padding-left: 10px;
+    height: 36px;
+    color: #636b6f;
+}
+
+.nav__button__title:hover{
+    background-color: #99C6F8;
+}

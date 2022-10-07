@@ -1,0 +1,98 @@
+.header__container{
+    margin-right: 5%;
+    margin-top: 50px;
+    margin-left: 5%;
+    font-weight: bold;
+    position: fixed;
+    width: 1100px;
+}
+
+.cancel__header__id{
+    float:left;
+    margin-right:30%;
+}
+
+.cancel__header__tray{
+    float:left;
+    font-size: 20px;
+    color: #0070ED;
+    margin-left: 30px;
+}
+
+.cancel__header__comments{
+    float:left;
+    margin-left: 20%;
+    font-size: 20px;
+    color: #0070ED;
+
+}
+
+.body__container{
+    background-color:white;
+    margin-top: 85px;
+    margin-right: 5%;
+    margin-left: 5%;
+    height:55%;
+}
+
+.isometric__name{
+    float: left;
+    margin: 10px 205px 10px 10px;
+    
+}
+
+.btn__confirm__return{
+    color: #FFFFFF;
+    width: 120px;
+    height: 43px;
+    border: 1px solid #338DF1;
+    background: #338DF1;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+.btn__confirm__return:hover{
+    background-color: #99C6F8;
+    color: black;
+}
+
+.btn__cancel__return{
+    color: #0070ED;
+    width: 120px;
+    height: 43px;
+    border: 1px solid #0070ED;
+    background: #FFFFFF;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-left: 30px;
+}
+
+.btn__cancel__return:hover{
+    background-color: #99C6F8;
+    color: black;
+}
+
+.popUp__textarea__return{
+    overflow-y: scroll;
+    resize: none;
+    width: 430px;
+    height: 170px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.destination__select__return{
+    float:left;
+    font-size: 18px;
+    padding: 8px 8px 8px 13px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.destination__select__return:hover{
+    background-color: #99C6F8;
+}
+.popUpP__buttons__container__return{
+    margin-top: 20px;
+    margin-left: 100px;
+}

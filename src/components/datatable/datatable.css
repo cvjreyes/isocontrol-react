@@ -1,0 +1,33 @@
+.dataTable__header__text{  
+  font-size: 16px; 
+  font-weight : bold;
+  margin : auto;
+  text-align: center;
+}
+
+.dataTable__container{
+  position: relative;
+  width: 100%;
+}
+
+.dataTable__elements{
+  position: absolute;
+  bottom: 25;
+  left: 0;
+}
+
+.claimed__btn{
+  font-size: 12px;
+  font-weight: bold;
+  background-color: green;
+}
+
+.pending__btn{
+  font-size: 12px;
+  font-weight: bold;
+  background-color: yellow;
+}
+
+.customTable td{
+  font-size: 14px;
+}

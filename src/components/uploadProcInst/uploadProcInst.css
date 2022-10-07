@@ -1,0 +1,35 @@
+.inputFile__container{
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.popUpP__warning__title{
+    margin-top: 50px;
+    font-size: 20px;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: yellow;
+    font-weight: bold;
+}
+
+.popUpP__warning__subtitle{
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: yellow;
+}
+
+.popUpP__buttons__container{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.dndP__container{
+    margin-top: 30px;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    height:250px;
+}
+
+.popUpP__title{
+    margin-top: 20px;
+}

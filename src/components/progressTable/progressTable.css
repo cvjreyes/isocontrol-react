@@ -1,0 +1,167 @@
+.progressTable__body{
+    border-bottom-color: rgb(128, 128, 128);
+    border-left-color: rgb(128, 128, 128);
+    border-right-color: rgb(128, 128, 128);
+    border-top-color: rgb(128, 128, 128);
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table-row-group;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    height: 42px;
+    line-height: 22.4px;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    width: 469px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.progressTable__table{
+    border: 1px solid rgb(99, 107, 111);
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgb(128, 128, 128);
+    border-bottom-width: 1px;
+
+    border-left-color: rgb(128, 128, 128);
+    border-left-width: 1px;
+    border-right-color: rgb(128, 128, 128);
+    border-right-width: 1px;
+    border-top-color: rgb(128, 128, 128);
+    border-top-width: 1px;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    height: 42px;
+    line-height: 22.4px;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    width: 100%;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.progressTable__td{
+
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    height: 44px;
+    line-height: 22.4px;
+    padding-bottom:0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    width: 750px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.progressTable__header{
+    border: 1px solid rgb(99, 107, 111);
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgb(107, 157, 187);
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    width: 11%;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.progressTable__state{
+    border: 1px solid rgb(99, 107, 111);
+
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.progressTable__value{
+    border: 1px solid rgb(99, 107, 111);
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table-cell;
+    font-family: Quicksand, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    width: 77px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.progressTable__content__td{
+    text-align: center;
+    height: 19px;
+}
+

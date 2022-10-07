@@ -1,0 +1,34 @@
+.nb__text{
+    font-family: 'Quicksand', sans-serif;
+    text-transform: none;
+    font-size: 15px;
+    font-style: normal;
+    transition: 0.3s;
+    opacity: 0.8;
+    color: white;
+}
+
+.nb__text:hover{
+    opacity: 1;
+}
+
+.nb__arrow{
+    font-size: 9px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.nb__text__projectname{
+    font-family: 'Quicksand', sans-serif;
+    text-transform: none;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    
+    opacity: 0.8;
+    color: #A9E3BB
+}
+
+.nb__notificationBell__icon{
+    width: 30px;
+    height: 30px;
+}

@@ -1,0 +1,35 @@
+.popUp__container{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.popUp__title{
+    margin-top: 20px;
+}
+
+.userSelect{
+    font-size: 18px;
+    margin-right: 15px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.selector__container{
+    margin-top: 30px;
+}
+
+.btn__assign__user{
+    align-items: center;
+    color: #FFFFFF;
+    width: 100px;
+    height: 30px;
+    border: 1px solid #338DF1;
+    background: #338DF1;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.btn__assign__user:hover{
+    background-color: #99C6F8;
+    color: black;
+}

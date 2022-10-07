@@ -1,0 +1,32 @@
+.btn__delete__user{
+    align-items: center;
+    color: #FFFFFF;
+    width: 100px;
+    height: 43px;
+    border: 1px solid #338DF1;
+    background: #338DF1;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.btn__delete__user:hover{
+    background-color: #99C6F8;
+    color: black;
+}
+
+.btn__cancel__user{
+    align-items: center;
+    color: #0070ED;
+    width: 100px;
+    height: 43px;
+    border: 1px solid #0070ED;
+    margin-left: 30px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.btn__cancel__user:hover{
+    background-color: #99C6F8;
+    color: black;
+}

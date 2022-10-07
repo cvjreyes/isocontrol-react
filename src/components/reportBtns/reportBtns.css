@@ -1,0 +1,25 @@
+.report__btns__container{
+    width: 180px;
+}
+
+.report__buttons{
+    border-radius: 10px 0px 0px 10px;
+    width: 115%;
+    margin-left: -8px;
+    border: 0;
+    padding-right: 100px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 4px;
+    transition: 0.3s;
+    background-color: white;
+    padding-left: 10px;
+    height: 36px;
+}
+
+.report__buttons:hover{
+    background-color: #99C6F8;
+}
+
+

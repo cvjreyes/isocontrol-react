@@ -1,0 +1,305 @@
+.statusTable__body{
+    
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table-row-group;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    height: 63px;
+    line-height: 22.4px;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    width: 469px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.statusTable__table{
+    background-color: rgba(0, 0, 0, 0); 
+    border-collapse: collapse;
+    border-radius: 1.2em;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    height: 190px;
+    width: 136%;
+    line-height: 22.4px;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border-style: hidden; 
+    box-shadow: 0 0 0 1.1px #D2D2D2;
+    
+}
+
+.statusTable__td{
+    zoom:0.9;    
+    color: rgb(99, 107, 111);
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    height: 84px;
+    line-height: 22.4px;
+    padding-bottom:0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    width: 800px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.statusTable__header{
+    border: 0.28px solid #D2D2D2;   
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #338DF1;
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    width: 100px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    
+}
+
+.statusTable__state{
+    border: 0.28px solid #D2D2D2;   
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    background-color: white;
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.statusTable__state__hold{
+    border: 0.28px solid #D2D2D2;   
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    background-color: #ffc2cd;
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.statusTable__state__deleted{
+    border: 0.28px solid #D2D2D2;   
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    background-color: #DCDCDC;
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.statusTable__state__stock{
+    border: 0.28px solid #D2D2D2;   
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    background-color: #d4f1dd;
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.statusTable__state_R0{
+    border: 0.28px solid #D2D2D2;   
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background-color: white;
+}
+
+.statusTable__state_R1{
+    border: 0.28px solid #D2D2D2;   
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background-color: #d1ebf7;
+}
+
+.statusTable__state_R2{
+    border: 0.28px solid #D2D2D2;   
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table-cell;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background-color: white;
+}
+
+.statusTable__value{
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgb(255, 255, 255);
+    background-image: none;
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(99, 107, 111);
+    display: table-cell;
+    font-family: Quicksand, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 21px;
+    line-height: 20.8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    width: 77px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+

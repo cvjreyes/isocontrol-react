@@ -1,0 +1,13 @@
+.column {
+    float: left;
+    background-color: blue;
+    width: 33%;
+  }
+  
+
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

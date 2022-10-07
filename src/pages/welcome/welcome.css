@@ -1,0 +1,58 @@
+.cover__background{
+    background-image: url("../../assets/images/refinery4.png");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cover__login__container{
+    position: relative;
+    float: right;
+    padding-top: 15px;
+    padding-right: 10px;
+}
+
+.cover__login__text{
+    padding-right: 25px;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-decoration: none;
+}
+
+.cover__login__text:hover{
+    padding-right: 25px;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-decoration: none;
+}
+
+.cover__main__container{
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.cover__main__text{
+    font-family: 'Raleway', sans-serif;
+    font-weight: lighter;
+    font-size: 100px;
+    color: white;
+}
+
+.cover__main__footer{
+    font-family: 'Raleway', sans-serif;
+    font-weight: lighter;
+    font-size: 24px;
+    color: white;
+}

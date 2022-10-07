@@ -1,0 +1,24 @@
+.actionExtra__select{
+    height:34px;
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 5px;
+    margin-right: 10px;
+    border-radius: 1em 1em 1em 1em;
+}
+
+.actionExtra__text{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color:rgb(99, 107, 111);
+}
+
+.actionExtra__container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    zoom: 0.8;
+}
+
