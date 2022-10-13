@@ -116,7 +116,7 @@ const PipingNavBtns = props =>{
     
 
     if(process.env.REACT_APP_IFC === "0"){
-        prodBtn = <button type="button" className="trays__navBtns text-left"  onClick={() => history.push('/'+process.env.REACT_APP_PROJECT+'/pipingProgress')}>Progress</button>
+        prodBtn = <button type="button" className="trays__navBtns text-left"  onClick={() => history.push('/'+process.env.REACT_APP_PROJECT+'/pipingProgress')}>IFDProgress</button>
     }else{
         prodBtn = <button type="button" className="trays__navBtns text-left"  onClick={() => history.push('/'+process.env.REACT_APP_PROJECT+'/pipingProduction')}>Production</button>
     }
@@ -127,8 +127,7 @@ const PipingNavBtns = props =>{
         <div>                                  
             {feedTitle}
             {feedBtn}
-            {feedProgressBtn}
-            <p className="isotracker__table__trays__group">IsoControl</p>
+            <p className="isotracker__table__trays__group">IFD</p>
             {isoControlEstimatedBtn}
             {isoControlFullBtn}
             {myTrayButton}
@@ -140,6 +139,7 @@ const PipingNavBtns = props =>{
             {supportsButton}
             {sDesignButtn}
             <p className="isotracker__table__trays__group">Reporting</p>
+            {feedProgressBtn}
             {prodBtn}
         </div>
     );
