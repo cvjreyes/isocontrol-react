@@ -1,0 +1,196 @@
+.all__buttons__iso__ctrl{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 56px;
+
+    position: absolute;
+    width: 784px;
+    height: 224px;
+    left: 328px;
+    top: 320px;
+
+}
+
+.container__buttons__iso__ctrl{
+
+}
+
+.button__iso__ctrl{
+    /* Auto layout */
+
+    margin-left: 50%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0px;
+    gap: 24px;
+    
+    width: 224px;
+    height: 224px;
+    
+    background: linear-gradient(180deg, #338DF1 -2.23%, #338DF1 -2.22%, #85BFFF 148.66%);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+
+    text-decoration: none;
+
+}
+
+.button__iso__ctrl:hover{
+
+    text-decoration: none;
+
+}
+
+.label__iso__ctrl {
+    
+    margin-bottom: -7%;
+
+    width: 93px;
+    height: 43px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35.3168px;
+    line-height: 43px;
+    text-decoration: none;
+
+    /* identical to box height */
+
+    letter-spacing: -0.06em;
+
+    /* Primary white */
+
+    color: #FFFFFF;
+
+}
+
+.description__iso__ctrl {
+
+    width: 197px;
+    height: 16px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12.7603px;
+    line-height: 16px;
+    /* identical to box height */
+
+    letter-spacing: -0.025em;
+
+    /* Primary white */
+
+    color: #FFFFFF;
+
+
+
+}
+
+.percentage__iso__ctrl{
+    
+    width: 141px;
+    height: 88px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 72.0119px;
+    line-height: 88px;
+    /* identical to box height */
+
+    letter-spacing: -0.08em;
+
+    /* Primary white */
+
+    color: #FFFFFF;
+
+}
+
+.container__progress__iso__ctrl {
+
+    margin-left: 6%;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+
+    position: absolute;
+    width: 784px;
+    height: 54px;
+    left: 328px;
+    top: 608px;   
+}
+
+.progress__label__iso__ctrl {
+    /* Total Progress: 75% */
+
+
+    width: 200px;
+    height: 22px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height */
+
+
+    /* Secondary/Black 80% */
+
+    color: #606060; 
+}
+
+.container__progress{
+    justify-content: center;
+    align-items: center;
+    background: white;
+    display: flex;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.progress__images{
+    background: rgba(255,255,255,0.1);
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0 5px;
+    display: flex;
+    height: 40px;
+    width: 780px;
+}
+
+.progress__value__images{
+    animation: load 3s normal forwards;
+    box-shadow: 0 10px 40px -10px blue;
+    border-radius: 100px;
+    background: linear-gradient(180deg, #338DF1 -2.23%, #338DF1 -2.22%, #85BFFF 148.66%);
+    height: 40px;
+    width: 0;
+    color: #FFFFFF;
+}
+
+@keyframes load {
+    0% { width: 0; }
+    100% { width: 50%; }
+}
+
+.percentage__progress{
+    margin-top: 5px;
+    font-size: large;
+    text-align: center;
+}

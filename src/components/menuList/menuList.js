@@ -202,7 +202,15 @@ const MenuList = () =>{
                 </div>
                 
             </div>
-        </div>   </div>)
+        </div>  
+        {/* <div className="panel__content__container">
+            <div>
+                <a href={"/"+process.env.REACT_APP_PROJECT+"/isoCtrlButtons"} style={{textDecoration: "none"}} className="panel__content__link">
+                    <h4 className="panel__icon__container" onMouseEnter={() => setElecIsShown(true)} onMouseLeave={() => setElecIsShown(false)}><img src={ElecIcon} alt="inst" className="panel__icon"/>&nbsp;&nbsp;&nbsp;Iso Control Images</h4>
+                </a>
+            </div>
+        </div>      */}
+        </div>)
         }else{
             setProgressButtons(<div className="panel__content__container">
             <div>

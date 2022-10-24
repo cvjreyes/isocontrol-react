@@ -19,6 +19,7 @@ import PITRequests from './pages/pitrequests/pitrequests';
 import PitRequestView from './pages/pitRequestView/pitRequestView';
 import PipingProduction from './pages/pipingProduction/pipingProduction'
 import PipingProgress from './pages/pipingProgress/pipingProgress';
+import IsoCtrlButtons from './pages/isoCtrlButtons/isoCtrlButtons';
 require('dotenv').config();
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route exact path={"/"+process.env.REACT_APP_PROJECT+"/pitrequestsview"} component={PitRequestView}></Route>
             <Route exact path={"/"+process.env.REACT_APP_PROJECT+"/pipingProduction"} component={PipingProduction}></Route>
             <Route exact path={"/"+process.env.REACT_APP_PROJECT+"/pipingProgress"} component={PipingProgress}></Route>
+            <Route exact path={"/"+process.env.REACT_APP_PROJECT+"/isoCtrlButtons"} component={IsoCtrlButtons}></Route>
         </Switch>
       </Router>
   
