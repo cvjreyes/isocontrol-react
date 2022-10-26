@@ -17,27 +17,42 @@ const CryptoJS = require("crypto-js");
             data = CryptoJS.AES.encrypt(data, SECRET_KEY);
     
             data = data.toString();
-    
+            
             return data;
         },
         decrypt: function decrypt(data) {
             data = CryptoJS.AES.decrypt(data, SECRET_KEY);
-    
+            
             data = data.toString(CryptoJS.enc.Utf8);
-    
+            
             return data;
         }
     });
-
-const PipingNavBtns = props =>{
+    
+    const PipingNavBtns = props =>{
     const history = useHistory();
-    var myTrayButton, modelledButton, sStressButton, rStressButton, stressButton, supportsButton, sDesignButtn, isoControlFullBtn, isoControlEstimatedBtn, prodBtn, feedBtn, feedProgressBtn, feedTitle
+    var myTrayButton, modelledButton, sStressButton, rStressButton, stressButton, supportsButton, sDesignButtn, isoControlFullBtn, isoControlEstimatedBtn, prodBtn, feedBtn, feedProgressBtn, feedTitle, ifdTitle, traysTitle, reportingTitle;
+
+    if(props.currentTab === "EstimatedPipes"){
+        secureStorage.setItem("tab", "EstimatedPipes")
+        isoControlEstimatedBtn = <button type="button" className="trays__navBtns text-left" style={{backgroundColor:"#99C6F8", color:"black", fontWeight:"bold"}} >Main</button>
+    }else{
+        isoControlEstimatedBtn = <button type="button" className="trays__navBtns text-left"  onClick={() =>{props.onChange("EstimatedPipes")}}>Main</button>
+    }
+    
+    if(props.currentTab === "IsoControlFull"){
+        secureStorage.setItem("tab", "IsoControlFull")
+        isoControlFullBtn = <button type="button" className="trays__navBtns text-left" style={{backgroundColor:"#99C6F8", color:"black", fontWeight:"bold"}} >Report</button>
+    }else{
+        isoControlFullBtn = <button type="button" className="trays__navBtns text-left"  onClick={() =>{props.onChange("IsoControlFull")}}>Report</button>
+    }
+
     if(props.currentTab === "PipingMyTray"){
         secureStorage.setItem("tab", "PipingMyTray")
         myTrayButton = <button  type="button" className="trays__navBtns text-left" style={{backgroundColor:"#99C6F8", color:"black", fontWeight:"bold"}}>My Tray</button>
     }else{
         myTrayButton = <button  type="button" className="trays__navBtns text-left"  onClick={() => {props.onChange("PipingMyTray")}}>My tray</button>
-        
+    
     }
 
     if(props.currentTab === "PipingModelled"){
@@ -82,35 +97,67 @@ const PipingNavBtns = props =>{
         
     }
 
-    if(props.currentTab === "IsoControlFull"){
-        secureStorage.setItem("tab", "IsoControlFull")
-        isoControlFullBtn = <button type="button" className="trays__navBtns text-left" style={{backgroundColor:"#99C6F8", color:"black", fontWeight:"bold"}} >Report</button>
-    }else{
-        isoControlFullBtn = <button type="button" className="trays__navBtns text-left"  onClick={() =>{props.onChange("IsoControlFull")}}>Report</button>
-    }
 
-    if(props.currentTab === "EstimatedPipes"){
-        secureStorage.setItem("tab", "EstimatedPipes")
-        isoControlEstimatedBtn = <button type="button" className="trays__navBtns text-left" style={{backgroundColor:"#99C6F8", color:"black", fontWeight:"bold"}} >Main</button>
-    }else{
-        isoControlEstimatedBtn = <button type="button" className="trays__navBtns text-left"  onClick={() =>{props.onChange("EstimatedPipes")}}>Main</button>
-    }
-
-    if(secureStorage.getItem("role") === "DesignLead" || secureStorage.getItem("role") === "SpecialityLead"){
+    if(secureStorage.getItem("role") === "SpecialityLead"){
         feedTitle = <p className="isotracker__table__trays__group">Feed</p>
+        reportingTitle = <p className="isotracker__table__trays__group">Reporting</p>
         if(props.currentTab === "FeedPipes"){
             secureStorage.setItem("tab", "FeedPipes")
             feedBtn = <button type="button" className="trays__navBtns text-left" style={{backgroundColor:"#99C6F8", color:"black", fontWeight:"bold"}} >LineControl</button>
+            myTrayButton = null
+            modelledButton = null 
+            sStressButton = null 
+            rStressButton = null 
+            stressButton = null 
+            supportsButton = null 
+            sDesignButtn = null 
+            isoControlFullBtn = null 
+            isoControlEstimatedBtn = null 
+            prodBtn = null
         }else{
             feedBtn = <button type="button" className="trays__navBtns text-left"  onClick={() =>{props.onChange("FeedPipes")}}>LineControl</button>
+            myTrayButton = null
+            modelledButton = null 
+            sStressButton = null 
+            rStressButton = null 
+            stressButton = null 
+            supportsButton = null 
+            sDesignButtn = null 
+            isoControlFullBtn = null 
+            isoControlEstimatedBtn = null 
+            prodBtn = null
         }
         
         if(props.currentTab === "FeedProgress"){
             secureStorage.setItem("tab", "FeedProgress")
             feedProgressBtn = <button type="button" className="trays__navBtns text-left" style={{backgroundColor:"#99C6F8", color:"black", fontWeight:"bold"}} >FeedProgress</button>
+            myTrayButton = null
+            modelledButton = null 
+            sStressButton = null 
+            rStressButton = null 
+            stressButton = null 
+            supportsButton = null 
+            sDesignButtn = null 
+            isoControlFullBtn = null 
+            isoControlEstimatedBtn = null 
+            prodBtn = null
         }else{
             feedProgressBtn = <button type="button" className="trays__navBtns text-left"  onClick={() =>{props.onChange("FeedProgress")}}>FeedProgress</button>
+            myTrayButton = null
+            modelledButton = null 
+            sStressButton = null 
+            rStressButton = null 
+            stressButton = null 
+            supportsButton = null 
+            sDesignButtn = null 
+            isoControlFullBtn = null 
+            isoControlEstimatedBtn = null 
+            prodBtn = null
         }
+    } else {
+        ifdTitle = <p className="isotracker__table__trays__group">IFD</p>
+        traysTitle = <p className="isotracker__table__trays__group">Trays</p>
+        reportingTitle = <p className="isotracker__table__trays__group">Reporting</p>
     }
 
     
@@ -127,18 +174,18 @@ const PipingNavBtns = props =>{
         <div>                                  
             {feedTitle}
             {feedBtn}
-            <p className="isotracker__table__trays__group">IFD</p>
+            {ifdTitle}
             {isoControlEstimatedBtn}
             {isoControlFullBtn}
             {myTrayButton}
-            <p className="isotracker__table__trays__group">Trays</p>
+            {traysTitle}
             {modelledButton}
             {sStressButton}
             {rStressButton}
             {stressButton}
             {supportsButton}
             {sDesignButtn}
-            <p className="isotracker__table__trays__group">Reporting</p>
+            {reportingTitle}
             {feedProgressBtn}
             {prodBtn}
         </div>

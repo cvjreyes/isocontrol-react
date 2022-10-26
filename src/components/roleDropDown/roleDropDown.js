@@ -21,6 +21,7 @@ const RoleDropDown = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [selectedFeed, setSelectedFeed] = React.useState(0)
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -53,8 +54,13 @@ const RoleDropDown = (props) => {
 
 
   var options = ["none"]
+  var feedRole = ["none"]
+
   if (props.roles){
     options = props.roles;
+    feedRole = props.roles
+    // feedRole.push(props.roles[8])
+    // designRole.push(props.roles[0], props.roles[1])
   }
 
   useEffect(()=>{
@@ -63,8 +69,15 @@ const RoleDropDown = (props) => {
     }else{
       setSelectedIndex(0)
     }
+
+    if (feedRole.indexOf(secureStorage.getItem('role')) !== -1){
+      setSelectedFeed(feedRole.indexOf(secureStorage.getItem('role')))
+    }else{
+      setSelectedFeed(8)
+    }
+
     // eslint-disable-next-line
-  },[options])
+  },[options, feedRole])
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -73,10 +86,27 @@ const RoleDropDown = (props) => {
     secureStorage.setItem('role', options[index])
   };
 
+  // const handleMenuItemClickFeed = (event, index) => {
+  //   setSelectedFeed(index);
+  //   setAnchorEl(null);
+  //   props.onChange(feedRole[index]);
+  //   secureStorage.setItem('role', feedRole[index])
+  // };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  // useEffect(() => {
+  //   console.log("feed enter" + props.feedEnter);
+  //   if(props.feedEnter === true){
+      
+  //   } else {
+
+  //   }
+
+  // }, [])
+  
 
   return (
     <div className={classes.root}>

@@ -19,6 +19,7 @@ import IdleTimer from 'react-idle-timer'
 import { useHistory } from "react-router";
 import PipingNavBtns from "../../components/pipingNavBtns/pipingNavBtns"
 
+
 import PipingDataTable from "../../components/pipingDataTable/pipingDataTable"
 import PipingMyTrayTable from "../../components/pipingMyTrayTable/pipingMyTrayTable"
 import PipingBinTable from "../../components/pipingBinTable/pipingBinTable"
@@ -31,6 +32,7 @@ import IsoControlHoldsDataTable from "../../components/isoControlHoldsDataTable/
 import FeedPipesExcel from "../../components/feedPipesExcel/feedPipesExcel";
 import FeedProgressPlot from "../../components/feedProgressPlot/feedProgressPlot";
 import FeedForecastTable from "../../components/feedForecastTable/feedForecastTable";
+import IsoControlButtons from "../../components/isoControlButtons/isoControlButtons";
 
 const CryptoJS = require("crypto-js");
 const SecureStorage = require("secure-web-storage");
@@ -70,7 +72,8 @@ const Piping = () => {
     const [warningSelected, setWarningSelected] = useState(false);
     const [transactionSuccess, setTransactionSuccess] = useState(false)
     const [notVI, setNotVI] = useState(false)
-    const [currentTab, setCurrentTab] = useState("PipingMyTray")
+    const [currentTab, setCurrentTab] = useState("")
+    //const [currentTab, setCurrentTab] = useState(props.initialTab(currentRole))
     const [estimatedWarning, setEstimatedWarning] = useState(false)
     const [estimatedEmpty, setEstimatedEmpty] = useState(false)
     const [modelledWeight, setModelledWeight] = useState("...")
@@ -83,6 +86,7 @@ const Piping = () => {
     const [changesSaved, setChangesSaved] = useState(false)
     const [feedProgress, setFeedProgress] = useState(null)
     const history = useHistory()
+
 
     useEffect(() => {
         const body = {
@@ -104,7 +108,7 @@ const Piping = () => {
                 if (secureStorage.getItem('role') !== null) {
                     setCurrentRole(secureStorage.getItem('role'))
                 } else {
-                    secureStorage.setItem('role', json.roles[0])
+                    secureStorage.setItem('role', json.roles[8])
                     setCurrentRole(secureStorage.getItem('role'))
                 }
             }
@@ -203,7 +207,14 @@ const Piping = () => {
 
     document.title = process.env.REACT_APP_APP_NAMEPROJ
     if (currentTab === "" || currentTab === null) {
-        setCurrentTab("Estimated")
+        console.log("Rol supremo: " + secureStorage.getItem('role'));
+        if(secureStorage.getItem('role') === "SpecialityLead"){
+            console.log("entra");
+            setCurrentTab("FeedPipes")
+        }else {
+            console.log("sale");
+            setCurrentTab("EstimatedPipes")
+        }
     }
 
     var currentUser = secureStorage.getItem('user')
@@ -216,7 +227,7 @@ const Piping = () => {
     let uploadBOMBtn = null
     let feedProgressButton = null
     let feedForecastBtn = null
-
+    
     //Dependiendo del tab se muestra un contenido u otro, tambien diferentes action buttons
     if (currentTab === "Estimated") {
         table = <PipingEstimatedDataTable />
@@ -298,7 +309,7 @@ const Piping = () => {
         isocontrolWeightsComponent = <button className="isocontrol__weigths" disabled>Modelled: {modelledWeight} t &nbsp;&nbsp;&nbsp;&nbsp;   Not modelled: {notModelledWeight} t  &nbsp;&nbsp;&nbsp;&nbsp; Total: {totalIsocontrolWeight} t</button>
     }
 
-
+    console.log("Current tab: " + currentTab);
     async function claimClick() { //Claim de una linea en la fase de maduracion
         if (selected.length > 0) { //Si hay al menos una seleccionada
             await setLoading(true)
@@ -550,7 +561,7 @@ const Piping = () => {
 
     return (
 
-        <body>
+        <div>
             <IdleTimer
                 timeout={1000 * 60 * 15}
                 onIdle={handleOnIdle}
@@ -662,7 +673,7 @@ const Piping = () => {
             </div>
             <table className="isotracker__table__container">
                 <tr className="isotracker__table__navBar__container">
-                    <th colspan="2" className="isotracker__table__navBar">
+                    <th colSpan="2" className="isotracker__table__navBar">
                         {recycleBinBtn}
                         {holdBtn}
                         {feedProgressButton}
@@ -695,7 +706,7 @@ const Piping = () => {
             <center className="actionBtns__container" style={{ marginTop: "40px", zoom: 0.9 }}>
                 {actionBtns}
             </center>
-        </body>
+        </div>
     )
 }
 
