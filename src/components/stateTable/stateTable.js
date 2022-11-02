@@ -191,13 +191,42 @@ const StateTable = props =>{
                     fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/currentProgressISO", options)
                     .then(response => response.json())
                     .then(async json =>{
-                         await setProgressIso([json.progressISO, json.realprogressISO])
+                        // let pIso
+                        // let rPIso
+                        // if (isNaN(json.progressISO)){
+                        //     pIso = 0
+                        // } else {
+                        //     pIso = json.progressISO
+                        // }
+
+                        // if (isNaN(json.realprogressISO)){
+                        //     rPIso = 0
+                        // } else {
+                        //     rPIso = json.realprogressISO
+                        // }
+
+                        // await setProgressIso([pIso, rPIso])
+                        await setProgressIso([json.progressISO, json.realprogressISO])
                     })
                     
                     fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/currentProgress", options)
                     .then(response => response.json())
                     .then(async json =>{
-                         await setProgress([json.progress, json.realprogress])
+                        // let pro
+                        // let rPro
+                        // if (isNaN(json.progress)){
+                        //     pro = 0
+                        // } else {
+                        //     pro = json.progress
+                        // }
+
+                        // if (isNaN(json.realprogress)){
+                        //     rPro = 0
+                        // } else {
+                        //     rPro = json.realprogress
+                        // }
+                        // await setProgress([pro, rPro])
+                        await setProgress([json.progress, json.realprogress])
                     })
                     if(props.currentRole === "SpecialityLead"){
                         await setRealProgressTD(<td  className="statusTable__header" style={{backgroundColor:"#0070ed"}}>R.P.</td>)

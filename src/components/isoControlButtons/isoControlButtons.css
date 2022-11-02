@@ -63,7 +63,7 @@
 
     /* identical to box height */
 
-    letter-spacing: -0.06em;
+    letter-spacing: 0.06em;
 
     /* Primary white */
 
@@ -101,8 +101,9 @@
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 300;
-    font-size: 72.0119px;
+    font-size: 60px;
     line-height: 88px;
+    text-align: center;
     /* identical to box height */
 
     letter-spacing: -0.08em;
@@ -111,6 +112,10 @@
 
     color: #FFFFFF;
 
+}
+
+.move__num {
+    margin-left: -60px;
 }
 
 .container__progress__iso__ctrl {
@@ -136,7 +141,7 @@
     /* Total Progress: 75% */
 
 
-    width: 200px;
+    width: 300px;
     height: 22px;
 
     font-family: 'Montserrat';
@@ -175,7 +180,7 @@
 }
 
 .progress__value__images{
-    animation: load 3s normal forwards;
+    /* animation: load 3s normal forwards; */
     box-shadow: 0 10px 40px -10px blue;
     border-radius: 100px;
     background: linear-gradient(180deg, #338DF1 -2.23%, #338DF1 -2.22%, #85BFFF 148.66%);

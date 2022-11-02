@@ -32,7 +32,6 @@ import IsoControlHoldsDataTable from "../../components/isoControlHoldsDataTable/
 import FeedPipesExcel from "../../components/feedPipesExcel/feedPipesExcel";
 import FeedProgressPlot from "../../components/feedProgressPlot/feedProgressPlot";
 import FeedForecastTable from "../../components/feedForecastTable/feedForecastTable";
-import IsoControlButtons from "../../components/isoControlButtons/isoControlButtons";
 
 const CryptoJS = require("crypto-js");
 const SecureStorage = require("secure-web-storage");
@@ -73,7 +72,6 @@ const Piping = () => {
     const [transactionSuccess, setTransactionSuccess] = useState(false)
     const [notVI, setNotVI] = useState(false)
     const [currentTab, setCurrentTab] = useState("")
-    //const [currentTab, setCurrentTab] = useState(props.initialTab(currentRole))
     const [estimatedWarning, setEstimatedWarning] = useState(false)
     const [estimatedEmpty, setEstimatedEmpty] = useState(false)
     const [modelledWeight, setModelledWeight] = useState("...")
@@ -133,6 +131,7 @@ const Piping = () => {
             .then(response => response.json())
             .then(json => {
                 setFeedProgress(json.progress)
+                // console.log("FeedProgress: " + json.progress);
             })
 
         //Get del peso estimado del feed
@@ -142,6 +141,10 @@ const Piping = () => {
                 setWeight(json.weight)
                 setProgress(json.progress)
                 setModelledWeight(json.modelledWeight)
+                // console.log("Weigth: " + json.progress);
+                // console.log("progress: " + json.progress);
+                // console.log("Modelled: " + json.progress);
+
             }
             )
             .catch(error => {
@@ -207,12 +210,12 @@ const Piping = () => {
 
     document.title = process.env.REACT_APP_APP_NAMEPROJ
     if (currentTab === "" || currentTab === null) {
-        console.log("Rol supremo: " + secureStorage.getItem('role'));
+        // console.log("Rol supremo: " + secureStorage.getItem('role'));
         if(secureStorage.getItem('role') === "SpecialityLead"){
-            console.log("entra");
+            // console.log("entra");
             setCurrentTab("FeedPipes")
         }else {
-            console.log("sale");
+            // console.log("sale");
             setCurrentTab("EstimatedPipes")
         }
     }
@@ -309,7 +312,7 @@ const Piping = () => {
         isocontrolWeightsComponent = <button className="isocontrol__weigths" disabled>Modelled: {modelledWeight} t &nbsp;&nbsp;&nbsp;&nbsp;   Not modelled: {notModelledWeight} t  &nbsp;&nbsp;&nbsp;&nbsp; Total: {totalIsocontrolWeight} t</button>
     }
 
-    console.log("Current tab: " + currentTab);
+    // console.log("Current tab: " + currentTab);
     async function claimClick() { //Claim de una linea en la fase de maduracion
         if (selected.length > 0) { //Si hay al menos una seleccionada
             await setLoading(true)
@@ -348,7 +351,6 @@ const Piping = () => {
         if (selected.length > 0) { //Si hay al menos una seleccionada
             await setLoading(true)
             localStorage.setItem("update", true)
-            console.log(selected)
             const body = {
                 pipes: selected,
             }
@@ -436,7 +438,6 @@ const Piping = () => {
             let minTrayWarning = false
             let pipes = []
             let notvi = false
-            console.log(selected)
             for (let i = 0; i < selected.length; i++) {
                 if ((selected[i][1]).indexOf(3) > -1) {
                     minTrayWarning = true
