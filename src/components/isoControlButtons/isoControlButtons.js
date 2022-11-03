@@ -178,6 +178,22 @@ const IsoControlButtons = () => {
                         console.log(error);
                     })
                 
+                    fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/currentProgressISO", options)
+                    .then(response => response.json())
+                    .then(async json =>{
+                        let pIso = json.progressISO
+                        if (isNaN(pIso)){
+                            setIfcProgress(0)
+                        } else {
+                            if(pIso % 1 === 0){
+                                setIfcProgress(Number(pIso).toFixed(0))
+                            } else {
+                                setIfcProgress(Number(pIso).toFixed(2))
+                            }
+                        }
+
+                    })
+                
                 setTotalProgress(((feedProgress * 0.1) + (ifdProgress * 0.4) + (ifcProgress * 0.5)).toFixed(2))
 
                 if(feedProgress % 1 === 0){

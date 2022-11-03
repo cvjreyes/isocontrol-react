@@ -37,7 +37,8 @@ class DragAndDrop extends React.Component{
     max: 0,
     uploadingPreview: false,
     uploading: false,
-    nSuccess: 0
+    nSuccess: 0,
+    puntosExtra: false,
   };
 
   async uploadFile(file) {
@@ -56,7 +57,6 @@ class DragAndDrop extends React.Component{
                 success : true,
               })
           }
-
           let filename = null;
           for (let value of file.values()){
             filename = value.name
@@ -88,11 +88,22 @@ class DragAndDrop extends React.Component{
           }
         }else{
           for (let value of file.values()) {
-            let joined = this.state.errorAlerts.concat(value.name);
-            this.setState({
-              errorAlerts : joined,
-              error: true
-            })
+            let fileNoExtension = value.name.split('.')
+            if(fileNoExtension.length > 2){
+              let joined = this.state.errorAlerts.concat(fileNoExtension[0] + ".pdf");
+              this.setState({
+                errorAlerts : joined,
+                error: true,
+                puntosExtra: true,
+              })
+            } else {
+              let joined = this.state.errorAlerts.concat(value.name);
+              this.setState({
+                errorAlerts : joined,
+                error: true,
+                puntosExtra: false,
+              })
+            }
           }
         }
         let max = this.state.max - 1
@@ -128,7 +139,6 @@ class DragAndDrop extends React.Component{
   }
 
   async updateFile(file) {
-
     
     await fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/update", {
       // content-type header should not be specified!
@@ -170,6 +180,7 @@ class DragAndDrop extends React.Component{
             .catch(error => message.error(error))
           }
         }else{
+
           for (let value of file.values()) {
             let joined = this.state.errorAlerts.concat(value.name);
             this.setState({
@@ -209,88 +220,182 @@ class DragAndDrop extends React.Component{
       counter: 0,
       max: files.length,
       uploading: true,
-      nSuccess: 0
+      nSuccess: 0,
+      puntosExtra: false,
     })
 
     await allFiles.forEach(file => {
       const formData  = new FormData(); 
-      formData.append('file', file.file);  
+      formData.append('file', file.file);
+      let fileNoExtension = file.file.name.split('.')
+      console.log("allFiles: " + JSON.stringify(allFiles));
       if(this.props.mode === "upload"){
-
+        console.log("1.entra upload");
         if(process.env.REACT_APP_PROGRESS === "0"){
-          fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+file.file.name)
-        .then(response => response.json())
-        .then(async json =>{
-          if(json.owner){
-            this.uploadFile(formData);
-          }else{
-            let joined = this.state.ownerErrorAlerts.concat(file.file.name);
+          console.log("1.entra progress 0");
+          if(fileNoExtension.length > 2){
+            console.log("entra filenoextension > 2");
             this.setState({
-              ownerErrorAlerts : joined,
-              ownerError: true
+              puntosExtra: true
             })
-            let max = this.state.max - 1
-            this.setState({
-              max: max
-            })
-            if (max === 0){
-              this.setState({
-                uploaded: true,
-                uploading: false
-              })
-            }
-          }
-        })
-          this.uploadFile(formData);
-        }else{
-          fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+file.file.name)
-        .then(response => response.json())
-        .then(async json =>{
-          if(json.owner){
-            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkPipe/"+file.file.name)
-          .then(response => response.json())
-          .then(async json =>{
-            if(json.exists){
-              this.uploadFile(formData);
-            }else{
-              let joined = this.state.pipeErrorAlerts.concat(file.file.name);
-              this.setState({
-                pipeErrorAlerts : joined,
-                pipeError: true
-              })
-              let max = this.state.max - 1
-              this.setState({
-                max: max
-              })
-              if (max === 0){
+            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+fileNoExtension[0])
+            .then(response => response.json())
+            .then(async json =>{
+              if(json.owner){
+                this.uploadFile(formData);
+              }else{
+                let joined = this.state.ownerErrorAlerts.concat(file.file.name);
                 this.setState({
-                  uploaded: true,
-                  uploading: false
+                  ownerErrorAlerts : joined,
+                  ownerError: true
                 })
+                let max = this.state.max - 1
+                this.setState({
+                  max: max
+                })
+                if (max === 0){
+                  this.setState({
+                    uploaded: true,
+                    uploading: false
+                  })
+                }
               }
-            }
-          })
-          }else{
-            let joined = this.state.ownerErrorAlerts.concat(file.file.name);
-            this.setState({
-              ownerErrorAlerts : joined,
-              ownerError: true
             })
-            let max = this.state.max - 1
-            this.setState({
-              max: max
+            this.uploadFile(formData);
+          } else {
+            console.log("1.else filenoextension");
+            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+fileNoExtension[0])
+            .then(response => response.json())
+            .then(async json =>{
+              if(json.owner){
+                this.uploadFile(formData);
+              }else{
+                let joined = this.state.ownerErrorAlerts.concat(file.file.name);
+                this.setState({
+                  ownerErrorAlerts : joined,
+                  ownerError: true
+                })
+                let max = this.state.max - 1
+                this.setState({
+                  max: max
+                })
+                if (max === 0){
+                  this.setState({
+                    uploaded: true,
+                    uploading: false
+                  })
+                }
+              }
             })
-            if (max === 0){
-              this.setState({
-                uploaded: true,
-                uploading: false
-              })
-            }
+            this.uploadFile(formData);
           }
-        })
-          
+        }else{
+          console.log("1. Entra else Progress = 1");
+
+          if(fileNoExtension.length > 2){
+            this.setState({
+              puntosExtra: true
+            })
+            console.log("2.entra if filenoextension del porgress 1");
+            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+fileNoExtension[0])
+            .then(response => response.json())
+            .then(async json =>{
+              if(json.owner){
+                fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkPipe/"+fileNoExtension[0]+".pdf")
+                .then(response => response.json())
+                .then(async json =>{
+                  if(json.exists){
+                    this.uploadFile(formData);
+                  }else{
+                    let joined = this.state.pipeErrorAlerts.concat(file.file.name);
+                    this.setState({
+                      pipeErrorAlerts : joined,
+                      pipeError: true,
+                    })
+                    let max = this.state.max - 1
+                    this.setState({
+                      max: max,
+                      puntosExtra: true
+                    })
+                    if (max === 0){
+                      this.setState({
+                        uploaded: true,
+                        uploading: false
+                      })
+                    }
+                  }
+                })
+              }else{
+                let joined = this.state.ownerErrorAlerts.concat(file.file.name);
+                this.setState({
+                  ownerErrorAlerts : joined,
+                  ownerError: true,
+                })
+                let max = this.state.max - 1
+                this.setState({
+                  max: max
+                })
+                if (max === 0){
+                  this.setState({
+                    uploaded: true,
+                    uploading: false
+                  })
+                }
+              }
+            })
+          } else {
+            console.log("2.Entra en el else del progress 1");
+            console.log("Nombre archivo: " + fileNoExtension[0]);
+            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+file.file.name)
+            .then(response => response.json())
+            .then(async jsonOwner =>{
+              //console.log("error del fetch: " + JSON.stringify(json));
+              if(jsonOwner.owner){
+                console.log("entra en el owner");
+                fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkPipe/"+file.file.name)
+                .then(response => response.json())
+                .then(async json =>{
+                  if(json.exists){
+                    this.uploadFile(formData);
+                  }else{
+                    let joined = this.state.pipeErrorAlerts.concat(file.file.name);
+                    this.setState({
+                      pipeErrorAlerts : joined,
+                      pipeError: true
+                    })
+                    let max = this.state.max - 1
+                    this.setState({
+                      max: max
+                    })
+                    if (max === 0){
+                      this.setState({
+                        uploaded: true,
+                        uploading: false
+                      })
+                    }
+                  }
+                })
+              }else{
+                console.log("no entra en el owner");
+                let joined = this.state.ownerErrorAlerts.concat(file.file.name);
+                this.setState({
+                  ownerErrorAlerts : joined,
+                  ownerError: true
+                })
+                let max = this.state.max - 1
+                this.setState({
+                  max: max
+                })
+                if (max === 0){
+                  this.setState({
+                    uploaded: true,
+                    uploading: false
+                  })
+                }
+              }
+            })
+          }    
         }
-        
       }else{
         if(String(this.props.iso).trim() === String(file.file.name.split('.').slice(0, -1)).trim() || 
            String(this.props.iso+'-CL').trim() === String(file.file.name.split('.').slice(0, -1)).trim() ){
@@ -312,8 +417,6 @@ class DragAndDrop extends React.Component{
     if(this.props.mode === "upload"){
       this.props.uploaded()
     }
-    
-
   }
 
   render(){
@@ -328,17 +431,25 @@ class DragAndDrop extends React.Component{
       for(let i = 0; i < errorAlerts.length; i++){
         
         if (this.props.mode === "upload"){
-          errors.push(<Alert severity="error"
-          >
-            The file {errorAlerts[i]} already exists!
-
-          </Alert>)
+          if (this.state.puntosExtra === true){
+            errors.push(<Alert severity="error">
+                          The file {errorAlerts[i]} has special characters that are not allowed!
+                        </Alert>)
+          }else {
+            errors.push(<Alert severity="error">
+                          The file {errorAlerts[i]} already exists!
+                        </Alert>)
+          }
         }else{
-          errors.push(<Alert severity="error"
-          >
-            The file {errorAlerts[i]} doesn't belong to this isometric!
-
-          </Alert>)
+          if (this.state.puntosExtra === true){
+            errors.push(<Alert severity="error">
+                          The file {errorAlerts[i]} has special characters that are not allowed!
+                        </Alert>)
+          }else {
+            errors.push(<Alert severity="error">
+                          The file {errorAlerts[i]} doesn't belong to this isometric!
+                        </Alert>)
+          }
         }
       }
     }
@@ -346,11 +457,16 @@ class DragAndDrop extends React.Component{
     if(pipeErrorAlerts.length > 0){
       for(let i = 0; i < pipeErrorAlerts.length; i++){
         
-          pipeErrors.push(<Alert severity="error"
-          >
-            The file {pipeErrorAlerts[i]} doesn't belong to this project!
+        if (this.state.puntosExtra === true){
+          pipeErrors.push(<Alert severity="error">
+                            The file {pipeErrorAlerts[i]} has special characters that are not allowed!
+                          </Alert>)
+        }else {
+          pipeErrors.push(<Alert severity="error">
+                            The file {pipeErrorAlerts[i]} doesn't belong to this project!
+                          </Alert>)
 
-          </Alert>)
+        }
       }
     }
 
