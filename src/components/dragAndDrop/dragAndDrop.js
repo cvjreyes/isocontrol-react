@@ -22,6 +22,9 @@ const Layout = ({ input, previews, submitButton, dropzoneProps, files, extra: { 
   )
 }
 
+const validIsometricPdf = new RegExp("^[a-zA-Z0-9_-]+.(pdf)$")
+const validIsometric = new RegExp("^[a-zA-Z0-9_-]+")
+
 class DragAndDrop extends React.Component{
 
   state = {
@@ -88,9 +91,8 @@ class DragAndDrop extends React.Component{
           }
         }else{
           for (let value of file.values()) {
-            let fileNoExtension = value.name.split('.')
-            if(fileNoExtension.length > 2){
-              let joined = this.state.errorAlerts.concat(fileNoExtension[0] + ".pdf");
+            if(validIsometricPdf.test(value.name) === false){
+              let joined = this.state.errorAlerts.concat(value.name);
               this.setState({
                 errorAlerts : joined,
                 error: true,
@@ -115,20 +117,20 @@ class DragAndDrop extends React.Component{
             uploaded: true,
             uploading: false
           })
-          if(this.state.nSuccess > 0){
-            let body =  {
-              n: this.state.nSuccess
-            }
-            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/uploadNotifications", {
-              // content-type header should not be specified!
-              method: 'POST',
-              headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-              },
-              body: JSON.stringify(body)
-            }).catch(error =>console.log(error))
-          }    
+        if(this.state.nSuccess > 0){
+          let body =  {
+            n: this.state.nSuccess
+          }
+          fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/uploadNotifications", {
+            // content-type header should not be specified!
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(body)
+          }).catch(error =>console.log(error))
+        }    
 
         }
         
@@ -182,11 +184,21 @@ class DragAndDrop extends React.Component{
         }else{
 
           for (let value of file.values()) {
-            let joined = this.state.errorAlerts.concat(value.name);
-            this.setState({
-              errorAlerts : joined,
-              error: true
-            })
+            if(validIsometricPdf.test(value.name) === false){
+              let joined = this.state.errorAlerts.concat(value.name);
+              this.setState({
+                errorAlerts : joined,
+                error: true,
+                puntosExtra: true,
+              })
+            } else {
+              let joined = this.state.errorAlerts.concat(value.name);
+              this.setState({
+                errorAlerts : joined,
+                error: true,
+                puntosExtra: false,
+              })
+            }
           }
         }
         let max = this.state.max - 1
@@ -227,44 +239,21 @@ class DragAndDrop extends React.Component{
     await allFiles.forEach(file => {
       const formData  = new FormData(); 
       formData.append('file', file.file);
-      let fileNoExtension = file.file.name.split('.')
-      console.log("allFiles: " + JSON.stringify(allFiles));
       if(this.props.mode === "upload"){
         console.log("1.entra upload");
         if(process.env.REACT_APP_PROGRESS === "0"){
           console.log("1.entra progress 0");
-          if(fileNoExtension.length > 2){
+          if(validIsometricPdf.test(file.file.name) === false){
             console.log("entra filenoextension > 2");
+            let joined = this.state.errorAlerts.concat(file.file.name);
             this.setState({
-              puntosExtra: true
+              errorAlerts : joined,
+              error: true,
+              puntosExtra: true,
             })
-            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+fileNoExtension[0])
-            .then(response => response.json())
-            .then(async json =>{
-              if(json.owner){
-                this.uploadFile(formData);
-              }else{
-                let joined = this.state.ownerErrorAlerts.concat(file.file.name);
-                this.setState({
-                  ownerErrorAlerts : joined,
-                  ownerError: true
-                })
-                let max = this.state.max - 1
-                this.setState({
-                  max: max
-                })
-                if (max === 0){
-                  this.setState({
-                    uploaded: true,
-                    uploading: false
-                  })
-                }
-              }
-            })
-            this.uploadFile(formData);
           } else {
             console.log("1.else filenoextension");
-            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+fileNoExtension[0])
+            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+file.file.name)
             .then(response => response.json())
             .then(async json =>{
               if(json.owner){
@@ -273,7 +262,8 @@ class DragAndDrop extends React.Component{
                 let joined = this.state.ownerErrorAlerts.concat(file.file.name);
                 this.setState({
                   ownerErrorAlerts : joined,
-                  ownerError: true
+                  ownerError: true,
+                  puntosExtra: false,
                 })
                 let max = this.state.max - 1
                 this.setState({
@@ -291,61 +281,16 @@ class DragAndDrop extends React.Component{
           }
         }else{
           console.log("1. Entra else Progress = 1");
-
-          if(fileNoExtension.length > 2){
+          if(validIsometricPdf.test(file.file.name) === false){
+            let joined = this.state.errorAlerts.concat(file.file.name);
             this.setState({
-              puntosExtra: true
-            })
-            console.log("2.entra if filenoextension del porgress 1");
-            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+fileNoExtension[0])
-            .then(response => response.json())
-            .then(async json =>{
-              if(json.owner){
-                fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkPipe/"+fileNoExtension[0]+".pdf")
-                .then(response => response.json())
-                .then(async json =>{
-                  if(json.exists){
-                    this.uploadFile(formData);
-                  }else{
-                    let joined = this.state.pipeErrorAlerts.concat(file.file.name);
-                    this.setState({
-                      pipeErrorAlerts : joined,
-                      pipeError: true,
-                    })
-                    let max = this.state.max - 1
-                    this.setState({
-                      max: max,
-                      puntosExtra: true
-                    })
-                    if (max === 0){
-                      this.setState({
-                        uploaded: true,
-                        uploading: false
-                      })
-                    }
-                  }
-                })
-              }else{
-                let joined = this.state.ownerErrorAlerts.concat(file.file.name);
-                this.setState({
-                  ownerErrorAlerts : joined,
-                  ownerError: true,
-                })
-                let max = this.state.max - 1
-                this.setState({
-                  max: max
-                })
-                if (max === 0){
-                  this.setState({
-                    uploaded: true,
-                    uploading: false
-                  })
-                }
-              }
+              errorAlerts : joined,
+              error: true,
+              puntosExtra: true,
+              uploading: false
             })
           } else {
             console.log("2.Entra en el else del progress 1");
-            console.log("Nombre archivo: " + fileNoExtension[0]);
             fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+file.file.name)
             .then(response => response.json())
             .then(async jsonOwner =>{
@@ -361,7 +306,8 @@ class DragAndDrop extends React.Component{
                     let joined = this.state.pipeErrorAlerts.concat(file.file.name);
                     this.setState({
                       pipeErrorAlerts : joined,
-                      pipeError: true
+                      pipeError: true,
+                      puntosExtra: false,
                     })
                     let max = this.state.max - 1
                     this.setState({
@@ -380,7 +326,8 @@ class DragAndDrop extends React.Component{
                 let joined = this.state.ownerErrorAlerts.concat(file.file.name);
                 this.setState({
                   ownerErrorAlerts : joined,
-                  ownerError: true
+                  ownerError: true,
+                  puntosExtra: false,
                 })
                 let max = this.state.max - 1
                 this.setState({
@@ -405,7 +352,8 @@ class DragAndDrop extends React.Component{
             this.setState({
               errorAlerts : joined,
               error: true,
-              uploading: false
+              uploading: false,
+              puntosExtra: false,
             })
         }
       }
