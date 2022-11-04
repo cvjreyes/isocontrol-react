@@ -83,6 +83,7 @@ const Piping = () => {
     const [unclaimAlert, setUnclaimAlert] = useState(false)
     const [changesSaved, setChangesSaved] = useState(false)
     const [feedProgress, setFeedProgress] = useState(null)
+    const [titlePiping, setTitlePiping] = useState("")
     const history = useHistory()
 
 
@@ -214,9 +215,11 @@ const Piping = () => {
         if(secureStorage.getItem('role') === "SpecialityLead"){
             // console.log("entra");
             setCurrentTab("FeedPipes")
+            setTitlePiping("Feed")
         }else {
             // console.log("sale");
             setCurrentTab("EstimatedPipes")
+            setTitlePiping("IFD")
         }
     }
 
@@ -606,7 +609,7 @@ const Piping = () => {
                 <AlertF type="warning" text="Can't send to S-Design without valves and instruments check or N/A!" margin="10px" />
             </div>
             <div style={{ position: "absolute", marginTop: "180px", marginLeft: "45%" }}>
-                <i className="discipline__title" style={{ fontStyle: "normal" }}>Piping IsoControl</i>
+                <i className="discipline__title" style={{ fontStyle: "normal" }}>Piping {titlePiping}</i>
             </div>
             <div
                 className={`alert alert-success ${estimatedWarning ? 'alert-shown' : 'alert-hidden'}`}
