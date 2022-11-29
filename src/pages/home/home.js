@@ -1,5 +1,6 @@
 import NavBar from '../../components/navBar/navBar';
 import MenuList from '../../components/menuList/menuList';
+import IsoCtrlButtons from '../isoCtrlButtons/isoCtrlButtons';
 import React, { useState , useEffect} from 'react'
 import './home.css'
 import LoadingScreen3D from '../../components/loadingScreen3D/loadingScreen3D';
@@ -62,7 +63,8 @@ const Home = () =>{
         }, 2000)
         setTimeout(() => {
             setNavBar(<NavBar/>)
-            setContent(<MenuList/>)    
+            setContent(<IsoCtrlButtons/>)
+            // setContent(<MenuList/>)    
             setCircles(<div><img src={GreenCircle} alt="greenCircle" className="greenCircle__image"/>
             <img src={BlueCircle} alt="blueCircle" className="blueCircle__image"/></div>)        
         }, 2300);
@@ -110,7 +112,7 @@ const Home = () =>{
     }
 
     return(
-        <body>
+        <div>
             <IdleTimer
                 timeout={1000 * 60 * 15}
                 onIdle={handleOnIdle}
@@ -121,7 +123,7 @@ const Home = () =>{
                 {navBar}
                 {content}
             </div>
-        </body>
+        </div>
     );
 };
 

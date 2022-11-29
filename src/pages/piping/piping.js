@@ -19,6 +19,7 @@ import IdleTimer from 'react-idle-timer'
 import { useHistory } from "react-router";
 import PipingNavBtns from "../../components/pipingNavBtns/pipingNavBtns"
 
+
 import PipingDataTable from "../../components/pipingDataTable/pipingDataTable"
 import PipingMyTrayTable from "../../components/pipingMyTrayTable/pipingMyTrayTable"
 import PipingBinTable from "../../components/pipingBinTable/pipingBinTable"
@@ -70,7 +71,7 @@ const Piping = () => {
     const [warningSelected, setWarningSelected] = useState(false);
     const [transactionSuccess, setTransactionSuccess] = useState(false)
     const [notVI, setNotVI] = useState(false)
-    const [currentTab, setCurrentTab] = useState("PipingMyTray")
+    const [currentTab, setCurrentTab] = useState("")
     const [estimatedWarning, setEstimatedWarning] = useState(false)
     const [estimatedEmpty, setEstimatedEmpty] = useState(false)
     const [modelledWeight, setModelledWeight] = useState("...")
@@ -82,7 +83,9 @@ const Piping = () => {
     const [unclaimAlert, setUnclaimAlert] = useState(false)
     const [changesSaved, setChangesSaved] = useState(false)
     const [feedProgress, setFeedProgress] = useState(null)
+    const [titlePiping, setTitlePiping] = useState("")
     const history = useHistory()
+
 
     useEffect(() => {
         const body = {
@@ -104,7 +107,7 @@ const Piping = () => {
                 if (secureStorage.getItem('role') !== null) {
                     setCurrentRole(secureStorage.getItem('role'))
                 } else {
-                    secureStorage.setItem('role', json.roles[0])
+                    secureStorage.setItem('role', json.roles[8])
                     setCurrentRole(secureStorage.getItem('role'))
                 }
             }
@@ -129,6 +132,7 @@ const Piping = () => {
             .then(response => response.json())
             .then(json => {
                 setFeedProgress(json.progress)
+                // console.log("FeedProgress: " + json.progress);
             })
 
         //Get del peso estimado del feed
@@ -138,6 +142,10 @@ const Piping = () => {
                 setWeight(json.weight)
                 setProgress(json.progress)
                 setModelledWeight(json.modelledWeight)
+                // console.log("Weigth: " + json.progress);
+                // console.log("progress: " + json.progress);
+                // console.log("Modelled: " + json.progress);
+
             }
             )
             .catch(error => {
@@ -203,7 +211,16 @@ const Piping = () => {
 
     document.title = process.env.REACT_APP_APP_NAMEPROJ
     if (currentTab === "" || currentTab === null) {
-        setCurrentTab("Estimated")
+        // console.log("Rol supremo: " + secureStorage.getItem('role'));
+        if(secureStorage.getItem('role') === "SpecialityLead"){
+            // console.log("entra");
+            setCurrentTab("FeedPipes")
+            setTitlePiping("Feed")
+        }else {
+            // console.log("sale");
+            setCurrentTab("EstimatedPipes")
+            setTitlePiping("IFD")
+        }
     }
 
     var currentUser = secureStorage.getItem('user')
@@ -216,7 +233,7 @@ const Piping = () => {
     let uploadBOMBtn = null
     let feedProgressButton = null
     let feedForecastBtn = null
-
+    
     //Dependiendo del tab se muestra un contenido u otro, tambien diferentes action buttons
     if (currentTab === "Estimated") {
         table = <PipingEstimatedDataTable />
@@ -298,7 +315,7 @@ const Piping = () => {
         isocontrolWeightsComponent = <button className="isocontrol__weigths" disabled>Modelled: {modelledWeight} t &nbsp;&nbsp;&nbsp;&nbsp;   Not modelled: {notModelledWeight} t  &nbsp;&nbsp;&nbsp;&nbsp; Total: {totalIsocontrolWeight} t</button>
     }
 
-
+    // console.log("Current tab: " + currentTab);
     async function claimClick() { //Claim de una linea en la fase de maduracion
         if (selected.length > 0) { //Si hay al menos una seleccionada
             await setLoading(true)
@@ -337,7 +354,6 @@ const Piping = () => {
         if (selected.length > 0) { //Si hay al menos una seleccionada
             await setLoading(true)
             localStorage.setItem("update", true)
-            console.log(selected)
             const body = {
                 pipes: selected,
             }
@@ -425,7 +441,6 @@ const Piping = () => {
             let minTrayWarning = false
             let pipes = []
             let notvi = false
-            console.log(selected)
             for (let i = 0; i < selected.length; i++) {
                 if ((selected[i][1]).indexOf(3) > -1) {
                     minTrayWarning = true
@@ -550,7 +565,7 @@ const Piping = () => {
 
     return (
 
-        <body>
+        <div>
             <IdleTimer
                 timeout={1000 * 60 * 15}
                 onIdle={handleOnIdle}
@@ -594,7 +609,7 @@ const Piping = () => {
                 <AlertF type="warning" text="Can't send to S-Design without valves and instruments check or N/A!" margin="10px" />
             </div>
             <div style={{ position: "absolute", marginTop: "180px", marginLeft: "45%" }}>
-                <i className="discipline__title" style={{ fontStyle: "normal" }}>Piping IsoControl</i>
+                <i className="discipline__title" style={{ fontStyle: "normal" }}>Piping {titlePiping}</i>
             </div>
             <div
                 className={`alert alert-success ${estimatedWarning ? 'alert-shown' : 'alert-hidden'}`}
@@ -662,7 +677,7 @@ const Piping = () => {
             </div>
             <table className="isotracker__table__container">
                 <tr className="isotracker__table__navBar__container">
-                    <th colspan="2" className="isotracker__table__navBar">
+                    <th colSpan="2" className="isotracker__table__navBar">
                         {recycleBinBtn}
                         {holdBtn}
                         {feedProgressButton}
@@ -695,7 +710,7 @@ const Piping = () => {
             <center className="actionBtns__container" style={{ marginTop: "40px", zoom: 0.9 }}>
                 {actionBtns}
             </center>
-        </body>
+        </div>
     )
 }
 

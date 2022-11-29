@@ -36,7 +36,7 @@ const CryptoJS = require("crypto-js");
       }
   });
 
-class MyTrayTable extends React.Component{
+class MyTrayTable extends React.Component{ //Tabla de mytray propia a cada usuario y rol
     state = {
       searchText: '',
       searchedColumn: '',
@@ -121,6 +121,7 @@ class MyTrayTable extends React.Component{
       body: JSON.stringify(bodyUsername)
     }
 
+    //Get del usuario
     fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/api/findByEmail", optionsUsername)
     .then(response => response.json())
     .then(json => {
@@ -141,6 +142,7 @@ class MyTrayTable extends React.Component{
       },
       body: JSON.stringify(body)
   }
+    //Get de las isos por usuario y rol
     await fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/api/myTrayFiles/myFiles", options)
         .then(response => response.json())
         .then(async json => {
@@ -148,9 +150,9 @@ class MyTrayTable extends React.Component{
             var row = null;
             let pButton, iButton, fButton, rButton, bButton, cButton, revButton = null;
 
-            for(let i = 0; i < json.rows.length; i++){
-              if(this.state.role === "Design" || this.state.role === "DesignLead" || this.state.role === "Issuer" || this.state.role === "SpecialityLead"){
-                switch(json.rows[i].spo){
+            for(let i = 0; i < json.rows.length; i++){ //Por cada iso
+              if(this.state.role === "Design" || this.state.role === "DesignLead" || this.state.role === "Issuer" || this.state.role === "SpecialityLead"){ //Si el usuario esta con uno de estos roles
+                switch(json.rows[i].spo){ //Comprobamos el estado de spo
                   case 0:
                     pButton = <button className="btn btn-warning" onClick={() => this.props.sendProcessClick(json.rows[i].filename)}style={{backgroundColor:"white", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
                     break;
@@ -158,7 +160,7 @@ class MyTrayTable extends React.Component{
                     pButton = <button className="btn btn-warning" onClick={() => this.props.sendProcessClick(json.rows[i].filename)} disabled style={{backgroundColor:"yellow", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
                     break;
                   case 2:
-                    pButton = <button className="btn btn-success" onClick={() => this.props.sendProcessClick(json.rows[i].filename)} style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
+                    pButton = <button className="btn btn-success" onClick={() => this.props.sendProcessClick(json.rows[i].filename)} disabled style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
                     break; 
                   case 3:
                     pButton = <button className="btn btn-danger" onClick={() => this.props.sendProcessClick(json.rows[i].filename)} style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
@@ -172,7 +174,7 @@ class MyTrayTable extends React.Component{
                   default:  
                     pButton = <button className="btn btn-warning" onClick={() => this.props.sendProcessClick(json.rows[i].filename)}style={{backgroundColor:"white", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>      
                 }
-                switch(json.rows[i].sit){
+                switch(json.rows[i].sit){ //Comprobamos el estado de sit
                   case 0:
                     iButton = <button className="btn btn-warning" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)}style={{backgroundColor:"white", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>
                     break;
@@ -180,7 +182,7 @@ class MyTrayTable extends React.Component{
                     iButton = <button className="btn btn-warning" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)} disabled style={{backgroundColor:"yellow", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>
                     break;
                   case 2:
-                    iButton = <button className="btn btn-success" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)} style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>
+                    iButton = <button className="btn btn-success" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)} disabled style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>
                     break; 
                   case 3:
                     iButton = <button className="btn btn-danger" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)} style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>
@@ -194,7 +196,7 @@ class MyTrayTable extends React.Component{
                   default:  
                     iButton = <button className="btn btn-warning" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)}style={{backgroundColor:"white", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>      
                 }
-              }else{
+              }else{ //Si no lo esta los botones estan deshabilitados
                 switch(json.rows[i].spo){
                   case 0:
                     pButton = <button className="btn btn-warning" onClick={() => this.props.sendProcessClick(json.rows[i].filename)} disabled style={{backgroundColor:"white", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
@@ -240,23 +242,23 @@ class MyTrayTable extends React.Component{
                     iButton = <button className="btn btn-warning" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)} disabled style={{backgroundColor:"white", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>      
                 }
               }
-              if(this.state.role !== "SpecialityLead"){
-              switch(json.rows[i].forced){
-                case 1:
-                  fButton = <button className="btn btn-danger" disabled style={{fontSize:"12px", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>F</button>
-                  break;
-                default:
-                  fButton = null
-                  break;
+              if(this.state.role !== "SpecialityLead"){ //Si el rol no es LOS
+                switch(json.rows[i].forced){ 
+                  case 1: //Y la iso esta forzada por un LOS
+                    fButton = <button className="btn btn-danger" disabled style={{fontSize:"12px", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>F</button>
+                    break;
+                  default:
+                    fButton = null
+                    break;
+                }
+                if(json.rows[i].returned === 1){
+                  rButton = <button className="btn btn-danger" disabled style={{fontSize:"12px", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>R</button>
+                }else{
+                  rButton = null
+                }
               }
-              if(json.rows[i].returned === 1){
-                rButton = <button className="btn btn-danger" disabled style={{fontSize:"12px", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>R</button>
-              }else{
-                rButton = null
-              }
-           }
 
-              if(json.rows[i].blocked === 1){
+              if(json.rows[i].blocked === 1){ //Si la iso esta bloqueada
                 pButton = null
                 iButton = null
                 bButton = <button className="btn btn-danger" disabled style={{backgroundColor:"red", fontSize:"12px", borderColor:"red", padding:"2px 5px 2px 5px", marginRight:"5px"}}>LOCKED</button>
@@ -264,16 +266,17 @@ class MyTrayTable extends React.Component{
                 bButton = null
               }
 
-              if(json.rows[i].comments){
+              if(json.rows[i].comments){ //Si tiene comentarios
                 cButton = <CommentPopUp comments={json.rows[i].comments} filename={json.rows[i].filename} updated={json.rows[i].updated_at}/>
               }else{
                 cButton = null
               }
 
-              if(this.state.role === "Issuer" && process.env.REACT_APP_PROGRESS === "1" && process.env.REACT_APP_ISSUER === "1"){
-                revButton = <RevisionPopUp fileName={json.rows[i].filename}  successRequest={this.success}/>
+              if(this.state.role === "Issuer" && process.env.REACT_APP_PROGRESS === "1" && process.env.REACT_APP_ISSUER === "1"){ //Si el proyecto tiene progreso y estamos en issuer
+                revButton = <RevisionPopUp fileName={json.rows[i].filename}  successRequest={this.success}/> //PopUp de revision
               }
 
+              //Creamos la fila
               if(process.env.REACT_APP_IFC === "1"){
                 if(!json.rows[i].updated_at){
                   row = {key:i, id: <Link onClick={() => this.getMaster(json.rows[i].filename)}>{json.rows[i].filename}</Link>, type: "None", revision: "R" + json.rows[i].revision + "*", date: "None", from: json.rows[i].from.toString(), to: json.rows[i].to, actions:<div style={{display:"flex"}}><UploadProcInst id = {json.rows[i].filename.split('.').slice(0, -1)} success={this.success.bind(this)} currentUser = {this.state.user} role={this.state.role} update={this.updateData.bind(this)}/> <ByPassPopUp creatByPass={(type, notes) => this.creatByPass(type, notes, json.rows[i].iso_id)}/> {fButton} {rButton} {bButton} {cButton} {revButton}</div>}
@@ -378,7 +381,6 @@ class MyTrayTable extends React.Component{
         await this.setState({data : [], displayData: []});
         for(let i = 0; i < json.rows.length; i++){
             uploadButton = <UploadPopUp id = {json.rows[i].filename.split('.').slice(0, -1)} success={this.success.bind(this)} role={this.state.role}  currentUser = {this.state.user}/>
-            console.log(uploadButton)
             if(this.state.role === "Design" || this.state.role === "DesignLead" || this.state.role === "Issuer" || this.state.role === "SpecialityLead"){
               switch(json.rows[i].spo){
                 case 0:
@@ -388,7 +390,7 @@ class MyTrayTable extends React.Component{
                   pButton = <button className="btn btn-warning" onClick={() => this.props.sendProcessClick(json.rows[i].filename)} disabled style={{backgroundColor:"yellow", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
                   break;
                 case 2:
-                  pButton = <button className="btn btn-success" onClick={() => this.props.sendProcessClick(json.rows[i].filename)} style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
+                  pButton = <button className="btn btn-success" onClick={() => this.props.sendProcessClick(json.rows[i].filename)} disabled style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
                   break; 
                 case 3:
                   pButton = <button className="btn btn-danger" onClick={() => this.props.sendProcessClick(json.rows[i].filename)} style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>P</button>
@@ -410,7 +412,7 @@ class MyTrayTable extends React.Component{
                   iButton = <button className="btn btn-warning" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)} disabled style={{backgroundColor:"yellow", fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>
                   break;
                 case 2:
-                  iButton = <button className="btn btn-success" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)} style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>
+                  iButton = <button className="btn btn-success" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)} disabled style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>
                   break; 
                 case 3:
                   iButton = <button className="btn btn-danger" onClick={() => this.props.sendInstrumentClick(json.rows[i].filename)} style={{fontSize:"12px", borderColor:"black", padding:"2px 5px 2px 5px", width:"30px", marginRight:"5px"}}>I</button>
@@ -681,20 +683,22 @@ class MyTrayTable extends React.Component{
         this.onSelectChange(selectedRowKeys, selectedRows);
       },
       getCheckboxProps: (record) => 
-      this.state.role !== "Instrument" && this.state.role !== "Process" ? (
-      ( 
-        {
+      // this.state.role !== "Instrument" && this.state.role !== "Process" ? (
+      //   ( 
+      //     {
         
-        disabled: record.actions.props.children[0].props.children === 'CANCEL VERIFY' || record.actions.props.children[12],
-        // Column configuration not to be checked
-        name: record.name,
-      })
-      ) : (
-        {
+      //   disabled: record.actions.props.children[0].props.children === 'CANCEL VERIFY' || record.actions.props.children[12],
+      //   // Column configuration not to be checked
+      //   name: record.name,
+      // })
+      // ) : (
+      //   {
+      //     name: record.name,
+      //   }),
+      
+        ({
           name: record.name,
         }),
-      
-      
     };
 
     const rowSelectionFilter = {
@@ -819,7 +823,7 @@ class MyTrayTable extends React.Component{
           title: <div className="dataTable__header__text">Date</div>,
           dataIndex: 'date',
           key: 'date',
-          width: '20%',
+          width: '10%',
           ...this.getColumnSearchProps('date'),
           sorter: {
             compare: (a, b) => a.date.replace(/\D/g,'') - b.date.replace(/\D/g,''),
@@ -848,7 +852,7 @@ class MyTrayTable extends React.Component{
           title: <div className="dataTable__header__text">Actions</div>,
           dataIndex: 'actions',
           key: 'actions',
-          width:'20%',
+          width:'23%',
           ...this.getColumnSearchProps('actions'),
           sorter: {
             compare: (a, b) => a.actions.props.type - b.actions.props.type,
