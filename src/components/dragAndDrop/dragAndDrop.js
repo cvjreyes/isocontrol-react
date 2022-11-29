@@ -32,19 +32,18 @@ class DragAndDrop extends React.Component{
     success: false,
     error: false,
     pipeError: false,
-    ownerError: false,
     uploaded: false,
     errorAlerts: [],
     pipeErrorAlerts: [],
-    ownerErrorAlerts: [],
+    caracterError: false,
+    caracterErrorAlert: [],
     max: 0,
     uploadingPreview: false,
     uploading: false,
     nSuccess: 0,
-    puntosExtra: false,
   };
 
-  async uploadFile(file) {
+  async uploadFile(file) {//Subida de un archivo al storage
     await fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/upload", {
       // content-type header should not be specified!
       method: 'POST',
@@ -52,7 +51,7 @@ class DragAndDrop extends React.Component{
     })
       .then(response => {
         // Do something with the successful response
-        if (response.status === 200){
+        if (response.status === 200){ //Si se ha subido con exito
           let n = this.state.nSuccess
           this.setState({nSuccess: n+1})
           if(!this.state.success){
@@ -60,10 +59,13 @@ class DragAndDrop extends React.Component{
                 success : true,
               })
           }
+
           let filename = null;
-          for (let value of file.values()){
+          for (let value of file.values()){          
+            console.log("NOmbre archivo sin puntos: " + value.name);
             filename = value.name
           }
+
           let extension = "";
           let i = filename.lastIndexOf('.');
           let cl = false
@@ -73,12 +75,13 @@ class DragAndDrop extends React.Component{
               cl = true
             }
           }
-          if(extension === "pdf" && !cl){
+          if(extension === "pdf" && !cl){ //Si lo que hemos subido es un master
             let body =  {
               fileName: filename,
               user: this.props.user,
               role: this.props.role
             }
+            //Post del upload
             fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/uploadHis", {
               // content-type header should not be specified!
               method: 'POST',
@@ -89,21 +92,21 @@ class DragAndDrop extends React.Component{
               body: JSON.stringify(body)
             }).catch(error =>console.log(error))
           }
-        }else{
+        }else{ //Si no se ha subido correctamente
           for (let value of file.values()) {
             if(validIsometricPdf.test(value.name) === false){
-              let joined = this.state.errorAlerts.concat(value.name);
+              let joined = this.state.caracterErrorAlert.concat(value.name);
               this.setState({
-                errorAlerts : joined,
-                error: true,
-                puntosExtra: true,
+                caracterErrorAlert : joined,
+                //error: false,
+                caracterError: true,
               })
             } else {
               let joined = this.state.errorAlerts.concat(value.name);
               this.setState({
                 errorAlerts : joined,
                 error: true,
-                puntosExtra: false,
+                //caracterError: false,
               })
             }
           }
@@ -112,25 +115,25 @@ class DragAndDrop extends React.Component{
         this.setState({
           max: max
         })
-        if (max === 0){
+        if (max === 0){ //si ya se han subido todas mostramos alerta de success
           this.setState({
             uploaded: true,
             uploading: false
           })
-        if(this.state.nSuccess > 0){
-          let body =  {
-            n: this.state.nSuccess
-          }
-          fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/uploadNotifications", {
-            // content-type header should not be specified!
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify(body)
-          }).catch(error =>console.log(error))
-        }    
+          if(this.state.nSuccess > 0){
+            let body =  {
+              n: this.state.nSuccess
+            }
+            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/uploadNotifications", {
+              // content-type header should not be specified!
+              method: 'POST',
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+              body: JSON.stringify(body)
+            }).catch(error =>console.log(error))
+          }    
 
         }
         
@@ -140,8 +143,9 @@ class DragAndDrop extends React.Component{
     this.props.uploaded()
   }
 
-  async updateFile(file) {
-    
+  async updateFile(file) { //Como upload pero para isos ya existentes
+
+    //Post del update
     await fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/update", {
       // content-type header should not be specified!
       method: 'POST',
@@ -182,21 +186,20 @@ class DragAndDrop extends React.Component{
             .catch(error => message.error(error))
           }
         }else{
-
           for (let value of file.values()) {
             if(validIsometricPdf.test(value.name) === false){
-              let joined = this.state.errorAlerts.concat(value.name);
+              let joined = this.state.caracterErrorAlert.concat(value.name);
               this.setState({
-                errorAlerts : joined,
-                error: true,
-                puntosExtra: true,
+                caracterErrorAlert : joined,
+                //error: false,
+                caracterError: true,
               })
             } else {
               let joined = this.state.errorAlerts.concat(value.name);
               this.setState({
                 errorAlerts : joined,
                 error: true,
-                puntosExtra: false,
+                //caracterError: false,
               })
             }
           }
@@ -228,107 +231,70 @@ class DragAndDrop extends React.Component{
       pipeError: false,
       errorAlerts: [],
       pipeErrorAlerts: [],
-      ownerErrorAlerts: [],
+      caracterError: false,
+      caracterErrorAlert:[],
       counter: 0,
       max: files.length,
       uploading: true,
       nSuccess: 0,
-      puntosExtra: false,
     })
 
-    await allFiles.forEach(file => {
+    await allFiles.forEach(file => { //Para cada archivo se hace el upload o update
       const formData  = new FormData(); 
-      formData.append('file', file.file);
+      formData.append('file', file.file);  
       if(this.props.mode === "upload"){
-        console.log("1.entra upload");
         if(process.env.REACT_APP_PROGRESS === "0"){
-          console.log("1.entra progress 0");
-          if(validIsometricPdf.test(file.file.name) === false){
-            console.log("entra filenoextension > 2");
-            let joined = this.state.errorAlerts.concat(file.file.name);
-            this.setState({
-              errorAlerts : joined,
-              error: true,
-              puntosExtra: true,
-            })
-          } else {
-            console.log("1.else filenoextension");
-            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+file.file.name)
-            .then(response => response.json())
-            .then(async json =>{
-              if(json.owner){
-                this.uploadFile(formData);
-              }else{
-                let joined = this.state.ownerErrorAlerts.concat(file.file.name);
-                this.setState({
-                  ownerErrorAlerts : joined,
-                  ownerError: true,
-                  puntosExtra: false,
-                })
-                let max = this.state.max - 1
-                this.setState({
-                  max: max
-                })
-                if (max === 0){
-                  this.setState({
-                    uploaded: true,
-                    uploading: false
-                  })
-                }
-              }
-            })
-            this.uploadFile(formData);
-          }
+          this.uploadFile(formData);
         }else{
-          console.log("1. Entra else Progress = 1");
           if(validIsometricPdf.test(file.file.name) === false){
-            let joined = this.state.errorAlerts.concat(file.file.name);
+            let joinedCaracter = this.state.caracterErrorAlert.concat(file.file.name);
+            console.log("Entra 1: " + this.state.caracterErrorAlert.concat(file.file.name));
+            console.log("Joined caracter: " + joinedCaracter);
             this.setState({
-              errorAlerts : joined,
-              error: true,
-              puntosExtra: true,
+              caracterErrorAlert: joinedCaracter,
+              //error: false,
+              caracterError: true,
               uploading: false
             })
+            console.log("Caracter error alert: " + this.state.caracterErrorAlert);
+            let max = this.state.max - 1
+            this.setState({
+              max: max
+            })
+            if (max === 0){
+              this.setState({
+                uploaded: true,
+                uploading: false,
+              })
+            }
           } else {
-            console.log("2.Entra en el else del progress 1");
-            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkOwner/"+file.file.name)
+            //Comprobamos que la linea existe en dpipes si el proyecto tiene progreso
+            fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkPipe/"+file.file.name)
             .then(response => response.json())
-            .then(async jsonOwner =>{
-              //console.log("error del fetch: " + JSON.stringify(json));
-              if(jsonOwner.owner){
-                console.log("entra en el owner");
-                fetch("http://"+process.env.REACT_APP_SERVER+":"+process.env.REACT_APP_NODE_PORT+"/checkPipe/"+file.file.name)
-                .then(response => response.json())
-                .then(async json =>{
-                  if(json.exists){
-                    this.uploadFile(formData);
-                  }else{
-                    let joined = this.state.pipeErrorAlerts.concat(file.file.name);
-                    this.setState({
-                      pipeErrorAlerts : joined,
-                      pipeError: true,
-                      puntosExtra: false,
-                    })
-                    let max = this.state.max - 1
-                    this.setState({
-                      max: max
-                    })
-                    if (max === 0){
-                      this.setState({
-                        uploaded: true,
-                        uploading: false
-                      })
-                    }
-                  }
-                })
+            .then(async json =>{
+              if(json.exists){
+                this.uploadFile(formData);
               }else{
-                console.log("no entra en el owner");
-                let joined = this.state.ownerErrorAlerts.concat(file.file.name);
-                this.setState({
-                  ownerErrorAlerts : joined,
-                  ownerError: true,
-                  puntosExtra: false,
-                })
+                if(validIsometricPdf.test(file.file.name) === false){
+                  let joined = this.state.caracterErrorAlert.concat(file.file.name);
+                  console.log("Entra 2: " + joined);
+                  this.setState({
+                    caracterErrorAlert : joined,
+                    //pipeError: false,
+                    caracterError: true,
+                    uploading: false
+                  })
+                } else {
+                  let joined = this.state.pipeErrorAlerts.concat(file.file.name);
+                  console.log("Entra 3: " + joined);
+                  this.setState({
+                    pipeErrorAlerts : joined,
+                    pipeError: true,
+                    //caracterError: false,
+                    uploading: false
+                  })
+                  console.log("Pipe error alert: " + this.state.pipeErrorAlerts);
+                }
                 let max = this.state.max - 1
                 this.setState({
                   max: max
@@ -336,25 +302,36 @@ class DragAndDrop extends React.Component{
                 if (max === 0){
                   this.setState({
                     uploaded: true,
-                    uploading: false
+                    uploading: false,
                   })
                 }
               }
             })
-          }    
+          }
         }
+        
       }else{
         if(String(this.props.iso).trim() === String(file.file.name.split('.').slice(0, -1)).trim() || 
            String(this.props.iso+'-CL').trim() === String(file.file.name.split('.').slice(0, -1)).trim() ){
           this.updateFile(formData);
         }else{
-          let joined = this.state.errorAlerts.concat(file.file.name);
+          if(validIsometricPdf.test(file.file.name) === false){
+            let joined = this.state.caracterErrorAlert.concat(file.file.name);
             this.setState({
-              errorAlerts : joined,
-              error: true,
+              caracterErrorAlert : joined,
+              //pipeError: false,
+              caracterError: true,
               uploading: false,
-              puntosExtra: false,
             })
+          } else {
+            let joined = this.state.errorAlerts.concat(file.file.name);
+              this.setState({
+                errorAlerts : joined,
+                error: true,
+                //caracterError: false,
+                uploading: false,
+              })
+          }
         }
       }
       file.remove();
@@ -365,70 +342,61 @@ class DragAndDrop extends React.Component{
     if(this.props.mode === "upload"){
       this.props.uploaded()
     }
+    
+
   }
 
   render(){
 
     const errorAlerts = this.state.errorAlerts;
     const pipeErrorAlerts = this.state.pipeErrorAlerts;
-    const ownerErrorAlerts = this.state.ownerErrorAlerts;
+    const caracterErrorAlert = this.state.caracterErrorAlert
+
     let errors = []
     let pipeErrors = []
-    let ownerErrors =[]
+    let caracterError = []
+
     if(errorAlerts.length > 0){
       for(let i = 0; i < errorAlerts.length; i++){
-        
         if (this.props.mode === "upload"){
-          if (this.state.puntosExtra === true){
-            errors.push(<Alert severity="error">
-                          The file {errorAlerts[i]} has special characters that are not allowed!
-                        </Alert>)
-          }else {
-            errors.push(<Alert severity="error">
-                          The file {errorAlerts[i]} already exists!
-                        </Alert>)
-          }
+          
+          errors.push(<Alert severity="error">
+                        The file {errorAlerts[i]} already exists!
+                      </Alert>)
+          
         }else{
-          if (this.state.puntosExtra === true){
-            errors.push(<Alert severity="error">
-                          The file {errorAlerts[i]} has special characters that are not allowed!
-                        </Alert>)
-          }else {
-            errors.push(<Alert severity="error">
-                          The file {errorAlerts[i]} doesn't belong to this isometric!
-                        </Alert>)
-          }
+          
+          errors.push(<Alert severity="error">
+                        The file {errorAlerts[i]} doesn't belong to this isometric!
+                      </Alert>)
+          
         }
       }
     }
 
+    console.log("pipeErrorAlerts: " + pipeErrorAlerts);
     if(pipeErrorAlerts.length > 0){
       for(let i = 0; i < pipeErrorAlerts.length; i++){
+      
+        pipeErrors.push(<Alert severity="error">
+                          The file {pipeErrorAlerts[i]} doesn't belong to this project!
+                        </Alert>)
         
-        if (this.state.puntosExtra === true){
-          pipeErrors.push(<Alert severity="error">
-                            The file {pipeErrorAlerts[i]} has special characters that are not allowed!
-                          </Alert>)
-        }else {
-          pipeErrors.push(<Alert severity="error">
-                            The file {pipeErrorAlerts[i]} doesn't belong to this project!
-                          </Alert>)
-
-        }
       }
-    }
-
-    if(ownerErrorAlerts.length > 0){
-      for(let i = 0; i < ownerErrorAlerts.length; i++){
-        
-          ownerErrors.push(<Alert severity="error"
-          >
-            The isometric {ownerErrorAlerts[i]} doesn't have an owner!
-
-          </Alert>)
-      }
+      console.log("For pipe: " + pipeErrors);
     }
     
+    console.log("caracterErrorAlert: " + caracterErrorAlert);
+    if(caracterErrorAlert.length > 0){
+      for(let i = 0; i < caracterErrorAlert.length; i++){
+      
+        caracterError.push(<Alert severity="error">
+                          The file {caracterErrorAlert[i]} has special caracters not allowed!
+                        </Alert>)
+        
+      }
+      console.log("For caracter: " + caracterError);
+    }
 
     let inputContent = null
     let styles = null
@@ -466,10 +434,8 @@ class DragAndDrop extends React.Component{
 
         <Collapse in={this.state.success}>
           <Collapse in={this.state.uploaded}>
-            <Alert
-            >
+            <Alert>
               The files have been uploaded!
-
             </Alert>
           </Collapse>
         </Collapse>
@@ -478,26 +444,24 @@ class DragAndDrop extends React.Component{
           <Collapse in={this.state.uploaded}>
             {errors}
           </Collapse>
-          
         </Collapse>
+
         <Collapse in={this.state.pipeError}>
           <Collapse in={this.state.uploaded}>
             {pipeErrors}
           </Collapse>
-          
         </Collapse>
-        <Collapse in={this.state.ownerError}>
-          <Collapse in={this.state.uploaded}>
-            {ownerErrors}
-          </Collapse>
-          
-        </Collapse>
-        <Collapse in={this.state.uploading}>
-          <Alert severity="info"
-            >
-              The files are uploading...
 
-            </Alert>
+        <Collapse in={this.state.caracterError}>
+          <Collapse in={this.state.uploaded}>
+            {caracterError}
+          </Collapse>
+        </Collapse>
+
+        <Collapse in={this.state.uploading}>
+          <Alert severity="info">
+            The files are uploading...
+          </Alert>
         </Collapse>
         
       </div>

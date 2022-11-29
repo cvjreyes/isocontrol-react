@@ -33,3 +33,46 @@
 .popUpP__title{
     margin-top: 20px;
 }
+
+.size__input{
+    font-size: larger;
+}
+
+.btn__accept{
+    align-items: center;
+    color: #FFFFFF;
+    width: 120px;
+    height: 43px;
+    border: 1px solid #338DF1;
+    background: #338DF1;
+    border-radius: 8px;
+}
+
+.btn__accept:hover{
+    background-color: #99C6F8;
+    color: black;
+}
+
+.btn__deny{
+    align-items: center;
+    color: #0070ED;
+    width: 120px;
+    height: 43px;
+    border: 1px solid #0070ED;
+    margin-left: 30px;
+    background: #FFFFFF;
+    border-radius: 8px;
+}
+
+.btn__deny:hover{
+    background-color: #99C6F8;
+    color: black;
+}
+
+.disabled{
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: lightgray;
+    color: white;
+    border-color: transparent;
+}
