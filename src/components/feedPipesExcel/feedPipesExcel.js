@@ -94,7 +94,17 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
           row = { "Line reference": json.rows[i].line_reference, "Tag": json.rows[i].tag, "Owner": json.rows[i].owner, "Unit": json.rows[i].unit, "Area": json.rows[i].area, "Fluid": json.rows[i].fluid, "Seq": json.rows[i].sequential, "Spec": json.rows[i].spec, "Type": json.rows[i].type, "Diameter": json.rows[i].diameter, "Insulation": json.rows[i].insulation, "Train": json.rows[i].train, "Status": json.rows[i].status, "id": json.rows[i].id }
 
           let tag_order = process.env.REACT_APP_TAG_ORDER.split(/[ -]+/)
-          tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]]
+          for (let y = 0; y < process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length; y++) {
+            if(y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1){
+              tag = tag + "_" + row[tag_order[y]] 
+            } else if (y === 0) {
+              tag = row[tag_order[y]] 
+            } else {
+              tag = tag + "-" + row[tag_order[y]] 
+            }
+          }
+          // tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]] + "_" + row[tag_order[8]]
+
 
           row["Tag"] = tag
           rows.push(row)
@@ -127,7 +137,16 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
             row = { "Line reference": json.rows[i].line_reference, "Tag": json.rows[i].tag, "Owner": json.rows[i].owner, "Unit": json.rows[i].unit, "Area": json.rows[i].area, "Fluid": json.rows[i].fluid, "Seq": json.rows[i].sequential, "Spec": json.rows[i].spec, "Type": json.rows[i].type, "Diameter": json.rows[i].diameter, "Insulation": json.rows[i].insulation, "Train": json.rows[i].train, "Status": json.rows[i].status, "id": json.rows[i].id }
 
             let tag_order = process.env.REACT_APP_TAG_ORDER.split(/[ -]+/)
-            tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]]
+            for (let y = 0; y < process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length; y++) {
+              if(y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1){
+                tag = tag + "_" + row[tag_order[y]] 
+              } else if (y === 0) {
+                tag = row[tag_order[y]] 
+              } else {
+                tag = tag + "-" + row[tag_order[y]] 
+              }
+            }
+            // tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]]
 
             row["Tag"] = tag
             rows.push(row)
@@ -187,9 +206,13 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
     console.log("fixedRows: " + this.state.fixedRows);
     rows.push({ "Line reference": "", "Tag": "", "Owner": "", "Unit": "", "Area": "", "Fluid": "", "Seq": "", "Spec": "", "Type": "", "Diameter": "", "Insulation": "", "Train": "", "Status": "" })
     this.setState({ displayData: rows, fixedRows: fixedRows })
+    console.log("displayData: " + JSON.stringify(this.state.displayData));
   }
 
   async submitChanges() {
+    console.log("Tag Order: " + process.env.REACT_APP_TAG_ORDER);
+    console.log(__filename);
+    console.log("Proccess env: " + JSON.stringify(process.env));
     this.setState({ fixedRows: 0 })
     let new_rows = []
     Object.entries(this.state.new_data)
@@ -200,6 +223,7 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
         new_rows.splice(i, 1)
       }
     }
+    console.log("New Rows: " + new_rows);
 
     const body = {
       rows: new_rows,
