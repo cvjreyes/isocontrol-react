@@ -203,16 +203,16 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
     let rows = this.state.displayData
     let fixedRows = this.state.fixedRows + 1
 
-    console.log("fixedRows: " + this.state.fixedRows);
+    // console.log("fixedRows: " + this.state.fixedRows);
     rows.push({ "Line reference": "", "Tag": "", "Owner": "", "Unit": "", "Area": "", "Fluid": "", "Seq": "", "Spec": "", "Type": "", "Diameter": "", "Insulation": "", "Train": "", "Status": "" })
     this.setState({ displayData: rows, fixedRows: fixedRows })
-    console.log("displayData: " + JSON.stringify(this.state.displayData));
+    // console.log("displayData: " + JSON.stringify(this.state.displayData));
   }
 
   async submitChanges() {
-    console.log("Tag Order: " + process.env.REACT_APP_TAG_ORDER);
-    console.log(__filename);
-    console.log("Proccess env: " + JSON.stringify(process.env));
+    // console.log("Tag Order: " + process.env.REACT_APP_TAG_ORDER);
+    // console.log(__filename);
+    // console.log("Proccess env: " + JSON.stringify(process.env));
     this.setState({ fixedRows: 0 })
     let new_rows = []
     Object.entries(this.state.new_data)
@@ -312,7 +312,17 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
           }
           if (row.Area && row.Diameter && row.Train && row["Line reference"]) {
             let tag_order = process.env.REACT_APP_TAG_ORDER.split(/[ -]+/)
-            data_aux[row_id].Tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]]
+            let tag = ""
+            for (let y = 0; y < process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length; y++) {
+              if(y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1){
+                tag = tag + "_" + row[tag_order[y]] 
+              } else if (y === 0) {
+                tag = row[tag_order[y]] 
+              } else {
+                tag = tag + "-" + row[tag_order[y]] 
+              }
+            }
+            data_aux[row_id].Tag = tag
           }
           let new_data = this.state.new_data
           if (this.state.tags.indexOf(data_aux[row_id].Tag) > -1 && this.state.tags.indexOf(data_aux[row_id].Tag) !== row_id) {
