@@ -142,7 +142,7 @@ class EstimatedPipesExcel extends React.Component {
           let tags = []
           let tag = ""
           for (let i = 0; i < json.rows.length; i++) {
-            row = { "Line reference": json.rows[i].line_reference, "Tag": json.rows[i].tag, "Owner IFC": json.rows[i].owner_ifc, "Owner IsoTracker": json.rows[i].owner_iso, "Unit": json.rows[i].unit, "Area": json.rows[i].area, "Fluid": json.rows[i].fluid, "Seq": json.rows[i].seq, "Spec": json.rows[i].spec, "Type": json.rows[i].type, "Diameter": json.rows[i].diameter, "Insulation": json.rows[i].insulation, "Train": json.rows[i].train, "Status": json.rows[i].status, "id": json.rows[i].id }
+            row = { "Line reference": json.rows[i].line_reference, "Tag": json.rows[i].tag, "Owner IsoTracker": json.rows[i].owner_iso, "Unit": json.rows[i].unit, "Area": json.rows[i].area, "Fluid": json.rows[i].fluid, "Seq": json.rows[i].seq, "Spec": json.rows[i].spec, "Type": json.rows[i].type, "Diameter": json.rows[i].diameter, "Insulation": json.rows[i].insulation, "Train": json.rows[i].train, "Status": json.rows[i].status, "id": json.rows[i].id }
             let tag_order = process.env.REACT_APP_TAG_ORDER.split(/[ -]+/)
             for (let y = 0; y < process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length; y++) {
               if (y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1) {
