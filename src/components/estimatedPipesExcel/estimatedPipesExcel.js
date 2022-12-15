@@ -3,12 +3,15 @@ import 'antd/dist/antd.css';
 import { HotTable } from '@handsontable/react';
 import 'handsontable/dist/handsontable.full.css';
 import "./estimatedPipesExcel.css"
+import { Table } from 'antd';
 
 class EstimatedPipesExcel extends React.Component {
   state = {
     searchText: '',
     searchedColumn: '',
     data: [],
+    displayData: [],
+    filterData: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     tab: this.props.currentTab,
     selectedRows: [],
     selectedRowsKeys: [],
@@ -25,7 +28,8 @@ class EstimatedPipesExcel extends React.Component {
     tags: [],
     designers: [],
     owners: [["", "", ""]],
-    fixedRows: 0
+    fixedRows: 0,
+    scrollBottom: false
   };
 
   async componentDidMount() {
@@ -96,16 +100,16 @@ class EstimatedPipesExcel extends React.Component {
         let tag = ""
         for (let i = 0; i < json.rows.length; i++) { //Por cada linea modelada
           //Creamos la linea en la tabla excel
-          row = { "Line reference": json.rows[i].line_reference, "Owner IFC": json.rows[i].owner_ifc, "Owner IsoTracker": json.rows[i].owner_iso, "Unit": json.rows[i].unit, "Area": json.rows[i].area, "Fluid": json.rows[i].fluid, "Seq": json.rows[i].seq, "Spec": json.rows[i].spec, "Type": json.rows[i].type, "Diameter": json.rows[i].diameter, "Insulation": json.rows[i].insulation, "Train": json.rows[i].train, "Status": json.rows[i].status, "id": json.rows[i].id }
+          row = { "Line reference": json.rows[i].line_reference, "Tag": json.rows[i].tag, "Owner IsoTracker": json.rows[i].owner_iso, "Unit": json.rows[i].unit, "Area": json.rows[i].area, "Fluid": json.rows[i].fluid, "Seq": json.rows[i].seq, "Spec": json.rows[i].spec, "Type": json.rows[i].type, "Diameter": json.rows[i].diameter, "Insulation": json.rows[i].insulation, "Train": json.rows[i].train, "Status": json.rows[i].status, "id": json.rows[i].id }
           let tag_order = process.env.REACT_APP_TAG_ORDER.split(/[ -]+/)
-          
+
           for (let y = 0; y < process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length; y++) {
-            if(y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1){
-              tag = tag + "_" + row[tag_order[y]] 
+            if (y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1) {
+              tag = tag + "_" + row[tag_order[y]]
             } else if (y === 0) {
-              tag = row[tag_order[y]] 
+              tag = row[tag_order[y]]
             } else {
-              tag = tag + "-" + row[tag_order[y]] 
+              tag = tag + "-" + row[tag_order[y]]
             }
           }
           // tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]]
@@ -114,7 +118,7 @@ class EstimatedPipesExcel extends React.Component {
           rows.push(row)
           tags.push(json.rows[i].tag)
         }
-        await this.setState({ data: rows, tags: tags })
+        await this.setState({ data: rows, displayData: rows, tags: tags })
       })
   }
 
@@ -138,36 +142,88 @@ class EstimatedPipesExcel extends React.Component {
           let tags = []
           let tag = ""
           for (let i = 0; i < json.rows.length; i++) {
-            row = { "Line reference": json.rows[i].line_reference, "Owner IFC": json.rows[i].owner_ifc, "Owner IsoTracker": json.rows[i].owner_iso, "Unit": json.rows[i].unit, "Area": json.rows[i].area, "Fluid": json.rows[i].fluid, "Seq": json.rows[i].seq, "Spec": json.rows[i].spec, "Type": json.rows[i].type, "Diameter": json.rows[i].diameter, "Insulation": json.rows[i].insulation, "Train": json.rows[i].train, "Status": json.rows[i].status, "id": json.rows[i].id }
+            row = { "Line reference": json.rows[i].line_reference, "Tag": json.rows[i].tag, "Owner IsoTracker": json.rows[i].owner_iso, "Unit": json.rows[i].unit, "Area": json.rows[i].area, "Fluid": json.rows[i].fluid, "Seq": json.rows[i].seq, "Spec": json.rows[i].spec, "Type": json.rows[i].type, "Diameter": json.rows[i].diameter, "Insulation": json.rows[i].insulation, "Train": json.rows[i].train, "Status": json.rows[i].status, "id": json.rows[i].id }
             let tag_order = process.env.REACT_APP_TAG_ORDER.split(/[ -]+/)
             for (let y = 0; y < process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length; y++) {
-              if(y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1){
-                tag = tag + "_" + row[tag_order[y]] 
+              if (y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1) {
+                tag = tag + "_" + row[tag_order[y]]
               } else if (y === 0) {
-                tag = row[tag_order[y]] 
+                tag = row[tag_order[y]]
               } else {
-                tag = tag + "-" + row[tag_order[y]] 
+                tag = tag + "-" + row[tag_order[y]]
               }
             }
-            
+
             // tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]]
 
             row["Tag"] = tag
             rows.push(row)
-            tags.push(json.rows[i].tag)
+            tags.push(tag)
           }
-          await this.setState({ data: rows })
+          await this.setState({ data: rows, tags: tags })
+          let auxDisplayData = this.state.data
+          let resultData = []
+          let fil, exists = null
+          for (let i = 0; i < auxDisplayData.length; i++) {
+            exists = true
+            for (let column = 0; column < Object.keys(auxDisplayData[i]).length - 1; column++) {
+              fil = Object.keys(auxDisplayData[i])[column]
+              if (this.state.filterData[column] !== "" && this.state.filterData[column] && !auxDisplayData[i][fil].includes(this.state.filterData[column])) {
+                exists = false
+              }
+            }
+            if (exists) {
+              resultData.push(auxDisplayData[i])
+            }
+          }
+          await this.setState({ displayData: resultData })
         })
     }
 
   }
 
-  addRow() {
-    let rows = this.state.data
-    let fixedRows = this.state.fixedRows + 1
+  async filter(column, value) {
+    let fd = this.state.filterData
+    fd[column] = value
+    this.setState({ filterData: fd })
 
-    rows.push({ "Line reference": "", "Tag": "", "Owner IFC": "", "Owner IsoTracker": "", "Unit": "", "Area": "", "Fluid": "", "Seq": "", "Spec": "", "Type": "", "Diameter": "", "Insulation": "", "Train": "", "Status": "" })
-    this.setState({ data: rows, fixedRows: fixedRows })
+    let auxDisplayData = this.state.data
+    let tags = []
+    let resultData = []
+    let fil, exists = null
+    for (let i = 0; i < auxDisplayData.length; i++) {
+      exists = true
+      for (let column = 0; column < Object.keys(auxDisplayData[i]).length; column++) {
+        fil = Object.keys(auxDisplayData[i])[column]
+        let auxColumn = auxDisplayData[i][fil]
+        if (auxColumn === null) {
+          auxColumn = ""
+        }
+        console.log("Includes " + fil + ": " + !auxColumn.toString().includes(this.state.filterData[column]))
+        if (this.state.filterData[column] && !auxColumn.toString().includes(this.state.filterData[column])) {
+          exists = false
+        }
+      }
+      console.log("Tag data: " + JSON.stringify(auxDisplayData[i]["Tag"]));
+      console.log("Filter data: " + JSON.stringify(this.state.filterData[1]));
+      console.log("Includes: " + !auxDisplayData[i]["Tag"].toString().includes(this.state.filterData[1]));
+      if (exists) {
+        resultData.push(auxDisplayData[i])
+        tags.push(auxDisplayData[i].Tag)
+      }
+    }
+    await this.setState({ displayData: resultData, tags: tags })
+  }
+
+  addRow() {
+    let rows = this.state.displayData
+    let fixedRows = this.state.fixedRows + 1
+    this.setState({ scrollBottom: true })
+    if(this.state.scrollBottom === true ) {
+
+    }
+    rows.push({ "Line reference": "", "Tag": "", "Owner IsoTracker": "", "Unit": "", "Area": "", "Fluid": "", "Seq": "", "Spec": "", "Type": "", "Diameter": "", "Insulation": "", "Train": "", "Status": "" })
+    this.setState({ displayData: rows, fixedRows: fixedRows, scrollBottom: true})
   }
 
   async submitChanges() {
@@ -216,19 +272,19 @@ class EstimatedPipesExcel extends React.Component {
 
   handleChange = async (changes, source) => { //Este metodo se llama cada vez de que se modifica un campo en la tabla
     if (source !== 'loadData') { //Si el cambio no se debe a la carga de datos (es decir cuando se ha modificado algo)
-      let data_aux = this.state.data
+      let data_aux = this.state.displayData
       for (let i = 0; i < changes.length; i += 4) { //Por cada cambio
         if (changes[i][1] === "Owner IFC") { //No se usa
           let owners = this.state.owners
-          owners.push(["IFC", this.state.data[changes[i][0]].Tag, changes[0][3]]) //Guardamos el owner en un array para guardarlo en la bd cuando hagamos el submit
+          owners.push(["IFC", this.state.displayData[changes[i][0]].Tag, changes[0][3]]) //Guardamos el owner en un array para guardarlo en la bd cuando hagamos el submit
           this.setState({ owners: owners })
         } else if (changes[i][1] === "Owner IsoTracker") { //Si el cambio se ha producido en la columna owner
           let owners = this.state.owners
-          owners.push(["ISO", this.state.data[changes[i][0]].Tag, changes[0][3]])
+          owners.push(["ISO", this.state.displayData[changes[i][0]].Tag, changes[0][3]])
           this.setState({ owners: owners })
         } else { //Si el cambio se ha producido en cualquier otra columna
           let row_id = changes[i][0]
-          if (this.state.data[row_id].Status === "MODELLED*" || this.state.data[row_id].Status === "MODELLED") { //Si la linea estaba modelada
+          if (this.state.displayData[row_id].Status === "MODELLED*" || this.state.displayData[row_id].Status === "MODELLED") { //Si la linea estaba modelada
             data_aux[row_id][changes[0][1]] = "##########" //Se pone esto en el campo modificado indicando un error, ya que no se puede modificar una linea modelada
             await this.setState({ data: data_aux, warning: true })
           } else {//Si no esta modelada
@@ -276,7 +332,17 @@ class EstimatedPipesExcel extends React.Component {
             if (row.Area && row.Diameter && row.Train && row["Line reference"]) { //Si la linea tiene todos los campos llenos (excepto el owner que no es olbigatorio)
               //Generamos el tag
               let tag_order = process.env.REACT_APP_TAG_ORDER.split(/[ -]+/)
-              data_aux[row_id].Tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]]
+              let tag = ""
+              for (let y = 0; y < process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length; y++) {
+                if (y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1) {
+                  tag = tag + "_" + row[tag_order[y]]
+                } else if (y === 0) {
+                  tag = row[tag_order[y]]
+                } else {
+                  tag = tag + "-" + row[tag_order[y]]
+                }
+              }
+              data_aux[row_id].Tag = tag
             }
             let new_data = this.state.new_data
             if (this.state.tags.indexOf(data_aux[row_id].Tag) > -1 && this.state.tags.indexOf(data_aux[row_id].Tag) !== row_id) { //Si el tag generado ya existe quiere decir que la linea esta repetida
@@ -325,9 +391,89 @@ class EstimatedPipesExcel extends React.Component {
 
   render() {
 
+    const columns = [
+      {
+        title: <center className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Line reference" style={{ textAlign: "center" }} onChange={(e) => this.filter(0, e.target.value)} /></center>,
+        key: 'line_reference',
+        align: "center",
+        width: "240px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Tag" style={{ textAlign: "center" }} onChange={(e) => this.filter(1, e.target.value)} /></div>,
+        key: 'tag',
+        align: "center",
+        width: "350px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Owner" style={{ textAlign: "center" }} onChange={(e) => this.filter(2, e.target.value)} /></div>,
+        key: 'owner',
+        align: "center",
+        width: "250px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Unit" style={{ textAlign: "center" }} onChange={(e) => this.filter(3, e.target.value)} /></div>,
+        key: 'unit',
+        align: "center",
+        width: "70px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Area" style={{ textAlign: "center" }} onChange={(e) => this.filter(4, e.target.value)} /></div>,
+        key: 'area',
+        align: "center",
+        width: "99px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Fluid" style={{ textAlign: "center" }} onChange={(e) => this.filter(5, e.target.value)} /></div>,
+        key: 'fluid',
+        align: "center",
+        width: "120px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Seq" style={{ textAlign: "center" }} onChange={(e) => this.filter(6, e.target.value)} /></div>,
+        key: 'seq',
+        align: "center",
+        width: "60px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Spec" style={{ textAlign: "center" }} onChange={(e) => this.filter(7, e.target.value)} /></div>,
+        key: 'spec',
+        align: "center",
+        width: "70px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Type" style={{ textAlign: "center" }} onChange={(e) => this.filter(8, e.target.value)} /></div>,
+        key: 'type',
+        align: "center",
+        width: "80px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Diameter" style={{ textAlign: "center" }} onChange={(e) => this.filter(9, e.target.value)} /></div>,
+        key: 'diameter',
+        align: "center",
+        width: "105px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Insulation" style={{ textAlign: "center" }} onChange={(e) => this.filter(10, e.target.value)} /></div>,
+        key: 'insulation',
+        align: "center",
+        width: "110px"
+      },
+      {
+        title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Train" style={{ textAlign: "center" }} onChange={(e) => this.filter(11, e.target.value)} /></div>,
+        key: 'train',
+        align: "center",
+        width: "71px"
+      },
+      {
+        title: <center className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Status" style={{ textAlign: "center" }} onChange={(e) => this.filter(12, e.target.value)} /></center>,
+        key: 'status',
+        align: "center",
+      }]
+
+
     const settings = {
       licenseKey: 'non-commercial-and-evaluation',
-      colWidths: [180, 473, 240, 70, 70, 70, 100, 95, 80, 105, 110, 70, 120],
+      colWidths: [245, 350, 250, 70, 100, 120, 60, 70, 80, 105, 110, 70, 142],
       fontSize: 24
       //... other options
     }
@@ -336,9 +482,10 @@ class EstimatedPipesExcel extends React.Component {
     return (
       <div style={{ zoom: "0.85" }}>
         <div id="hot-app">
+          <Table style={{ width: "1772px", marginLeft: "52px" }} className="customTable" bordered={true} columns={columns} pagination={{ disabled: true, defaultPageSize: 5000, hideOnSinglePage: true }} size="small"
+            rowClassName={(record) => record.color.replace('#', '')} scroll={{ y: 0 }} />
           <HotTable
-            data={this.state.data}
-            colHeaders={["<b className='header'>Line reference</b>", "<b>Tag</b>", "<b>Owner IsoTracker</b>", "<b>Unit</b>", "<b>Area</b>", "<b>Fluid</b>", "<b>Seq</b>", "<b>Spec</b>", "<b>Type</b>", "<b>Diameter</b>", "<b>Insulation</b>", "<b>Train</b>", "<b>Status</b>"]}
+            data={this.state.displayData}
             rowHeaders={true}
             rowHeights="30px"
             columnHeaderHeight={30}
@@ -347,25 +494,10 @@ class EstimatedPipesExcel extends React.Component {
             settings={settings}
             manualColumnResize={true}
             manualRowResize={true}
-            columns={[{ data: "Line reference", type: 'dropdown', source: this.state.line_refs, strict: true }, { data: "Tag", type: 'text', readOnly: true }, { data: "Owner IsoTracker", type: 'dropdown', source: this.state.designers, strict: true }, { data: "Unit", type: 'text', readOnly: true }, { data: "Area", type: 'dropdown', source: this.state.areas, strict: true }, { data: "Fluid", type: 'text', readOnly: true }, { data: "Seq", type: 'text', readOnly: true }, { data: "Spec", type: 'text', readOnly: true }, { data: "Type", type: 'text', readOnly: true }, { data: "Diameter", type: 'dropdown', source: this.state.diameters, strict: true }, { data: "Insulation", type: 'text', readOnly: true }, { data: "Train", type: 'dropdown', source: this.state.trains, strict: true }, { data: "Status", type: 'text', readOnly: true }]}
-            filters={true}
-            dropdownMenu={[
-              'make_read_only',
-              '---------',
-              'alignment',
-              '---------',
-              'filter_by_condition',
-              '---------',
-              'filter_operators',
-              '---------',
-              'filter_by_condition2',
-              '---------',
-              'filter_by_value',
-              '---------',
-              'filter_action_bar',
-            ]}
+            columns={[{ data: "Line reference", type: 'dropdown', source: this.state.line_refs, strict: true,  }, { data: "Tag", type: 'text', readOnly: true }, { data: "Owner IsoTracker", type: 'dropdown', source: this.state.designers, strict: true }, { data: "Unit", type: 'text', readOnly: true }, { data: "Area", type: 'dropdown', source: this.state.areas, strict: true }, { data: "Fluid", type: 'text', readOnly: true }, { data: "Seq", type: 'text', readOnly: true }, { data: "Spec", type: 'text', readOnly: true }, { data: "Type", type: 'text', readOnly: true }, { data: "Diameter", type: 'dropdown', source: this.state.diameters, strict: true }, { data: "Insulation", type: 'text', readOnly: true }, { data: "Train", type: 'dropdown', source: this.state.trains, strict: true }, { data: "Status", type: 'text', readOnly: true }]}
             afterChange={this.handleChange}
             fixedRowsBottom={this.state.fixedRows}
+            dragToScroll={this.state.scrollBottom}
           />
           <br></br>
           <div style={{ marginLeft: "695px" }}>

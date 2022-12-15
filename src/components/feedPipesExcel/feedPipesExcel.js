@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import { HotTable } from '@handsontable/react';
 import 'handsontable/dist/handsontable.full.css';
 import { Table } from 'antd';
+import { string } from 'prop-types';
 
 class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. Funciona igual que estimatedPipesExcel
   state = {
@@ -178,7 +179,7 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
     let fd = this.state.filterData
     fd[column] = value
     await this.setState({ filterData: fd })
-
+    
     let auxDisplayData = this.state.data
     let tags = []
     let resultData = []
@@ -187,7 +188,12 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
       exists = true
       for (let column = 0; column < Object.keys(auxDisplayData[i]).length; column++) {
         fil = Object.keys(auxDisplayData[i])[column]
-        if (this.state.filterData[column] !== "" && this.state.filterData[column] && !auxDisplayData[i][fil].includes(this.state.filterData[column])) {
+        let auxColumn = auxDisplayData[i][fil]
+        if (auxColumn === null) {
+          auxColumn = ""
+        }
+        
+        if (this.state.filterData[column] && !auxColumn.toString().includes(this.state.filterData[column])) {
           exists = false
         }
       }
@@ -203,16 +209,16 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
     let rows = this.state.displayData
     let fixedRows = this.state.fixedRows + 1
 
-    console.log("fixedRows: " + this.state.fixedRows);
+    // console.log("fixedRows: " + this.state.fixedRows);
     rows.push({ "Line reference": "", "Tag": "", "Owner": "", "Unit": "", "Area": "", "Fluid": "", "Seq": "", "Spec": "", "Type": "", "Diameter": "", "Insulation": "", "Train": "", "Status": "" })
     this.setState({ displayData: rows, fixedRows: fixedRows })
-    console.log("displayData: " + JSON.stringify(this.state.displayData));
+    // console.log("displayData: " + JSON.stringify(this.state.displayData));
   }
 
   async submitChanges() {
-    console.log("Tag Order: " + process.env.REACT_APP_TAG_ORDER);
-    console.log(__filename);
-    console.log("Proccess env: " + JSON.stringify(process.env));
+    // console.log("Tag Order: " + process.env.REACT_APP_TAG_ORDER);
+    // console.log(__filename);
+    // console.log("Proccess env: " + JSON.stringify(process.env));
     this.setState({ fixedRows: 0 })
     let new_rows = []
     Object.entries(this.state.new_data)
@@ -312,7 +318,17 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
           }
           if (row.Area && row.Diameter && row.Train && row["Line reference"]) {
             let tag_order = process.env.REACT_APP_TAG_ORDER.split(/[ -]+/)
-            data_aux[row_id].Tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]]
+            let tag = ""
+            for (let y = 0; y < process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length; y++) {
+              if(y === process.env.REACT_APP_TAG_ORDER.split(/[ -]+/).length - 1){
+                tag = tag + "_" + row[tag_order[y]] 
+              } else if (y === 0) {
+                tag = row[tag_order[y]] 
+              } else {
+                tag = tag + "-" + row[tag_order[y]] 
+              }
+            }
+            data_aux[row_id].Tag = tag
           }
           let new_data = this.state.new_data
           if (this.state.tags.indexOf(data_aux[row_id].Tag) > -1 && this.state.tags.indexOf(data_aux[row_id].Tag) !== row_id) {
@@ -363,22 +379,22 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
 
     const columns = [
       {
-        title: <center className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Line reference" style={{ textAlign: "center" }} onChange={(e) => this.filter(0, e.target.value)} /></center>,
+        title: <center className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Line reference" style={{ textAlign: "center" }} onChange={(e) => this.filter(0, e.target.value) && console.log()} /></center>,
         key: 'line_reference',
         align: "center",
-        width: "152px"
+        width: "217px"
       },
       {
         title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Tag" style={{ textAlign: "center" }} onChange={(e) => this.filter(1, e.target.value)} /></div>,
         key: 'tag',
         align: "center",
-        width: "399px"
+        width: "350px"
       },
       {
         title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Owner" style={{ textAlign: "center" }} onChange={(e) => this.filter(2, e.target.value)} /></div>,
         key: 'owner',
         align: "center",
-        width: "209px"
+        width: "260px"
       },
       {
         title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Unit" style={{ textAlign: "center" }} onChange={(e) => this.filter(3, e.target.value)} /></div>,
@@ -396,19 +412,19 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
         title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Fluid" style={{ textAlign: "center" }} onChange={(e) => this.filter(5, e.target.value)} /></div>,
         key: 'fluid',
         align: "center",
-        width: "70px"
+        width: "110px"
       },
       {
         title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Seq" style={{ textAlign: "center" }} onChange={(e) => this.filter(6, e.target.value)} /></div>,
         key: 'seq',
         align: "center",
-        width: "100px"
+        width: "70px"
       },
       {
         title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Spec" style={{ textAlign: "center" }} onChange={(e) => this.filter(7, e.target.value)} /></div>,
         key: 'spec',
         align: "center",
-        width: "96px"
+        width: "70px"
       },
       {
         title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Type" style={{ textAlign: "center" }} onChange={(e) => this.filter(8, e.target.value)} /></div>,
@@ -442,7 +458,7 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
 
     const settings = {
       licenseKey: 'non-commercial-and-evaluation',
-      colWidths: [155, 403, 210, 70, 100, 70, 100, 95, 80, 105, 110, 70, 210],
+      colWidths: [220, 350, 260, 70, 100, 110, 70, 70, 80, 105, 110, 70, 160],
       fontSize: 24
       //... other options
     }
