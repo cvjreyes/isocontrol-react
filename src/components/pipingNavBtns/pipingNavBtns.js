@@ -157,7 +157,7 @@ const CryptoJS = require("crypto-js");
     } else {
         ifdTitle = <p className="isotracker__table__trays__group">IFD</p>
         traysTitle = <p className="isotracker__table__trays__group">Trays</p>
-        reportingTitle = <p className="isotracker__table__trays__group">Reporting</p>
+        // reportingTitle = <p className="isotracker__table__trays__group">Reporting</p>
     }
 
     
@@ -187,7 +187,7 @@ const CryptoJS = require("crypto-js");
             {sDesignButtn}
             {reportingTitle}
             {feedProgressBtn}
-            {prodBtn}
+            {/* {prodBtn} */}
         </div>
     );
 };
