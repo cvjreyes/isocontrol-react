@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import { HotTable } from '@handsontable/react';
 import 'handsontable/dist/handsontable.full.css';
 import { Table } from 'antd';
+import { string } from 'prop-types';
 
 class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. Funciona igual que estimatedPipesExcel
   state = {
@@ -178,7 +179,7 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
     let fd = this.state.filterData
     fd[column] = value
     await this.setState({ filterData: fd })
-
+    
     let auxDisplayData = this.state.data
     let tags = []
     let resultData = []
@@ -187,7 +188,12 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
       exists = true
       for (let column = 0; column < Object.keys(auxDisplayData[i]).length; column++) {
         fil = Object.keys(auxDisplayData[i])[column]
-        if (this.state.filterData[column] !== "" && this.state.filterData[column] && !auxDisplayData[i][fil].includes(this.state.filterData[column])) {
+        let auxColumn = auxDisplayData[i][fil]
+        if (auxColumn === null) {
+          auxColumn = ""
+        }
+        
+        if (this.state.filterData[column] && !auxColumn.toString().includes(this.state.filterData[column])) {
           exists = false
         }
       }
@@ -373,16 +379,16 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
 
     const columns = [
       {
-        title: <center className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Line reference" style={{ textAlign: "center" }} onChange={(e) => this.filter(0, e.target.value)} /></center>,
+        title: <center className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Line reference" style={{ textAlign: "center" }} onChange={(e) => this.filter(0, e.target.value) && console.log()} /></center>,
         key: 'line_reference',
         align: "center",
-        width: "152px"
+        width: "151px"
       },
       {
         title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Tag" style={{ textAlign: "center" }} onChange={(e) => this.filter(1, e.target.value)} /></div>,
         key: 'tag',
         align: "center",
-        width: "399px"
+        width: "403px"
       },
       {
         title: <div className="dataTable__header__text"><input type="text" className="filter__input" placeholder="Owner" style={{ textAlign: "center" }} onChange={(e) => this.filter(2, e.target.value)} /></div>,
