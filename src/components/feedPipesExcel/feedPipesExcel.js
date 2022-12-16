@@ -39,6 +39,7 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
         "Content-Type": "application/json"
       },
     }
+    // cambio
 
     fetch("http://" + process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_NODE_PORT + "/api/areas", options)
       .then(response => response.json())
