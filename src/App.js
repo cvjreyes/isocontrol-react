@@ -1,7 +1,5 @@
 import './App.css';
-import IsoCtrl from './pages/isoCtrl/isoCtrl';
-import { Switch, Route} from 'react-router-dom';
-import { BrowserRouter as Router} from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router, Redirect} from 'react-router-dom';
 import Register from './pages/register/register';
 import ChangePasswordPage from './pages/changePassword/changePassword';
 import Equipments from './pages/equipments/equipments';
@@ -45,6 +43,7 @@ function App() {
             <Route exact path={"/"+process.env.REACT_APP_PROJECT+"/pipingProduction"} component={PipingProduction}></Route>
             <Route exact path={"/"+process.env.REACT_APP_PROJECT+"/pipingProgress"} component={PipingProgress}></Route>
             <Route exact path={"/"+process.env.REACT_APP_PROJECT+"/isoCtrlButtons"} component={IsoCtrlButtons}></Route>
+            <Redirect exact from="/" to={`${process.env.REACT_APP_PROJECT}/home`} />
         </Switch>
       </Router>
   

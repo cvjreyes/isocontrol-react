@@ -3,7 +3,6 @@ import 'antd/dist/antd.css';
 import { HotTable } from '@handsontable/react';
 import 'handsontable/dist/handsontable.full.css';
 import { Table } from 'antd';
-import { string } from 'prop-types';
 
 class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. Funciona igual que estimatedPipesExcel
   state = {
@@ -39,7 +38,6 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
         "Content-Type": "application/json"
       },
     }
-    // cambio
 
     fetch("http://" + process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_NODE_PORT + "/api/areas", options)
       .then(response => response.json())
@@ -105,14 +103,12 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
               tag = tag + "-" + row[tag_order[y]] 
             }
           }
-          // tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]] + "_" + row[tag_order[8]]
-
 
           row["Tag"] = tag
           rows.push(row)
           tags.push(tag)
         }
-        await this.setState({ data: rows, displayData: rows, tags: tags })
+        this.setState({ data: rows, displayData: rows, tags: tags })
       })
   }
 
@@ -148,13 +144,11 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
                 tag = tag + "-" + row[tag_order[y]] 
               }
             }
-            // tag = row[tag_order[0]] + "-" + row[tag_order[1]] + "-" + row[tag_order[2]] + "-" + row[tag_order[3]] + "-" + row[tag_order[4]] + "-" + row[tag_order[5]] + "-" + row[tag_order[6]] + "_" + row[tag_order[7]]
-
             row["Tag"] = tag
             rows.push(row)
             tags.push(tag)
           }
-          await this.setState({ data: rows, tags: tags })
+          this.setState({ data: rows, tags: tags })
           let auxDisplayData = this.state.data
           let resultData = []
           let fil, exists = null
@@ -170,7 +164,7 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
               resultData.push(auxDisplayData[i])
             }
           }
-          await this.setState({ displayData: resultData })
+          this.setState({ displayData: resultData })
         })
     }
 
@@ -179,7 +173,7 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
   async filter(column, value) {
     let fd = this.state.filterData
     fd[column] = value
-    await this.setState({ filterData: fd })
+    this.setState({ filterData: fd })
     
     let auxDisplayData = this.state.data
     let tags = []
@@ -194,7 +188,7 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
           auxColumn = ""
         }
         
-        if (this.state.filterData[column] && !auxColumn.toString().includes(this.state.filterData[column])) {
+        if (this.state.filterData[column] && !auxColumn.toString().toLowerCase().includes(this.state.filterData[column].toLowerCase())) {
           exists = false
         }
       }
@@ -203,30 +197,24 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
         tags.push(auxDisplayData[i].Tag)
       }
     }
-    await this.setState({ displayData: resultData, tags: tags })
+    this.setState({ displayData: resultData, tags: tags })
   }
 
   addRow() {
     let rows = this.state.displayData
     let fixedRows = this.state.fixedRows + 1
-
-    // console.log("fixedRows: " + this.state.fixedRows);
     rows.push({ "Line reference": "", "Tag": "", "Owner": "", "Unit": "", "Area": "", "Fluid": "", "Seq": "", "Spec": "", "Type": "", "Diameter": "", "Insulation": "", "Train": "", "Status": "" })
     this.setState({ displayData: rows, fixedRows: fixedRows })
-    // console.log("displayData: " + JSON.stringify(this.state.displayData));
   }
 
   async submitChanges() {
-    // console.log("Tag Order: " + process.env.REACT_APP_TAG_ORDER);
-    // console.log(__filename);
-    // console.log("Proccess env: " + JSON.stringify(process.env));
     this.setState({ fixedRows: 0 })
     let new_rows = []
     Object.entries(this.state.new_data)
       .map(([key, value]) => new_rows.push(value))
     for (let i = 0; i < new_rows.length; i++) {
       if (new_rows[i]["Line reference"] === "" || new_rows[i].Tag === "" || new_rows[i].Unit === "" || new_rows[i].Area === "" || new_rows[i].Fluid === "" || new_rows[i].Seq === "" || new_rows[i].Spec === "" || new_rows[i].Diameter === "" || new_rows[i].Insulation === "" || new_rows[i].Train === "" || new_rows[i]["Line reference"] === null || new_rows[i].Tag === null || new_rows[i].Unit === null || new_rows[i].Area === null || new_rows[i].Fluid === null || new_rows[i].Seq === null || new_rows[i].Spec === null || new_rows[i].Diameter === null || new_rows[i].Insulation === null || new_rows[i].Train === null) {
-        await this.setState({ empty: true })
+        this.setState({ empty: true })
         new_rows.splice(i, 1)
       }
     }
@@ -312,7 +300,7 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
                     }
                   }
 
-                  await this.setState({ data: data_aux })
+                  this.setState({ data: data_aux })
                 }
               })
 
@@ -360,12 +348,12 @@ class FeedPipesExcel extends React.Component { //Tabla del feed de isocontrol. F
           }
 
 
-          await this.setState({ new_data: new_data })
+          this.setState({ new_data: new_data })
 
           if (!row["Line reference"] && row.id) {
             let new_data = this.state.new_data
             new_data[row_id] = { "Line reference": "deleted", id: row.id }
-            await this.setState({ new_data: new_data })
+            this.setState({ new_data: new_data })
           }
 
         }
