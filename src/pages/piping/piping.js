@@ -17,7 +17,6 @@ import Trash from "../../assets/images/Trash.png";
 import AlertF from "../../components/alert/alert";
 import Hold from "../../assets/images/Prohibit.png";
 
-import IdleTimer from "react-idle-timer";
 import { useHistory } from "react-router";
 import PipingNavBtns from "../../components/pipingNavBtns/pipingNavBtns";
 
@@ -85,6 +84,12 @@ const Piping = () => {
   const [changesSaved, setChangesSaved] = useState(false);
   const [feedProgress, setFeedProgress] = useState(null);
   const [titlePiping, setTitlePiping] = useState("");
+  // alerta reusable
+  const [alert, setAlert] = useState({
+    bool: false,
+    message: "",
+    type: "",
+  });
   const history = useHistory();
 
   useEffect(() => {
@@ -168,26 +173,26 @@ const Piping = () => {
         console.log(error);
       });
 
-    const body = {
-      user: currentUser,
-    };
-    options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    };
-    fetch(
-      "http://" +
-        process.env.REACT_APP_SERVER +
-        ":" +
-        process.env.REACT_APP_NODE_PORT +
-        "/exitEditCSP",
-      options
-    )
-      .then((response) => response.json())
-      .then(async (json) => {});
+    // const body = {
+    //   user: currentUser,
+    // };
+    // options = {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(body),
+    // };
+    // fetch(
+    //   "http://" +
+    //     process.env.REACT_APP_SERVER +
+    //     ":" +
+    //     process.env.REACT_APP_NODE_PORT +
+    //     "/exitEditCSP",
+    //   options
+    // )
+    //   .then((response) => response.json())
+    //   .then(async (json) => {});
   }, [updateData]);
 
   useEffect(async () => {
@@ -201,34 +206,9 @@ const Piping = () => {
     }, 1000);
   }
 
-  function handleOnIdle() {
-    const body = {
-      user: currentUser,
-    };
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    };
-    fetch(
-      "http://" +
-        process.env.REACT_APP_SERVER +
-        ":" +
-        process.env.REACT_APP_NODE_PORT +
-        "/exitEditCSP",
-      options
-    )
-      .then((response) => response.json())
-      .then(async (json) => {});
-    secureStorage.clear();
-    history.push("/" + process.env.REACT_APP_PROJECT);
-  }
-
   useEffect(() => {
     if (!secureStorage.getItem("user")) {
-      history.push("/" + process.env.REACT_APP_PROJECT + "/");
+      history.push("/" + process.env.REACT_APP_PROJECT);
     }
   }, []);
 
@@ -479,9 +459,22 @@ const Piping = () => {
     );
   }
 
+  useEffect(() => {
+    if (alert.bool) {
+      setTimeout(() => {
+        setAlert({ bool: false, message: "", type: "" });
+      }, 2000);
+    }
+  }, [alert]);
+
   if (currentTab === "FeedForecast") {
     secureStorage.setItem("tab", "FeedForecast");
-    table = <FeedForecastTable success={() => setChangesSaved(true)} />;
+    table = (
+      <FeedForecastTable
+        alert={(bool, message, type) => setAlert({ bool, message, type })}
+        success={() => setChangesSaved(true)}
+      />
+    );
     feedProgressButton = (
       <p
         className="navBar__button__text"
@@ -830,11 +823,6 @@ const Piping = () => {
 
   return (
     <div>
-      <IdleTimer
-        timeout={1000 * 60 * 15}
-        onIdle={handleOnIdle}
-        debounce={250}
-      />
       <NavBar onChange={(value) => setCurrentTab(currentTab)} />
       <div
         className={`alert alert-success ${
@@ -947,6 +935,9 @@ const Piping = () => {
           margin="0px"
         />
       </div>
+      {alert.bool && (
+        <AlertF type={alert.type} text={alert.message} margin="10px" />
+      )}
       <Collapse in={loading}>
         <Alert
           style={{
