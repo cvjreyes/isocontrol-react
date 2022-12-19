@@ -1,5 +1,3 @@
-// T: quitar console.logs y awaits de los setState
-
 import "./piping.css";
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/navBar/navBar";
@@ -24,42 +22,37 @@ import PipingDataTable from "../../components/pipingDataTable/pipingDataTable";
 import PipingMyTrayTable from "../../components/pipingMyTrayTable/pipingMyTrayTable";
 import PipingBinTable from "../../components/pipingBinTable/pipingBinTable";
 
-import IsoControlFullDataTable from "../../components/isoControlFullDataTable/isoControlFullDataTable";
-import IsoControlGroupLineIdDataTable from "../../components/isoControlGroupLineIdDataTable/isoControlGroupLineIdDataTable";
-import UploadBOMIsocontrolPopUp from "../../components/uploadBomIsocontrolPopUp/uploadBomIsocontrolPopUp";
+// import IsoControlFullDataTable from "../../components/isoControlFullDataTable/isoControlFullDataTable";
+// import IsoControlGroupLineIdDataTable from "../../components/isoControlGroupLineIdDataTable/isoControlGroupLineIdDataTable";
+// import UploadBOMIsocontrolPopUp from "../../components/uploadBomIsocontrolPopUp/uploadBomIsocontrolPopUp";
 import EstimatedPipesExcel from "../../components/estimatedPipesExcel/estimatedPipesExcel";
 import IsoControlHoldsDataTable from "../../components/isoControlHoldsDataTable/isoControlHoldsDataTable";
 import FeedPipesExcel from "../../components/feedPipesExcel/feedPipesExcel";
 import FeedProgressPlot from "../../components/feedProgressPlot/feedProgressPlot";
 import FeedForecastTable from "../../components/feedForecastTable/feedForecastTable";
 
-const CryptoJS = require("crypto-js");
-const SecureStorage = require("secure-web-storage");
-var SECRET_KEY = "sanud2ha8shd72h";
+// const CryptoJS = require("crypto-js");
+// const SecureStorage = require("secure-web-storage");
+// var SECRET_KEY = "sanud2ha8shd72h";
 
-var secureStorage = new SecureStorage(localStorage, {
-  hash: function hash(key) {
-    key = CryptoJS.SHA256(key, SECRET_KEY);
+// var secureStorage = new SecureStorage(localStorage, {
+//   hash: function hash(key) {
+//     key = CryptoJS.SHA256(key, SECRET_KEY);
+//     return key.toString();
+//   },
+//   encrypt: function encrypt(data) {
+//     data = CryptoJS.AES.encrypt(data, SECRET_KEY);
+//     data = data.toString();
+//     return data;
+//   },
+//   decrypt: function decrypt(data) {
+//     data = CryptoJS.AES.decrypt(data, SECRET_KEY);
+//     data = data.toString(CryptoJS.enc.Utf8);
+//     return data;
+//   },
+// });
 
-    return key.toString();
-  },
-  encrypt: function encrypt(data) {
-    data = CryptoJS.AES.encrypt(data, SECRET_KEY);
-
-    data = data.toString();
-
-    return data;
-  },
-  decrypt: function decrypt(data) {
-    data = CryptoJS.AES.decrypt(data, SECRET_KEY);
-
-    data = data.toString(CryptoJS.enc.Utf8);
-
-    return data;
-  },
-});
-
-const Piping = () => {
+const Piping = ({ secureStorage }) => {
   const [currentRole, setCurrentRole] = useState();
   const [roles, setRoles] = useState();
   const [weight, setWeight] = useState();
@@ -74,9 +67,6 @@ const Piping = () => {
   const [estimatedWarning, setEstimatedWarning] = useState(false);
   const [estimatedEmpty, setEstimatedEmpty] = useState(false);
   const [modelledWeight, setModelledWeight] = useState("...");
-  // T: estas 2 variables se usan de forma estática. no deberían ser un state
-  const [notModelledWeight, setNotModelledWeight] = useState("...");
-  const [totalIsocontrolWeight, setTotalIsocontrolWeight] = useState("...");
   const [loading, setLoading] = useState(false);
   const [maxTrayWarning, setMaxTrayWarning] = useState(false);
   const [minTrayWarning, setMinTrayWarning] = useState(false);
@@ -92,114 +82,73 @@ const Piping = () => {
   });
   const history = useHistory();
 
-  useEffect(() => {
-    const body = {
-      user: currentUser,
-    };
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    };
-
-    fetch(
-      "http://" +
-        process.env.REACT_APP_SERVER +
-        ":" +
-        process.env.REACT_APP_NODE_PORT +
-        "/api/roles/user",
-      options
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        setRoles(json.roles);
-        // T: esto se puede mejorar
-        if (secureStorage.getItem("role") !== null) {
-          setCurrentRole(secureStorage.getItem("role"));
-        } else {
-          secureStorage.setItem("role", json.roles[8]);
-          setCurrentRole(secureStorage.getItem("role"));
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [currentRole]);
+  const getOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
   useEffect(() => {
-    let options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const getRoles = async () => {
+      try {
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user: currentUser }),
+        };
+        const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/api/roles/user`;
+        const res = await fetch(url, options);
+        const { roles: tempRoles } = await res.json();
+        setRoles(tempRoles);
+      } catch (err) {
+        console.error(err);
+      }
     };
+    const getFeedProgress = async () => {
+      try {
+        const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/getFeedProgress`;
+        const res = await fetch(url, getOptions);
+        const { progress } = await res.json();
+        setFeedProgress(progress);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getFeedProgress();
+    getRoles();
+  }, []);
 
-    //Get del progreso del feed
-    fetch(
-      "http://" +
-        process.env.REACT_APP_SERVER +
-        ":" +
-        process.env.REACT_APP_NODE_PORT +
-        "/getFeedProgress",
-      options
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        setFeedProgress(json.progress);
-        // console.log("FeedProgress: " + json.progress);
-      });
-
+  useEffect(() => {
     //Get del peso estimado del feed
-    fetch(
-      "http://" +
-        process.env.REACT_APP_SERVER +
-        ":" +
-        process.env.REACT_APP_NODE_PORT +
-        "/estimatedPipingWeight",
-      options
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        setWeight(json.weight);
-        setProgress(json.progress);
-        setModelledWeight(json.modelledWeight);
-        // console.log("Weigth: " + json.progress);
-        // console.log("progress: " + json.progress);
-        // console.log("Modelled: " + json.progress);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    // const body = {
-    //   user: currentUser,
-    // };
-    // options = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(body),
-    // };
-    // fetch(
-    //   "http://" +
-    //     process.env.REACT_APP_SERVER +
-    //     ":" +
-    //     process.env.REACT_APP_NODE_PORT +
-    //     "/exitEditCSP",
-    //   options
-    // )
-    //   .then((response) => response.json())
-    //   .then(async (json) => {});
+    const getGeneralProgress = async () => {
+      try {
+        const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/estimatedPipingWeight`;
+        const res = await fetch(url, getOptions);
+        const {
+          weight: tempWeight,
+          progress: tempProgress,
+          modelledWeight: tempModelledWeight,
+        } = await res.json();
+        setWeight(tempWeight);
+        setProgress(tempProgress);
+        // preguntar qué es el model weight y por qué es null
+        setModelledWeight(tempModelledWeight);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getGeneralProgress();
   }, [updateData]);
 
-  useEffect(async () => {
+  useEffect(() => {
+    // usado en pipingDataTable, PipingMyTrayTable y PipingBinTable
     setSelected([]);
   }, [currentTab]);
 
-  function success() {
+  function successFunc() {
     setSuccessAlert(true);
     setTimeout(function () {
       setSuccessAlert(false);
@@ -214,13 +163,10 @@ const Piping = () => {
 
   document.title = process.env.REACT_APP_APP_NAMEPROJ;
   if (currentTab === "" || currentTab === null) {
-    // console.log("Rol supremo: " + secureStorage.getItem('role'));
     if (secureStorage.getItem("role") === "SpecialityLead") {
-      // console.log("entra");
       setCurrentTab("FeedPipes");
       setTitlePiping("Feed");
     } else {
-      // console.log("sale");
       setCurrentTab("EstimatedPipes");
       setTitlePiping("IFD");
     }
@@ -231,7 +177,6 @@ const Piping = () => {
   let actionBtns = null;
   let recycleBinBtn = null;
   let holdBtn = null;
-  let isocontrolWeightsComponent = null;
   let isoControllLineIdGroupBtn = null;
   let uploadBOMBtn = null;
   let feedProgressButton = null;
@@ -247,9 +192,9 @@ const Piping = () => {
   } else if (currentTab === "Types") {
     table = <PipingTypesDataTable />;
   } else if (currentTab === "Key parameters") {
-    table = <PipingExcel success={success.bind(this)} />;
+    table = <PipingExcel success={successFunc.bind(this)} />;
   } else if (currentTab === "Edit") {
-    table = <PipingExcelEdit success={success.bind(this)} />;
+    table = <PipingExcelEdit success={successFunc.bind(this)} />;
   } else if (
     currentTab === "PipingModelled" ||
     currentTab === "PipingSStress" ||
@@ -389,21 +334,23 @@ const Piping = () => {
     );
   }
 
-  if (currentTab === "IsoControlFull") {
-    secureStorage.setItem("tab", "IsoControlFull");
-    table = <IsoControlFullDataTable loading={(value) => setLoading(value)} />;
-    uploadBOMBtn = <UploadBOMIsocontrolPopUp success={success.bind(this)} />;
-    isoControllLineIdGroupBtn = (
-      <button
-        className="isocontrol__lineid__group__button"
-        onClick={() => {
-          setCurrentTab("IsoControlLineIdGroup");
-        }}
-      >
-        Group by line ID
-      </button>
-    );
-  }
+  // if (currentTab === "IsoControlFull") {
+  //   secureStorage.setItem("tab", "IsoControlFull");
+  //   table = <IsoControlFullDataTable loading={(value) => setLoading(value)} />;
+  //   uploadBOMBtn = (
+  //     <UploadBOMIsocontrolPopUp success={successFunc.bind(this)} />
+  //   );
+  //   isoControllLineIdGroupBtn = (
+  //     <button
+  //       className="isocontrol__lineid__group__button"
+  //       onClick={() => {
+  //         setCurrentTab("IsoControlLineIdGroup");
+  //       }}
+  //     >
+  //       Group by line ID
+  //     </button>
+  //   );
+  // }
 
   if (currentTab === "EstimatedPipes") {
     secureStorage.setItem("tab", "EstimatedPipes");
@@ -494,36 +441,35 @@ const Piping = () => {
     );
   }
 
-  if (currentTab === "IsoControlLineIdGroup") {
-    secureStorage.setItem("tab", "IsoControlLineIdGroup");
-    isoControllLineIdGroupBtn = (
-      <button
-        className="isocontrol__lineid__group__button"
-        style={{ backgroundColor: "rgb(148, 220, 170)" }}
-        onClick={() => {
-          setCurrentTab("IsoControlFull");
-        }}
-      >
-        Group by line ID
-      </button>
-    );
-    table = (
-      <IsoControlGroupLineIdDataTable loading={(value) => setLoading(value)} />
-    );
-    //editCustomBtn = <button className="isocontrol__lineid__group__button" onClick={() => {setCurrentTab("IsoControlEditCustom")}} style={{marginLeft:"20px"}}>Edit custom fields</button>
-  }
+  // if (currentTab === "IsoControlLineIdGroup") {
+  //   secureStorage.setItem("tab", "IsoControlLineIdGroup");
+  //   isoControllLineIdGroupBtn = (
+  //     <button
+  //       className="isocontrol__lineid__group__button"
+  //       style={{ backgroundColor: "rgb(148, 220, 170)" }}
+  //       onClick={() => {
+  //         setCurrentTab("IsoControlFull");
+  //       }}
+  //     >
+  //       Group by line ID
+  //     </button>
+  //   );
+  //   table = (
+  //     <IsoControlGroupLineIdDataTable loading={(value) => setLoading(value)} />
+  //   );
+  //editCustomBtn = <button className="isocontrol__lineid__group__button" onClick={() => {setCurrentTab("IsoControlEditCustom")}} style={{marginLeft:"20px"}}>Edit custom fields</button>
+  // }
 
-  if (currentTab === "IsoControlFull") {
-    isocontrolWeightsComponent = (
-      <button className="isocontrol__weigths" disabled>
-        Modelled: {modelledWeight} t &nbsp;&nbsp;&nbsp;&nbsp; Not modelled:{" "}
-        {notModelledWeight} t &nbsp;&nbsp;&nbsp;&nbsp; Total:{" "}
-        {totalIsocontrolWeight} t
-      </button>
-    );
-  }
+  // if (currentTab === "IsoControlFull") {
+  //   isocontrolWeightsComponent = (
+  //     <button className="isocontrol__weigths" disabled>
+  //       Modelled: {modelledWeight} t &nbsp;&nbsp;&nbsp;&nbsp; Not modelled:{" "}
+  //       {notModelledWeight} t &nbsp;&nbsp;&nbsp;&nbsp; Total:{" "}
+  //       {totalIsocontrolWeight} t
+  //     </button>
+  //   );
+  // }
 
-  // console.log("Current tab: " + currentTab);
   async function claimClick() {
     //Claim de una linea en la fase de maduracion
     if (selected.length > 0) {
@@ -794,20 +740,12 @@ const Piping = () => {
           body: JSON.stringify(body),
         };
         //Post del delete
-        await fetch(
-          "http://" +
-            process.env.REACT_APP_SERVER +
-            ":" +
-            process.env.REACT_APP_NODE_PORT +
-            "/deletePipes",
-          options
-        )
-          .then((response) => response.json())
-          .then((json) => {
-            if (json.success) {
-              setTransactionSuccess(true);
-            }
-          });
+        const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/deletePipes`;
+        const res = await fetch(url, options);
+        const { success } = await res.json();
+        if (success) {
+          setTransactionSuccess(true);
+        }
       }
 
       if (notvi) {
