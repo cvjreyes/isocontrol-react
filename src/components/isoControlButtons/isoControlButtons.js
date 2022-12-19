@@ -10,21 +10,16 @@ var SECRET_KEY = "sanud2ha8shd72h";
 var secureStorage = new SecureStorage(localStorage, {
   hash: function hash(key) {
     key = CryptoJS.SHA256(key, SECRET_KEY);
-
     return key.toString();
   },
   encrypt: function encrypt(data) {
     data = CryptoJS.AES.encrypt(data, SECRET_KEY);
-
     data = data.toString();
-
     return data;
   },
   decrypt: function decrypt(data) {
     data = CryptoJS.AES.decrypt(data, SECRET_KEY);
-
     data = data.toString(CryptoJS.enc.Utf8);
-
     return data;
   },
 });
@@ -144,17 +139,9 @@ const IsoControlButtons = () => {
       .then((response) => response.json())
       .then((json) => {
         if (feedEnter === true) {
-          if (secureStorage.getItem("role") !== null) {
-            secureStorage.setItem("role", json.roles[8]);
-          } else {
-            secureStorage.setItem("role", json.roles[8]);
-          }
+          secureStorage.setItem("role", json.roles[8]);
         } else {
-          if (secureStorage.getItem("role") !== null) {
-            secureStorage.setItem("role", json.roles[0]);
-          } else {
-            secureStorage.setItem("role", json.roles[0]);
-          }
+          secureStorage.setItem("role", json.roles[0]);
         }
         setCurrentRole(secureStorage.getItem("role"));
 
@@ -336,6 +323,8 @@ const IsoControlButtons = () => {
     ifdDecimals,
     ifcDecimals,
   ]);
+
+  console.log(2);
 
   return (
     <div>
