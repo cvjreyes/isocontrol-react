@@ -1,83 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HotTable } from "@handsontable/react";
 import "./feedForecastTable.css";
 
-// - convertir a componente funcional
-// - añadir state disabled
-// - añadir un useeffect que escuche cambios en state disabled
-// - 
+// Toni:
+// - convertir a componente funcional ✔
+// - testear afterChange de HotTable
 
-export default class FeedForecastTable extends React.PureComponent {
-  //Tabla del forecast del feed de isocontrol
+// dia 15 feed + ifd
+// propuesta sean:
+// - funcionalidad
+// - optimizar feed + ifd
+// +15 días + plan con sean
 
-  state = {
-    estimated: {},
-    days: [],
-    updated: false,
-  };
+export default function FeedForecastTable(props) {
+  const [estimated, setEstimated] = useState({});
+  const [days, setDays] = useState({});
+  const [forecast, setForecast] = useState({});
 
-  async componentDidMount() {
-    const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
 
-    //Get de los datos del feed
-    await fetch(
-      "http://" +
-        process.env.REACT_APP_SERVER +
-        ":" +
-        process.env.REACT_APP_NODE_PORT +
-        "/getFeedForecast",
-      options
-    )
-      .then((response) => response.json())
-      .then(async ({ forecast }) => {
+        //Get de los datos del feed
+        const res = await fetch(
+          `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/getFeedForecast`,
+          options
+        );
+        const { forecast } = await res.json();
         let f = {}; //Diccionario dia-estimacion
-        let c = []; //Array de datos
         let d = []; //Array de labels
         let forecastObj = {};
 
         for (let i = 0; i < forecast.length; i++) {
           f["D" + forecast[i].day] = forecast[i].estimated;
-          c.push({ data: "D" + forecast[i].day, type: "numeric" });
           d.push("D" + forecast[i].day);
           forecastObj["D" + forecast[i].day] = forecast[i].forecast;
         }
-        const temp = {
-          estimated: f,
-          days: d,
-          forecast: forecastObj,
-        };
-        this.setState({ ...temp });
-      });
-  }
+        setEstimated(f);
+        setDays(d);
+        setForecast(forecastObj);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getData();
+  }, []);
 
-  async addDay() {
-    console.log(
-      "this: ",
-      this.state.estimated[this.state.days[this.state.days.length - 1]]
-    );
-    if (!this.state.estimated[this.state.days[this.state.days.length - 1]])
-      return;
+  const addDay = async () => {
+    if (!estimated[days[days.length - 1]]) return;
     //Para añadir un nuevo dia al forecast
-    let estimated = this.state.estimated;
-    estimated["D" + (this.state.days.length + 1)] = ""; //Nuevo elemento en el diccionario
-    this.setState({ estimated: estimated });
+    let tempEstimated = estimated;
+    tempEstimated["D" + (days.length + 1)] = ""; //Nuevo elemento en el diccionario
+    setEstimated(tempEstimated);
 
-    let days = this.state.days;
-    days.push("D" + (this.state.days.length + 1)); //Nueva label
-    this.setState({ days: days, updated: !this.state.updated });
-  }
+    let tempDays = days;
+    tempDays.push("D" + (days.length + 1)); //Nueva label
+    setDays({ ...tempDays });
+  };
 
-  async submitChanges() {
-    const invalidNum = Object.values(this.state.estimated).some(item => Number(item) > 100 || Number(item) < 0)
-    if (invalidNum) return
+  const submitChanges = async () => {
+    const invalidNum1 = Object.values(estimated).some(
+      (item) => !item || isNaN(item) || Number(item) > 100 || Number(item) < 0
+    );
+    const invalidNum2 = Object.values(forecast).some(
+      (item) => !item || isNaN(item) || Number(item) > 100 || Number(item) < 0
+    );
+    if (invalidNum1 || invalidNum2)
+      return props.alert(true, "Invalid number", "warning");
     const body = {
-      estimated: this.state.estimated,
-      forecast: this.state.forecast,
+      estimated: estimated,
+      forecast: forecast,
     };
     const options = {
       method: "POST",
@@ -87,77 +85,69 @@ export default class FeedForecastTable extends React.PureComponent {
       body: JSON.stringify(body),
     };
     //Post del forecast
-    fetch(
-      "http://" +
-        process.env.REACT_APP_SERVER +
-        ":" +
-        process.env.REACT_APP_NODE_PORT +
-        "/submitFeedForecast",
-      options
-    )
-      .then((response) => response.json())
-      .then(async (json) => {
-        if (json.success) {
-          this.props.success();
-        }
-      })
-      .catch((err) => console.error(err));
-  }
+    try {
+      const res = await fetch(
+        `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/submitFeedForecast`,
+        options
+      );
+      const { success } = await res.json();
+      if (success) {
+        props.success();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  render() {
-    const settings = {
-      licenseKey: "non-commercial-and-evaluation",
-      colWidths: 40,
-      rowHeaderWidth: 190,
-      //... other options
-    };
-    return (
-      <div className="feed__forecast_container">
-        {this.state.updated}
-        <HotTable
-          data={[this.state.estimated, this.state.forecast]}
-          colHeaders={this.state.days}
-          rowHeaders={["Estimated (%)", "Forecast (%)"]}
-          width="1550"
-          height="160"
-          settings={settings}
-          manualColumnResize={true}
-          manualRowResize={true}
-          filters={true}
-          className="mat1-table"
-        />
-        <div>
-          <button
-            class="btn btn-sm btn-info"
-            onClick={() => this.addDay()}
-            style={{
-              marginLeft: "570px",
-              marginRight: "25px",
-              fontSize: "16px",
-              width: "160px",
-              borderRadius: "10px",
-            }}
-            disabled={
-              !this.state.estimated[this.state.days[this.state.days.length - 1]]
-            }
-          >
-            Add
-          </button>
-          <button
-            class="btn btn-sm btn-success"
-            onClick={() => this.submitChanges()}
-            style={{
-              marginRight: "5px",
-              fontSize: "16px",
-              width: "160px",
-              borderRadius: "10px",
-            }}
-            // disabled={Object.values(this.state.estimated).some(item => Number(item) > 100 || Number(item) < 0)}
-          >
-            Save
-          </button>
-        </div>
+  const settings = {
+    licenseKey: "non-commercial-and-evaluation",
+    colWidths: 40,
+    rowHeaderWidth: 190,
+  };
+
+  return (
+    <div className="feed__forecast_container">
+      <HotTable
+        data={[estimated, forecast]}
+        colHeaders={Object.keys(estimated)}
+        rowHeaders={["Estimated (%)", "Forecast (%)"]}
+        width="1550"
+        height="160"
+        settings={settings}
+        manualColumnResize={true}
+        manualRowResize={true}
+        filters={true}
+        className="mat1-table"
+      />
+      <div>
+        <button
+          class="btn btn-sm btn-info"
+          onClick={() => addDay()}
+          style={{
+            marginLeft: "570px",
+            marginRight: "25px",
+            fontSize: "16px",
+            width: "160px",
+            borderRadius: "10px",
+          }}
+          disabled={!estimated[days[days.length - 1]]}
+        >
+          Add
+        </button>
+        <button
+          class="btn btn-sm btn-success"
+          onClick={() => submitChanges()}
+          style={{
+            marginRight: "5px",
+            fontSize: "16px",
+            width: "160px",
+            borderRadius: "10px",
+          }}
+          // disabled={Object.values(estimated).some(item => Number(item) > 100 || Number(item) < 0)}
+        >
+          Save
+        </button>
       </div>
-    );
-  }
+    </div>
+  );
 }
