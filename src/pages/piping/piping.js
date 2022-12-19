@@ -1058,7 +1058,7 @@ const Piping = () => {
           </td>
           <td className="discplines__table__table" style={{ height: "440px" }}>
             <div
-              style={{ height: "430px", width: "80%" }}
+              style={{ height: "430px", width: "1560px" }}
               className="isotracker__table__table__container"
             >
               {isoControllLineIdGroupBtn}
