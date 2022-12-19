@@ -69,7 +69,7 @@ export default function FeedForecastTable(props) {
       (item) => !item || isNaN(item) || Number(item) > 100 || Number(item) < 0
     );
     const invalidNum2 = Object.values(forecast).some(
-      (item) => !item || isNaN(item) || Number(item) > 100 || Number(item) < 0
+      (item) => isNaN(item) || Number(item) > 100 || Number(item) < 0
     );
     if (invalidNum1 || invalidNum2)
       return props.alert(true, "Invalid number", "warning");
