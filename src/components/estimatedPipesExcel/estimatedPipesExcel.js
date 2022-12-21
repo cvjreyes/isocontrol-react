@@ -256,6 +256,7 @@ class EstimatedPipesExcel extends React.Component {
       },
       body: JSON.stringify(body)
     }
+    console.log("Boton submit: ", this.state.owners);
     //Submit de los datos nuevos
     await fetch("http://" + process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_NODE_PORT + "/submitModelledEstimatedPipes", options)
       .then(response => response.json())
@@ -285,9 +286,12 @@ class EstimatedPipesExcel extends React.Component {
           let owners = this.state.owners
           
           console.log("Owners: ", owners);
-          
+          console.log("El tag del nuevo owner: ", this.state.displayData[changes[i][0]].Tag);
+          console.log("El cambio del owner: ", changes[0][3]);
           owners.push([this.state.displayData[changes[i][0]].Tag, changes[0][3]])
           this.setState({ owners: owners })
+          console.log("EL nuevo Owners: ", this.state.owners);
+
         } else { //Si el cambio se ha producido en cualquier otra columna
           let row_id = changes[i][0]
                     
@@ -295,15 +299,6 @@ class EstimatedPipesExcel extends React.Component {
             data_aux[row_id][changes[0][1]] = "##########" //Se pone esto en el campo modificado indicando un error, ya que no se puede modificar una linea modelada
             await this.setState({ data: data_aux, warning: true })
           } else {//Si no esta modelada
-            /*
-              1.1- El primer add antes del save se visualizan los datos. X
-              1.2- Si le vuelves a dar a add despues de darle a save el row sale undefined. X
-              1.3- Al contrario que el this.state.data y el row_id que obtienen un resultado. X
-              1.4- Parece ser que no se guarda en la variable row. X
-              2.1- El owner cuando se cambia por uno existente (a veces se guarda).
-              2.2- Cuando el owner sale vacio no se guarda nunca.
-              2.3- Cuando el owner lo vacio (a veces se guarda).
-            */
             let row = this.state.data[row_id]
             
             if (changes[i][1] === 'Line reference') { //Si el cambio ha sido en el campo de la line reference
@@ -314,6 +309,7 @@ class EstimatedPipesExcel extends React.Component {
                 },
               }
               //Cogemos los datos relacionados a la line reference seleccionada
+              console.log("Req: ", changes[i]);
               await fetch("http://" + process.env.REACT_APP_SERVER + ":" + process.env.REACT_APP_NODE_PORT + "/getDataByRef/" + changes[i][3], options)
                 .then(response => response.json())
                 .then(async json => {
