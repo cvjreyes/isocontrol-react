@@ -93,6 +93,9 @@ export default function FeedPipesExcel(props) {
 
   // falta el component did update
 
+  // ! falta coordinar el data y el displayData
+  // en cuanto esté esto ↑ hecho, puedo pasar a probar el submit
+
   const filter = async (keyName, value) => {
     let resultData = [];
     if (!value) return setDisplayData(data);
@@ -113,7 +116,6 @@ export default function FeedPipesExcel(props) {
         resultData.push(item);
       }
     });
-
     setDisplayData(resultData);
   };
 
@@ -140,13 +142,11 @@ export default function FeedPipesExcel(props) {
   //   setFixedRows((prevState) => prevState + 1);
   // };
 
-  const submitChanges = async () => {
-    return false;
+  const checkForAlreadyExists = () => {
+    return data.some((item) => item.Tag === "Already exists");
+  };
 
-    // chequear que no haya ningún tag que ponga already exists
-
-    // mover el chequeo de empty cells a otra función
-
+  const checkForEmptyCells = () => {
     let haveToBeFilled = [
       "Area",
       "Diameter",
@@ -161,41 +161,37 @@ export default function FeedPipesExcel(props) {
     ];
 
     let empty = false;
-    // en newData se guarda como { 7: { ...obj } } por eso coge el value
-    // yo intentaría guardar el newData directamente bien...
-    const new_rows = Object.values(newData);
-    // check for empty cells ↓
-    for (let i = 0; i < new_rows.length; i++) {
-      new_rows.map((item) => {
-        for (let key in item) {
-          if (haveToBeFilled.includes(key) && !item[key]) {
-            new_rows.splice(i, 1);
-          }
+    for (let i = 0; i < data.length; i++) {
+      for (let key in data[i]) {
+        if (haveToBeFilled.includes(key) && !data[i][key]) {
+          empty = true;
+          break;
         }
-      });
+      }
     }
-    if (empty) return props.alert("All cells must be filled", "warning");
+    return empty;
+  };
 
-    const body = {
-      rows: new_rows,
-      // to check
-      // owners,
-      tag_order: process.env.REACT_APP_TAG_ORDER,
-    };
+  const submitChanges = async () => {
+    // chequear que no haya ningún tag que ponga already exists
+    const stop = checkForAlreadyExists();
+    if (stop) return props.alert("Repeated pipe!", "error");
+    // mover el chequeo de empty cells a otra función
+    const stop2 = checkForEmptyCells();
+    if (stop2) return props.alert("All cells must be filled", "warning");
+
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ rows: data }),
     };
     const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/submitFeedPipes`;
     const res = await fetch(url, options);
     const { success } = await res.json();
     if (success) {
       props.alert("Changes saved!", "success");
-      setNewData([]);
-      setFixedRows(0);
       // await this.props.updateData();
     }
   };
@@ -211,16 +207,12 @@ export default function FeedPipesExcel(props) {
     }
     // cualquier cosa que haya cambiado => hacer el rebuild del tag
     const newTag = buildTag(changedRow);
-    changedRow.Tag = newTag;
+    if (changedRow.Tag !== newTag) changedRow.Tag = newTag;
     // una vez con el tag cambiado => chequear que no existan 2 tags iguales
-    if (data.some((x) => x.Tag === newTag)) {
-      // si existe un tag igual ponerlo como 'already exists'
-      changedRow.Tag = "Already exists";
-      //    ! + si se intenta guardar, comprobar que ningun tag pone 'already exists'
-    }
+    if (data.some((x) => x.Tag === newTag)) changedRow.Tag = "Already exists";
+    // si existe un tag igual ponerlo como 'already exists'
     tempData[idx] = changedRow;
     // si no existe ningún tag igual => hacer esto ↓↓↓
-    console.log(tempData);
     setData(tempData);
   };
 
@@ -230,22 +222,22 @@ export default function FeedPipesExcel(props) {
     if (source === "edit") {
       const [idx, key] = changes[0];
       handleOneChange(idx, key);
-      // cambiado en + de 1 cell ( pegar de excel ) ↓
+      // cambiado en + de 1 cell ( copy + paste ) ↓
     } else {
-      // ! me falta comprobar line ref y cambios en tag
-      let tempData = [...data];
-      setData(tempData);
+      changes.forEach(([idx, key]) => handleOneChange(idx, key));
     }
   };
 
+  // ! aqui aqui aqui aqui
   useEffect(() => {
     console.log("data: ", data);
     setDisplayData(data);
   }, [data]);
 
-  useEffect(() => {
-    filter();
-  }, [displayData]);
+  // useEffect(() => {
+  //   filter();
+  //   console.log()
+  // }, [displayData]);
 
   return (
     <FeedPipesExcelTableWrapper
