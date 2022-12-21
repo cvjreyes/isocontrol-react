@@ -72,7 +72,7 @@ export default function FeedForecastTable(props) {
       (item) => isNaN(item) || Number(item) > 100 || Number(item) < 0
     );
     if (invalidNum1 || invalidNum2)
-      return props.alert(true, "Invalid number", "warning");
+      return props.alert("Invalid number", "warning");
     const body = {
       estimated: estimated,
       forecast: forecast,
@@ -86,13 +86,11 @@ export default function FeedForecastTable(props) {
     };
     //Post del forecast
     try {
-      const res = await fetch(
-        `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/submitFeedForecast`,
-        options
-      );
+      const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/submitFeedForecast`;
+      const res = await fetch(url, options);
       const { success } = await res.json();
       if (success) {
-        props.success();
+        props.alert("Changes saved!", "success");
       }
     } catch (err) {
       console.error(err);

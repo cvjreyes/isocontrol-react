@@ -372,6 +372,7 @@ const Piping = ({ secureStorage }) => {
         updateData={() => setUpdateData(!updateData)}
         estimatedWarning={() => setEstimatedWarning(true)}
         estimatedEmpty={() => setEstimatedEmpty(true)}
+        alert={(message, type) => setAlert({ bool: true, message, type })}
       />
     );
     feedProgressButton = (
@@ -418,8 +419,7 @@ const Piping = ({ secureStorage }) => {
     secureStorage.setItem("tab", "FeedForecast");
     table = (
       <FeedForecastTable
-        alert={(bool, message, type) => setAlert({ bool, message, type })}
-        success={() => setChangesSaved(true)}
+        alert={(message, type) => setAlert({ bool: true, message, type })}
       />
     );
     feedProgressButton = (
