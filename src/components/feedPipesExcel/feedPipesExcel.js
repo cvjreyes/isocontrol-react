@@ -11,13 +11,16 @@ import "./feedPipesExcel.css";
 export default function FeedPipesExcel(props) {
   const [data, setData] = useState([]);
   const [displayData, setDisplayData] = useState([]);
-  const [updateData, setUpdateData] = useState(props.updateData);
+  // const [updateData, setUpdateData] = useState(props.updateData);
   const [diameters, setDiameters] = useState(null);
   const [areas, setAreas] = useState(null);
   const [lineRefs, setLineRefs] = useState([]);
-  const [newData, setNewData] = useState({});
   const [designers, setDesigners] = useState({});
   const [fixedRows, setFixedRows] = useState(0);
+  const [filterInfo, setFilterInfo] = useState({
+    keyName: "",
+    val: "",
+  });
 
   const getOptions = {
     method: "GET",
@@ -26,8 +29,8 @@ export default function FeedPipesExcel(props) {
     },
   };
 
+  // ! promise all?
   useEffect(() => {
-    // promise all?
     const getAllAreas = async () => {
       try {
         const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/api/areas`;
@@ -77,6 +80,7 @@ export default function FeedPipesExcel(props) {
         const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/feedPipes`;
         const res = await fetch(url, getOptions);
         const { rows: resRows } = await res.json();
+        console.log(resRows);
         const { rows } = prepareFeedPipesData(resRows);
         setData(rows);
         setDisplayData(rows);
@@ -91,23 +95,20 @@ export default function FeedPipesExcel(props) {
     getFeedPipes();
   }, []);
 
-  // falta el component did update
+  // ! falta el component did update
 
-  // ! falta coordinar el data y el displayData
-  // en cuanto esté esto ↑ hecho, puedo pasar a probar el submit
-
-  const filter = async (keyName, value) => {
+  const filter = async () => {
+    const { keyName, val } = filterInfo;
     let resultData = [];
-    if (!value) return setDisplayData(data);
-
+    if (!val) return setDisplayData(data);
     data.forEach((item) => {
       let exists = false;
       // loop through data's keys
       for (let key in item) {
         // if key not same as input, stop
         if (key !== keyName) return;
-        // if value includes input, exist true
-        if (item[key].toString().toLowerCase().includes(value.toLowerCase())) {
+        // if val includes input, exist true
+        if (item[key].toString().toLowerCase().includes(val.toLowerCase())) {
           exists = true;
           break;
         }
@@ -163,7 +164,12 @@ export default function FeedPipesExcel(props) {
     let empty = false;
     for (let i = 0; i < data.length; i++) {
       for (let key in data[i]) {
-        if (haveToBeFilled.includes(key) && !data[i][key]) {
+        if (
+          data[i]["Line reference"] !== "deleted" &&
+          haveToBeFilled.includes(key) &&
+          !data[i][key]
+        ) {
+          console.log(data[i]);
           empty = true;
           break;
         }
@@ -171,6 +177,8 @@ export default function FeedPipesExcel(props) {
     }
     return empty;
   };
+
+  // ! testear submit
 
   const submitChanges = async () => {
     // chequear que no haya ningún tag que ponga already exists
@@ -189,11 +197,11 @@ export default function FeedPipesExcel(props) {
     };
     const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/submitFeedPipes`;
     const res = await fetch(url, options);
-    const { success } = await res.json();
+    const { success, err } = await res.json();
     if (success) {
       props.alert("Changes saved!", "success");
       // await this.props.updateData();
-    }
+    } else if (err) props.alert("Something went wrong", "warning");
   };
 
   const handleOneChange = (idx, key) => {
@@ -216,28 +224,38 @@ export default function FeedPipesExcel(props) {
     setData(tempData);
   };
 
+  const handleDeleteLine = (idx) => {
+    let tempData = [...data];
+    let tempRow = { ...tempData[idx] };
+    tempRow["Line reference"] = "deleted";
+    tempData[idx] = tempRow;
+    setData(tempData);
+  };
+
   const handleChange = (changes, source) => {
     if (source === "loadData") return;
-    // cambiado en un solo cell ↓
-    if (source === "edit") {
+    if (changes.length === 1) {
+      // cambiado en un solo cell ↓
       const [idx, key] = changes[0];
       handleOneChange(idx, key);
+    } else if (changes.every((x) => !x[3]))
+      // línea borrada
+      return handleDeleteLine(changes[0][0]);
+    else {
       // cambiado en + de 1 cell ( copy + paste ) ↓
-    } else {
       changes.forEach(([idx, key]) => handleOneChange(idx, key));
     }
   };
 
-  // ! aqui aqui aqui aqui
   useEffect(() => {
-    console.log("data: ", data);
-    setDisplayData(data);
-  }, [data]);
+    // cuando escrbimos en el filtro => actualizar displayData
+    filter();
+  }, [filterInfo]);
 
-  // useEffect(() => {
-  //   filter();
-  //   console.log()
-  // }, [displayData]);
+  useEffect(() => {
+    // si data es cambiada, pasale el filtro
+    filter();
+  }, [data]);
 
   return (
     <FeedPipesExcelTableWrapper
@@ -250,7 +268,7 @@ export default function FeedPipesExcel(props) {
       handleChange={handleChange}
       // addRow={addRow}
       submitChanges={submitChanges}
-      filter={filter}
+      filter={(keyName, val) => setFilterInfo({ keyName, val })}
     />
   );
 }
