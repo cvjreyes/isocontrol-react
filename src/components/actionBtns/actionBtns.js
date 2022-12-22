@@ -142,7 +142,7 @@ const ActionBtns = props =>{
                     actionBtn4 = <button className="action__btn" style={{zoom:0.8}} onClick={() => props.transaction("Supports")}>Support</button>     
                 }else if(props.role === "Stress"){
                     actionBtn5= <button className="action__btn" style={{zoom:0.8}}  name="destination" value="stress" onClick={() => props.verifyClick()}>Verify</button>
-                    actionBtn3 = <button class="action__btn" onClick={() => props.transaction("Supports")}>Supports</button>
+                    actionBtn3 = <button className="action__btn" onClick={() => props.transaction("Supports")}>Supports</button>
                 }else if(props.role === "Supports"){
                     actionBtn5= <button className="action__btn" style={{zoom:0.8}} name="destination" value="stress" onClick={() => props.verifyClick()}>Verify</button>
                     actionBtn3 = <button className="action__btn" style={{zoom:0.8}} onClick={() => props.returnIso("Stress", "")}>Stress</button>

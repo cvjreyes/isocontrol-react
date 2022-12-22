@@ -74,8 +74,8 @@ export default class EditPassPopUp extends Component {
                             <textarea style={{width: "310px", height: "170px"}} defaultValue={this.state.note} onChange={(e) => this.setState({note: e.target.value})} id="notes" name="notes"></textarea>
                         </center>
                         <center className="popUp__buttons__container__users">
-                            <button class="btn btn-sm btn-success" onClick={() => this.editByPass()} style={{marginRight:"5px", fontSize:"16px"}}>Confirm</button>
-                            <button class="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
+                            <button className="btn btn-sm btn-success" onClick={() => this.editByPass()} style={{marginRight:"5px", fontSize:"16px"}}>Confirm</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
                         </center>
                     </Modal>
                 </div>

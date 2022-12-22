@@ -15,6 +15,7 @@ export default function FeedPipesExcelTableWrapper({
   submitChanges,
   filter,
 }) {
+  // ! (añadir paginación && opción quitar paginación || intersection observer) && lazy loading
   return (
     <div>
       <FeedPipesExcelTableHeader filter={filter} />

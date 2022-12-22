@@ -287,8 +287,8 @@ class CSPTrackerKeyParams extends React.Component{
               />
               <br></br>
               <center>
-                  <button class="btn btn-sm btn-info" onClick={() => this.addRowRatings()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
-                  <button class="btn btn-sm btn-success" onClick={() => this.submitChangesRatings()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
+                  <button className="btn btn-sm btn-info" onClick={() => this.addRowRatings()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
+                  <button className="btn btn-sm btn-success" onClick={() => this.submitChangesRatings()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
               </center>
             </div>
           </div>
@@ -324,8 +324,8 @@ class CSPTrackerKeyParams extends React.Component{
               />
               <br></br>
               <center>
-                  <button class="btn btn-sm btn-info" onClick={() => this.addRowSpecs()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
-                  <button class="btn btn-sm btn-success" onClick={() => this.submitChangesSpecs()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
+                  <button className="btn btn-sm btn-info" onClick={() => this.addRowSpecs()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
+                  <button className="btn btn-sm btn-success" onClick={() => this.submitChangesSpecs()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
               </center>
             </div>
           </div>
@@ -361,8 +361,8 @@ class CSPTrackerKeyParams extends React.Component{
               />
               <br></br>
               <center>
-                  <button class="btn btn-sm btn-info" onClick={() => this.addRowEndPreparations()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
-                  <button class="btn btn-sm btn-success" onClick={() => this.submitChangesEndPreparations()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
+                  <button className="btn btn-sm btn-info" onClick={() => this.addRowEndPreparations()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
+                  <button className="btn btn-sm btn-success" onClick={() => this.submitChangesEndPreparations()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
               </center>
               <br></br>
             </div>
@@ -399,8 +399,8 @@ class CSPTrackerKeyParams extends React.Component{
               />
               <br></br>
               <center>
-                  <button class="btn btn-sm btn-info" onClick={() => this.addRowBoltTypes()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
-                  <button class="btn btn-sm btn-success" onClick={() => this.submitChangesBoltTypes()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
+                  <button className="btn btn-sm btn-info" onClick={() => this.addRowBoltTypes()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
+                  <button className="btn btn-sm btn-success" onClick={() => this.submitChangesBoltTypes()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
               </center>
             </div>
           </div>
@@ -436,8 +436,8 @@ class CSPTrackerKeyParams extends React.Component{
               />
               <br></br>
               <center>
-                  <button class="btn btn-sm btn-info" onClick={() => this.addRowPids()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
-                  <button class="btn btn-sm btn-success" onClick={() => this.submitChangesPids()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
+                  <button className="btn btn-sm btn-info" onClick={() => this.addRowPids()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px", backgroundColor:"#338DF1"}}>Add</button>
+                  <button className="btn btn-sm btn-success" onClick={() => this.submitChangesPids()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px", backgroundColor:"#7BD36D"}}>Save</button>
               </center>
             </div>
           </div>

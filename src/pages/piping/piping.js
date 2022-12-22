@@ -959,44 +959,49 @@ const Piping = ({ secureStorage }) => {
         </div>
       </div>
       <table className="isotracker__table__container">
-        <tr className="isotracker__table__navBar__container">
-          <th colSpan="2" className="isotracker__table__navBar">
-            {recycleBinBtn}
-            {holdBtn}
-            {feedProgressButton}
-          </th>
-        </tr>
-        <tr
-          className="isotracker__table__tray__and__table__container"
-          style={{ height: "470px" }}
-        >
-          <td className="disciplines__table__trays">
-            <div className="trays__container" style={{ zoom: 0.85 }}>
-              <PipingNavBtns
-                onChange={(value) => setCurrentTab(value)}
-                currentTab={currentTab}
-                currentRole={currentRole}
-              />
-              {/* 
+        <tbody>
+          <tr className="isotracker__table__navBar__container">
+            <th colSpan="2" className="isotracker__table__navBar">
+              {recycleBinBtn}
+              {holdBtn}
+              {feedProgressButton}
+            </th>
+          </tr>
+          <tr
+            className="isotracker__table__tray__and__table__container"
+            style={{ height: "470px" }}
+          >
+            <td className="disciplines__table__trays">
+              <div className="trays__container" style={{ zoom: 0.85 }}>
+                <PipingNavBtns
+                  onChange={(value) => setCurrentTab(value)}
+                  currentTab={currentTab}
+                  currentRole={currentRole}
+                />
+                {/* 
                                   <p className="isotracker__table__trays__group">Options</p>
                                   <center className="equimentsNavBtns__center">              
-                                    <EquipmentsNavBtns onChange={value => setCurrentTab(value)} currentTab = {currentTab} currentRole = {currentRole} discipline = "Equipment"/>               
-                                    </center>
-                                    */}
-            </div>
-          </td>
-          <td className="discplines__table__table" style={{ height: "440px" }}>
-            <div
-              style={{ height: "430px", width: "1560px" }}
-              className="isotracker__table__table__container"
+                                  <EquipmentsNavBtns onChange={value => setCurrentTab(value)} currentTab = {currentTab} currentRole = {currentRole} discipline = "Equipment"/>               
+                                  </center>
+                                */}
+              </div>
+            </td>
+            <td
+              className="discplines__table__table"
+              style={{ height: "440px" }}
             >
-              {isoControllLineIdGroupBtn}
-              {uploadBOMBtn}
-              {feedForecastBtn}
-              {table}
-            </div>
-          </td>
-        </tr>
+              <div
+                style={{ height: "430px", width: "1560px" }}
+                className="isotracker__table__table__container"
+              >
+                {isoControllLineIdGroupBtn}
+                {uploadBOMBtn}
+                {feedForecastBtn}
+                {table}
+              </div>
+            </td>
+          </tr>
+        </tbody>
       </table>
       <center
         className="actionBtns__container"

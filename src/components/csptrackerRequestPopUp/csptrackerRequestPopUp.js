@@ -140,8 +140,8 @@ export default class CSPTrackerRequestPopUp extends Component {
                             </datalist>
 
                             <input type="text" placeholder="DESCRIPTION" id="sptag"className="popUp__input__text" ref="sptag" style={{marginBottom: "30px", color:"black"}} value={this.state.sptag} onChange={(e) => this.setState({sptag: e.target.value})} ></input>
-                            <button class="btn btn-sm btn-success" onClick={() => this.request()} style={{marginRight:"5px", fontSize:"16px"}}>Submit</button>
-                            <button class="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
+                            <button className="btn btn-sm btn-success" onClick={() => this.request()} style={{marginRight:"5px", fontSize:"16px"}}>Submit</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
                         </div>
                     </Modal>
                 </div>

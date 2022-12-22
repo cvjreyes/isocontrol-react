@@ -355,25 +355,25 @@ export default class ManageRolesPopUp extends Component {
 
                         {/* Tabla columnas */}
                         
-                        <div class='table__columns'>
+                        <div className='table__columns'>
                             
-                            <div class="column main__class">
+                            <div className="column main__class">
                                 <label className="popUp__title" style={{fontSize: "20px"}}>Main</label>
 
                                 {this.state.selectedRolesMain}
                             </div>
                             
-                            <div class="column leads__class">
+                            <div className="column leads__class">
                                 <label className="popUp__title" style={{fontSize: "20px"}}>Leads</label>
 
                                 {this.state.selectedRolesLeads}
                             </div>
-                            <div class="column fk__class">
+                            <div className="column fk__class">
                                 <label className="popUp__title" style={{fontSize: "20px"}}>Foreign Checkers</label>
 
                                 {this.state.selectedRolesForeignCheckers}
                             </div>
-                            <div class="column misc__class">
+                            <div className="column misc__class">
                                 <label className="popUp__title" style={{fontSize: "20px"}}>Miscellaneous</label>
 
                                 {this.state.selectedRolesMiscellaneous}
@@ -381,8 +381,8 @@ export default class ManageRolesPopUp extends Component {
 
                         </div>
                         <div className="popUp__buttons__container__manage">
-                            <button class="btn__submit__manage" onClick={() => this.submitRoles()}>Submit</button>
-                            <button class="btn__cancel__manage" onClick={() => this.closeModal()} >Cancel</button>
+                            <button className="btn__submit__manage" onClick={() => this.submitRoles()}>Submit</button>
+                            <button className="btn__cancel__manage" onClick={() => this.closeModal()} >Cancel</button>
                         </div>
                     </Modal>
                 </div>

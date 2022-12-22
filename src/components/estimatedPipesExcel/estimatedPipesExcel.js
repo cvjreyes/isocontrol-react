@@ -501,8 +501,8 @@ class EstimatedPipesExcel extends React.Component {
           />
           <br></br>
           <div style={{ marginLeft: "695px" }}>
-            <button class="btn btn-sm btn-info" onClick={() => this.addRow()} style={{ marginRight: "25px", fontSize: "16px", width: "160px", borderRadius: "10px" }}>Add</button>
-            <button class="btn btn-sm btn-success" onClick={() => this.submitChanges()} style={{ marginRight: "5px", fontSize: "16px", width: "160px", borderRadius: "10px" }}>Save</button>
+            <button className="btn btn-sm btn-info" onClick={() => this.addRow()} style={{ marginRight: "25px", fontSize: "16px", width: "160px", borderRadius: "10px" }}>Add</button>
+            <button className="btn btn-sm btn-success" onClick={() => this.submitChanges()} style={{ marginRight: "5px", fontSize: "16px", width: "160px", borderRadius: "10px" }}>Save</button>
           </div>
           <br></br>
         </div>

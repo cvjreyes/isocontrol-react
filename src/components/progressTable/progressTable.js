@@ -58,22 +58,22 @@ class ProgressTable extends React.Component{
             progress = <tr>
             <td className="progressTable__content__td">
                 <div style={{color:"black", fontSize: "13px",width:currentProgressWidth,backgroundColor: "#A0AFD9", height: "19px"}}>
-                    <span class="sr-only"></span>{this.state.currentProgress}%
+                    <span className="sr-only"></span>{this.state.currentProgress}%
                 </div>
             </td>
             <td style={{textAlign:"center", height: "19px"}}>
                 <div style={{color:"black", fontSize: "13px",width:currentProgressISOWidth,backgroundColor: "#A0AFD9", height: "19px"}}>
-                    <span class="sr-only"></span>{this.state.currentProgressISO}%
+                    <span className="sr-only"></span>{this.state.currentProgressISO}%
                 </div>
             </td>
             <td style={{textAlign:"center", height: "19px"}}>
                 <div style={{color:"black", fontSize: "13px",width:currentRealProgressWidth,backgroundColor: "#A0AFD9", height: "19px"}}>
-                    <span class="sr-only"></span>{this.state.currentRealProgress}%
+                    <span className="sr-only"></span>{this.state.currentRealProgress}%
                 </div>
             </td>
             <td style={{textAlign:"center", height: "19px"}}>
                 <div style={{color:"black", fontSize: "13px",width:currentRealProgressWidthISO,backgroundColor: "#A0AFD9", height: "19px"}}>
-                    <span class="sr-only"></span>{this.state.currentRealProgressISO}%
+                    <span className="sr-only"></span>{this.state.currentRealProgressISO}%
                 </div>
             </td>                        
         </tr>     
@@ -86,12 +86,12 @@ class ProgressTable extends React.Component{
             progress = <tr>
                 <td className="progressTable__content__td">
                 <div style={{color:"black", fontSize: "13px",width:currentProgressWidth,backgroundColor: "#A0AFD9", height: "19px"}}>
-                    <span class="sr-only"></span>{this.state.currentProgress}%
+                    <span className="sr-only"></span>{this.state.currentProgress}%
                 </div>
             </td>
             <td style={{textAlign:"center", height: "19px"}}>
                 <div style={{color:"black", fontSize: "13px",width:currentProgressISOWidth,backgroundColor: "#A0AFD9", height: "19px"}}>
-                    <span class="sr-only"></span>{this.state.currentProgressISO}%
+                    <span className="sr-only"></span>{this.state.currentProgressISO}%
                 </div>
             </td>                   
             </tr>

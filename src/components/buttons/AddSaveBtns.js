@@ -9,7 +9,7 @@ export default function AddSaveBtns({
   return (
     <div style={{ margin }}>
       <button
-        class="btn btn-sm btn-info"
+        className="btn btn-sm btn-info"
         onClick={clickAdd}
         style={{
           marginRight: "25px",
@@ -23,7 +23,7 @@ export default function AddSaveBtns({
         Add
       </button>
       <button
-        class="btn btn-sm btn-success"
+        className="btn btn-sm btn-success"
         onClick={clickSave}
         style={{
           marginRight: "5px",

@@ -119,7 +119,7 @@ export default function FeedForecastTable(props) {
       />
       <div>
         <button
-          class="btn btn-sm btn-info"
+          className="btn btn-sm btn-info"
           onClick={() => addDay()}
           style={{
             marginLeft: "570px",
@@ -133,7 +133,7 @@ export default function FeedForecastTable(props) {
           Add
         </button>
         <button
-          class="btn btn-sm btn-success"
+          className="btn btn-sm btn-success"
           onClick={() => submitChanges()}
           style={{
             marginRight: "5px",

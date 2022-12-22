@@ -852,7 +852,7 @@ class FeedPipesExcel extends React.Component {
           <br></br>
           <div style={{ marginLeft: "695px" }}>
             <button
-              class="btn btn-sm btn-info"
+              className="btn btn-sm btn-info"
               onClick={() => this.addRow()}
               style={{
                 marginRight: "25px",
@@ -864,7 +864,7 @@ class FeedPipesExcel extends React.Component {
               Add
             </button>
             <button
-              class="btn btn-sm btn-success"
+              className="btn btn-sm btn-success"
               onClick={() => this.submitChanges()}
               style={{
                 marginRight: "5px",

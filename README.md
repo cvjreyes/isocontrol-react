@@ -1,3 +1,11 @@
+// documentación y formato 2023
+
+// para hacer durante las vacaciones
+// - empezar documentación
+//   - intentar especificar al máximo la estructura seguida
+// - estandarizar formato y extensión para formato
+// - App.js => Autenticación => Routing => Piping => Feed / IFD
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
