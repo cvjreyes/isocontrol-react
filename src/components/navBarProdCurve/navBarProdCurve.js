@@ -157,44 +157,44 @@ const NavBarProdCurve = (props) =>{
         if(process.env.REACT_APP_PROGRESS === "1"){
             if(process.env.REACT_APP_SP === "1"){
                 setProgressButtons(<div style={{ marginLeft: "3%", float:"left"}}>
-                    <Button class="btn nohover" onClick={handleClickHome} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickHome} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Home </i>
-                    </Button><Button class="btn nohover" onClick={handleClickPiping} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    </Button><Button className="btn nohover" onClick={handleClickPiping} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Piping </i>
-                    </Button><Button class="btn nohover" onClick={handleClickInstrument} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    </Button><Button className="btn nohover" onClick={handleClickInstrument} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Instrumentation </i>
                     </Button>
-                    <Button class="btn nohover" onClick={handleClickEquipments} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickEquipments} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Equipment </i>
                     </Button>
-                    <Button class="btn nohover" onClick={handleClickCivil} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickCivil} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Civil </i>
                     </Button>
-                    <Button class="btn nohover" onClick={handleClickElectrical} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickElectrical} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Electrical </i>
                     </Button>
-                    <Button class="btn nohover" onClick={handleClickIsotracker} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickIsotracker} style={{marginRight:"50px", paddingTop: "0px"}}>
                                     <i className="nb__text" >IsoTracker </i>
                     </Button></div>)
             }else{
                 setProgressButtons(<div style={{ marginLeft: "3%", float:"left" }}>
-                    <Button class="btn nohover" onClick={handleClickHome} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickHome} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Home </i>
-                    </Button><Button class="btn nohover" onClick={handleClickPiping} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    </Button><Button className="btn nohover" onClick={handleClickPiping} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Piping </i>
-                    </Button><Button class="btn nohover" onClick={handleClickInstrument} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    </Button><Button className="btn nohover" onClick={handleClickInstrument} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Instrumentation </i>
                     </Button>
-                    <Button class="btn nohover" onClick={handleClickEquipments} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickEquipments} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Equipment </i>
                     </Button>
-                    <Button class="btn nohover" onClick={handleClickCivil} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickCivil} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Civil </i>
                     </Button>
-                    <Button class="btn nohover" onClick={handleClickElectrical} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickElectrical} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text">Electrical </i>
                     </Button>
-                    <Button class="btn nohover" onClick={handleClickIsotracker} style={{marginRight:"50px", paddingTop: "0px"}}>
+                    <Button className="btn nohover" onClick={handleClickIsotracker} style={{marginRight:"50px", paddingTop: "0px"}}>
                         <i className="nb__text" >IsoTracker </i>
                     </Button></div>)
             }
@@ -307,14 +307,14 @@ const NavBarProdCurve = (props) =>{
     if(process.env.REACT_APP_PROGRESS === "1"){
         if(process.env.REACT_APP_SP === "1"){
             if(process.env.REACT_APP_PIT === "1"){
-            projectBtn = <Button class="btn nohover" disabled style={{marginRight:"20px", float:"right"}}>
+            projectBtn = <Button className="btn nohover" disabled style={{marginRight:"20px", float:"right"}}>
             <i className="nb__text__projectname" >{process.env.REACT_APP_APP_NAMEPROJ}</i>
         </Button>
             rightButtons = <div style={{width:"28%"}}>
                     
                             
                 <button style={{float:"right", marginLeft:"20px", border:"none", background:"none", paddingTop: "0px"}} onClick={()=>setIsMenuOpen(!isMenuOpen)}>{bellImage}</button>
-                <Button class="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
+                <Button className="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
                 <i className="nb__text">{username}&nbsp;🠗</i>
                 </Button>
                 
@@ -333,14 +333,14 @@ const NavBarProdCurve = (props) =>{
                 {projectBtn}
             </div>
             }else{
-                projectBtn = <Button class="btn nohover" disabled style={{marginRight:"20px", float:"right"}}>
+                projectBtn = <Button className="btn nohover" disabled style={{marginRight:"20px", float:"right"}}>
             <i className="nb__text__projectname" >{process.env.REACT_APP_APP_NAMEPROJ}</i>
         </Button>
             rightButtons = <div style={{width:"40%"}}>
                     
                             
                 <button style={{float:"right", marginLeft:"20px", border:"none", background:"none", paddingTop: "0px"}} onClick={()=>setIsMenuOpen(!isMenuOpen)}>{bellImage}</button>
-                <Button class="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
+                <Button className="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
                 <i className="nb__text">{username}&nbsp;🠗</i>
                 </Button>
                 
@@ -361,14 +361,14 @@ const NavBarProdCurve = (props) =>{
             }
         }else{
             if(process.env.REACT_APP_PIT === "1"){
-                projectBtn = <Button class="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
+                projectBtn = <Button className="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
                 <i className="nb__text__projectname" >{process.env.REACT_APP_APP_NAMEPROJ}</i>
             </Button>
                 rightButtons= <div style={{width:"40%"}}>
                         
                             
                 <button style={{float:"right", marginLeft:"20px", border:"none", background:"none", paddingTop: "0px"}} onClick={()=>setIsMenuOpen(!isMenuOpen)}>{bellImage}</button>
-                <Button class="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
+                <Button className="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
                 <i className="nb__text">{username}&nbsp;🠗</i>
                 </Button>
                 
@@ -387,14 +387,14 @@ const NavBarProdCurve = (props) =>{
                 {projectBtn}
             </div>
             }else{
-                projectBtn = <Button class="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
+                projectBtn = <Button className="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
                 <i className="nb__text__projectname" >{process.env.REACT_APP_APP_NAMEPROJ}</i>
             </Button>
                 rightButtons= <div style={{width:"40%"}}>
                         
                             
                 <button style={{float:"right", marginLeft:"20px", border:"none", background:"none", paddingTop: "0px"}} onClick={()=>setIsMenuOpen(!isMenuOpen)}>{bellImage}</button>
-                <Button class="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
+                <Button className="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
                 <i className="nb__text">{username}&nbsp;🠗</i>
                 </Button>
                 
@@ -419,14 +419,14 @@ const NavBarProdCurve = (props) =>{
     }else{
         if(process.env.REACT_APP_SP === "1"){
             if(process.env.REACT_APP_PIT === "1"){
-            projectBtn = <Button classes={{label: classes.label2}} class="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
+            projectBtn = <Button classes={{label: classes.label2}} className="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
             <i className="nb__text__projectname" >{process.env.REACT_APP_APP_NAMEPROJ}</i>
         </Button>
         rightButtons= <div style={{width:"76%"}}>
                     
                         
             <button style={{float:"right", marginLeft:"20px", border:"none", background:"none"}} onClick={()=>setIsMenuOpen(!isMenuOpen)}>{bellImage}</button>
-            <Button class="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
+            <Button className="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
             <i className="nb__text">{username}&nbsp;🠗</i>
             </Button>
             
@@ -445,14 +445,14 @@ const NavBarProdCurve = (props) =>{
             {projectBtn}
         </div>
             }else{
-                projectBtn = <Button classes={{label: classes.label2}} class="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
+                projectBtn = <Button classes={{label: classes.label2}} className="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
                 <i className="nb__text__projectname" >{process.env.REACT_APP_APP_NAMEPROJ}</i>
             </Button>
             rightButtons= <div style={{width:"82%"}}>
                         
                             
                 <button style={{float:"right", marginLeft:"20px", border:"none", background:"none"}} onClick={()=>setIsMenuOpen(!isMenuOpen)}>{bellImage}</button>
-                <Button class="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
+                <Button className="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
                 <i className="nb__text">{username}&nbsp;🠗</i>
                 </Button>
                 
@@ -474,7 +474,7 @@ const NavBarProdCurve = (props) =>{
         
         }else{
             if(process.env.REACT_APP_PIT === "1"){
-                projectBtn = <Button classes={{label: classes.label2}} class="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
+                projectBtn = <Button classes={{label: classes.label2}} className="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
                 <i className="nb__text__projectname" >{process.env.REACT_APP_APP_NAMEPROJ}</i>
                 </Button>
                 
@@ -483,7 +483,7 @@ const NavBarProdCurve = (props) =>{
                             
                                 
                 <button style={{float:"right", marginLeft:"20px", border:"none", background:"none"}} onClick={()=>setIsMenuOpen(!isMenuOpen)}>{bellImage}</button>
-                <Button class="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
+                <Button className="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
                 <i className="nb__text">{username}&nbsp;🠗</i>
                 </Button>
                 
@@ -502,7 +502,7 @@ const NavBarProdCurve = (props) =>{
                 {projectBtn}
             </div>
             }else{
-                projectBtn = <Button classes={{label: classes.label2}} class="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
+                projectBtn = <Button classes={{label: classes.label2}} className="btn nohover" disabled style={{float:"right", marginRight:"20px"}}>
                 <i className="nb__text__projectname" >{process.env.REACT_APP_APP_NAMEPROJ}</i>
                 </Button>
                 
@@ -511,7 +511,7 @@ const NavBarProdCurve = (props) =>{
                             
                                 
                 <button style={{float:"right", marginLeft:"20px", border:"none", background:"none"}} onClick={()=>setIsMenuOpen(!isMenuOpen)}>{bellImage}</button>
-                <Button class="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
+                <Button className="btn nohover" style={{float: "right"}} classes={{label: classes.label}} onClick={handleClickUser}>
                 <i className="nb__text">{username}&nbsp;🠗</i>
                 </Button>
                 
@@ -536,14 +536,14 @@ const NavBarProdCurve = (props) =>{
     let isotrackerBtnNoProgress = null
     if(process.env.REACT_APP_SP === "1"){
         if(process.env.REACT_APP_PROGRESS === "1"){
-            spbutton = <Button class="btn nohover" onClick={handleClickSP} style={{marginRight:"50px" , paddingTop: "0px"}}>
+            spbutton = <Button className="btn nohover" onClick={handleClickSP} style={{marginRight:"50px" , paddingTop: "0px"}}>
             <i className="nb__text" >SPTracker</i>
             </Button>
         }else{
-            spbutton = <Button class="btn nohover" onClick={handleClickSP} style={{marginLeft:"50px", paddingTop: "0px"}}>
+            spbutton = <Button className="btn nohover" onClick={handleClickSP} style={{marginLeft:"50px", paddingTop: "0px"}}>
             <i className="nb__text" >SPTracker</i>
             </Button>
-            isotrackerBtnNoProgress = <Button class="btn nohover" onClick={handleClickIsotracker} style={{marginLeft:"50px", paddingTop: "0px"}}>
+            isotrackerBtnNoProgress = <Button className="btn nohover" onClick={handleClickIsotracker} style={{marginLeft:"50px", paddingTop: "0px"}}>
                         <i className="nb__text" >IsoTracker </i>
             </Button>
         }    
@@ -551,21 +551,21 @@ const NavBarProdCurve = (props) =>{
 
     if(process.env.REACT_APP_PIT === "1"){
         if(process.env.REACT_APP_PROGRESS === "1"){
-            pitButtonProgress = <Button class="btn nohover" onClick={handleClickPIT} style={{marginRight:"50px" , paddingTop: "0px"}}>
+            pitButtonProgress = <Button className="btn nohover" onClick={handleClickPIT} style={{marginRight:"50px" , paddingTop: "0px"}}>
             <i className="nb__text" >PITRequests</i>
             </Button>
         }else{
-            pitButton = <Button class="btn nohover" onClick={handleClickPIT} style={{marginLeft:"50px"}}>
+            pitButton = <Button className="btn nohover" onClick={handleClickPIT} style={{marginLeft:"50px"}}>
             <i className="nb__text" >PITRequests</i>
             </Button>
-            isotrackerBtnNoProgress = <Button class="btn nohover" onClick={handleClickIsotracker} style={{marginLeft:"50px" , paddingTop: "0px"}}>
+            isotrackerBtnNoProgress = <Button className="btn nohover" onClick={handleClickIsotracker} style={{marginLeft:"50px" , paddingTop: "0px"}}>
                         <i className="nb__text" >IsoTracker </i>
             </Button>
         }    
     }    
 
     if(process.env.REACT_APP_PROGRESS === "0" && process.env.REACT_APP_SP === "0" && process.env.REACT_APP_PIT === "0"){
-        isotrackerBtnNoProgress = <Button class="btn nohover" onClick={handleClickIsotracker} style={{marginLeft:"50px" , paddingTop: "0px"}}>
+        isotrackerBtnNoProgress = <Button className="btn nohover" onClick={handleClickIsotracker} style={{marginLeft:"50px" , paddingTop: "0px"}}>
         <i className="nb__text" >IsoTracker </i>
         </Button>
     }

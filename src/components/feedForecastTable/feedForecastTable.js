@@ -72,7 +72,7 @@ export default function FeedForecastTable(props) {
       (item) => isNaN(item) || Number(item) > 100 || Number(item) < 0
     );
     if (invalidNum1 || invalidNum2)
-      return props.alert(true, "Invalid number", "warning");
+      return props.alert("Invalid number", "warning");
     const body = {
       estimated: estimated,
       forecast: forecast,
@@ -86,13 +86,11 @@ export default function FeedForecastTable(props) {
     };
     //Post del forecast
     try {
-      const res = await fetch(
-        `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/submitFeedForecast`,
-        options
-      );
+      const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/submitFeedForecast`;
+      const res = await fetch(url, options);
       const { success } = await res.json();
       if (success) {
-        props.success();
+        props.alert("Changes saved!", "success");
       }
     } catch (err) {
       console.error(err);
@@ -121,7 +119,7 @@ export default function FeedForecastTable(props) {
       />
       <div>
         <button
-          class="btn btn-sm btn-info"
+          className="btn btn-sm btn-info"
           onClick={() => addDay()}
           style={{
             marginLeft: "570px",
@@ -135,7 +133,7 @@ export default function FeedForecastTable(props) {
           Add
         </button>
         <button
-          class="btn btn-sm btn-success"
+          className="btn btn-sm btn-success"
           onClick={() => submitChanges()}
           style={{
             marginRight: "5px",

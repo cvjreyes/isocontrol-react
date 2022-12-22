@@ -46,7 +46,7 @@ export default class UploadPopUp extends Component {
                             <center className="popUp__warning__subtitle__2">If you are not sure of this action, click cancel and contact your supervisor.</center>
                         </div>
                         <div className="popUp__buttons__container">
-                            <button class="mytray__upload__button__cancel" onClick={() => this.closeModal()} >Cancel</button>
+                            <button className="mytray__upload__button__cancel" onClick={() => this.closeModal()} >Cancel</button>
                         </div>
                     </Modal>
                 </div>

@@ -128,9 +128,9 @@ const EquipmentsNavBtns = props =>{
                 secureStorage.setItem("piping_tab", "Isocontrol")
             }
             
-            isoControlButton = <button  type="button" class="btn btn-default btn-lg" style={{border:"1px solid lightgray", width: "200px", marginLeft:"10px", marginRight:"10px", backgroundColor: "#17a2b8"}}><b>Isocontrol</b></button>
+            isoControlButton = <button  type="button" className="btn btn-default btn-lg" style={{border:"1px solid lightgray", width: "200px", marginLeft:"10px", marginRight:"10px", backgroundColor: "#17a2b8"}}><b>Isocontrol</b></button>
         }else{
-            isoControlButton = <button  type="button" class="btn btn-default btn-lg" style={{border:"1px solid lightgray", width: "200px", marginLeft:"10px", marginRight:"10px", backgroundColor: "white"}} onClick={() => {props.onChange("Isocontrol")}}><b>Isocontrol</b></button>
+            isoControlButton = <button  type="button" className="btn btn-default btn-lg" style={{border:"1px solid lightgray", width: "200px", marginLeft:"10px", marginRight:"10px", backgroundColor: "white"}} onClick={() => {props.onChange("Isocontrol")}}><b>Isocontrol</b></button>
             
         }
     }

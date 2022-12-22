@@ -187,8 +187,8 @@ export default class QtrackerNRIDSPopUp extends Component {
                             <input data-for="name-help" data-tip="Name help" data-iscapture="true" type="text" placeholder="Name" id="name" className="qtrackerPopUp__input__text" ref="name" style={{marginBottom: "20px", color:'black'}} value={this.state.name} onChange={(e) => this.setState({name: e.target.value})} ></input>
                             <ReactTooltip id="name-help" place="right" type="dark" effect="solid"/>
 
-                            <button class="btn btn-sm btn-success" onClick={() => this.request()} style={{marginRight:"5px", fontSize:"20px"}}>Submit</button>
-                            <button class="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"20px"}}>Cancel</button>
+                            <button className="btn btn-sm btn-success" onClick={() => this.request()} style={{marginRight:"5px", fontSize:"20px"}}>Submit</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"20px"}}>Cancel</button>
                         </div>
                     </Modal>
                 </div>

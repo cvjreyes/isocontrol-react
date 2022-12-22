@@ -60,11 +60,11 @@ export default class ByPassRejNACommentPopUp extends Component {
                         </div>
                         
                         <center style={{marginTop: "20px"}}>
-                         <textarea id="comments" placeholder="Comments" class="comments" cols="51" rows="4" required="" maxlength="400" name="comments" onChange={(e) => this.setState({comments: e.target.value})} style={{margin: "10px 10px 10px 10px"}}></textarea>
+                         <textarea id="comments" placeholder="Comments" className="comments" cols="51" rows="4" required="" maxlength="400" name="comments" onChange={(e) => this.setState({comments: e.target.value})} style={{margin: "10px 10px 10px 10px"}}></textarea>
                         </center>
                         <center className="popUp__buttons__container__users">
-                            <button class="btn btn-sm btn-success" onClick={() => this.rejectByPass()} style={{marginRight:"5px", fontSize:"16px"}}>Submit</button>
-                            <button class="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
+                            <button className="btn btn-sm btn-success" onClick={() => this.rejectByPass()} style={{marginRight:"5px", fontSize:"16px"}}>Submit</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
                         </center>
                     </Modal>
                 </div>

@@ -70,7 +70,7 @@ export default class HoldsPopUp extends Component {
     render() {
         return (
             <div style={{display:"inline-block"}}>
-                <button class="btn btn-info" style={{fontSize:"12px", padding:"2px 5px 2px 5px"}} onClick={() => this.openModal()}>HOLDS</button>
+                <button className="btn btn-info" style={{fontSize:"12px", padding:"2px 5px 2px 5px"}} onClick={() => this.openModal()}>HOLDS</button>
                 <div>
                     <Modal visible={this.state.visible} width="500" height="500" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <center className="popUp__title"><h3><strong>{this.props.isoid}</strong></h3></center>

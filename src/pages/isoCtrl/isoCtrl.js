@@ -1551,7 +1551,7 @@ const IsoCtrl = () => {
 
     if(currentTab === "Upload IsoFiles"){
         secureStorage.setItem("tab", "Upload IsoFiles")
-        uploadButton = <button  type="button" class="btn btn-info btn-lg" style={{backgroundColor: "#17a2b8", width:"180px"}}><b>Upload</b></button>
+        uploadButton = <button  type="button" className="btn btn-info btn-lg" style={{backgroundColor: "#17a2b8", width:"180px"}}><b>Upload</b></button>
         tableContent = <DragAndDrop mode={"upload"} role={currentRole} user={currentUser}  uploaded={getProgress.bind(this)}/>
         pageSelector = null
     }if(currentTab === "Design" && currentRole === "Design"){
@@ -1606,7 +1606,7 @@ const IsoCtrl = () => {
 
     if(currentTab === "My Tray" || currentTab === "LDE/IsoControl"){
         commentBox = <div>
-            <textarea placeholder="Comments" class="comments" cols="100" rows="2" required="" maxlength="400" name="comments" value={comment} onChange={handleComment}></textarea>
+            <textarea placeholder="Comments" className="comments" cols="100" rows="2" required="" maxlength="400" name="comments" value={comment} onChange={handleComment}></textarea>
         </div>
     }
 

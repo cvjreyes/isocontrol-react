@@ -81,8 +81,8 @@ export default class ByPassPopUp extends Component {
                             <textarea className='popUp__textarea__bypass' placeholder=' Notes...' id="notes" name="notes" onChange={(e) => this.setState({note: e.target.value})}></textarea>
                         </center>
                         <center className="popUp__buttons__container__users">
-                            <button class="btn__create__bypass" onClick={() => this.createByPass()}>Create</button>
-                            <button class="btn__cancel__bypass" onClick={() => this.closeModal()}>Cancel</button>
+                            <button className="btn__create__bypass" onClick={() => this.createByPass()}>Create</button>
+                            <button className="btn__cancel__bypass" onClick={() => this.closeModal()}>Cancel</button>
                         </center>
                     </Modal>
                 </div>

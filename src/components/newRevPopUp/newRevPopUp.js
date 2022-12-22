@@ -41,11 +41,11 @@ export default class NewRevPopUp extends Component {
                             <p>New revision</p>
                         </center>
                         <div className="body__container" style={{marginTop: "20px"}}>   
-                            <textarea id="comments" placeholder="Comments" class="comments" cols="51" rows="6" required="" maxlength="400" name="comments" style={{margin: "10px 10px 10px 10px"}}></textarea>
+                            <textarea id="comments" placeholder="Comments" className="comments" cols="51" rows="6" required="" maxlength="400" name="comments" style={{margin: "10px 10px 10px 10px"}}></textarea>
                         </div>
                         <center className="buttons__container">
-                            <button class="btn btn-sm btn-success" style={{marginRight:"5px", fontSize:"16px"}} onClick={()=>this.return()}>Confirm</button>
-                            <button class="btn btn-sm btn-danger" style={{marginRight:"5px", fontSize:"16px"}} onClick={()=>this.closeModal()}>Cancel</button>
+                            <button className="btn btn-sm btn-success" style={{marginRight:"5px", fontSize:"16px"}} onClick={()=>this.return()}>Confirm</button>
+                            <button className="btn btn-sm btn-danger" style={{marginRight:"5px", fontSize:"16px"}} onClick={()=>this.closeModal()}>Cancel</button>
                         </center>
                     </Modal>
                 </div>

@@ -42,8 +42,8 @@ export default class DeleteByPassPopUp extends Component {
                         </div> 
 
                         <div className="popUp__buttons__container__manage">
-                            <button class="btn btn-sm btn-danger" onClick={() => this.deleteByPass()} style={{marginRight:"5px", fontSize:"16px"}}>Delete</button>
-                            <button class="btn btn-sm btn-warning" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.deleteByPass()} style={{marginRight:"5px", fontSize:"16px"}}>Delete</button>
+                            <button className="btn btn-sm btn-warning" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
                         </div>
                     </Modal>
                 </div>

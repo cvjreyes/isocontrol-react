@@ -292,8 +292,8 @@ export default class RevisionPopUp extends Component {
                                 <label for="issuer_designation">Approval: </label>    
                                 <input type="text" placeholder="Approval" id="issuer_appr" className="popUp__input__text" ref="issuer_appr" style={{marginBottom: "20px", color:'black'}} defaultValue={def_aprr} onChange={(e) => this.setState({issuer_appr: e.target.value})} ></input>
                             </div>
-                           <button class="btn btn-sm btn-success" onClick={() => this.request()} style={{marginRight:"5px", fontSize:"16px"}}>Submit</button>
-                            <button class="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
+                           <button className="btn btn-sm btn-success" onClick={() => this.request()} style={{marginRight:"5px", fontSize:"16px"}}>Submit</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
                         </div>
                     </Modal>
                 </div>
