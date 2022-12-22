@@ -159,7 +159,7 @@ render (){
 
       return(
           <div>
-            <button onClick={this.handleUpload} class="btn btn-info btn-lg" style={{backgroundColor: "#17a2b8", width:"100%"}}>Upload files</button>
+            <button onClick={this.handleUpload} className="btn btn-info btn-lg" style={{backgroundColor: "#17a2b8", width:"100%"}}>Upload files</button>
               <Dragger {...props}>
                 
                   <p className="ant-upload-drag-icon">

@@ -226,7 +226,7 @@ class CSPTrackerdDataTable extends React.Component{
                   row.ready_load = "UPDATED"
                   row.color = "#yyy"
                     if(this.props.currentRole === "3D Admin"){
-                      row.ready_e3d = <button class="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
+                      row.ready_e3d = <button className="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
                     }else{
                       row.ready_e3d = "NOT READY"
                     }
@@ -236,28 +236,28 @@ class CSPTrackerdDataTable extends React.Component{
                     if(json.rows[i].updated === 0){
                       row.color = "#ggg"
                       if(this.props.currentRole === "3D Admin"){
-                        row.ready_e3d = <button class="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
+                        row.ready_e3d = <button className="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
                       }else{
                         row.ready_e3d = "READY"
-                        row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                        row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                       }
                     }else{
                       row.color = "#bbb"
                       if(this.props.currentRole === "3D Admin"){
-                        row.ready_e3d = <button class="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
+                        row.ready_e3d = <button className="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
                       }else{
                         row.ready_e3d = "READY"
-                        row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                        row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                       }
                     }
                     
                   }else{
                     row.color = "#yyy"
                     if(this.props.currentRole === "3D Admin"){
-                      row.ready_e3d = <button class="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
+                      row.ready_e3d = <button className="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
                     }else{
                       row.ready_e3d = "NOT READY"
-                      row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button><button class="csp_exclude_btn btn-sm btn-danger" onClick={() => this.excludeSP(json.rows[i].tag)}>EXCLUDE 3D</button></div>
+                      row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button><button className="csp_exclude_btn btn-sm btn-danger" onClick={() => this.excludeSP(json.rows[i].tag)}>EXCLUDE 3D</button></div>
                     }
                   }
                   
@@ -265,10 +265,10 @@ class CSPTrackerdDataTable extends React.Component{
                   row.ready_load = "NOT READY"
                   row.color = "white"
                   if(this.props.currentRole === "3D Admin"){
-                    row.ready_e3d = <button disabled class="ready__disabled btn-sm btn-success">READY</button>
+                    row.ready_e3d = <button disabled className="ready__disabled btn-sm btn-success">READY</button>
                   }else{
                     row.ready_e3d = "NOT READY"
-                    row.ready_load = <div>NOT READY<button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                    row.ready_load = <div>NOT READY<button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                   }
                 }
               }
@@ -344,7 +344,7 @@ class CSPTrackerdDataTable extends React.Component{
                   row.ready_load = "UPDATED"
                   row.color = "#yyy"
                     if(this.props.currentRole === "3D Admin"){
-                      row.ready_e3d = <button class="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
+                      row.ready_e3d = <button className="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
                     }else{
                       row.ready_e3d = "NOT READY"
                     }
@@ -354,28 +354,28 @@ class CSPTrackerdDataTable extends React.Component{
                     if(json.rows[i].updated === 0){
                       row.color = "#ggg"
                       if(this.props.currentRole === "3D Admin"){
-                        row.ready_e3d = <button class="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
+                        row.ready_e3d = <button className="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
                       }else{
                         row.ready_e3d = "READY"
-                        row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                        row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                       }
                     }else{
                       row.color = "#bbb"
                       if(this.props.currentRole === "3D Admin"){
-                        row.ready_e3d = <button class="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
+                        row.ready_e3d = <button className="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
                       }else{
                         row.ready_e3d = "READY"
-                        row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                        row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                       }
                     }
                     
                   }else{
                     row.color = "#yyy"
                     if(this.props.currentRole === "3D Admin"){
-                      row.ready_e3d = <button class="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
+                      row.ready_e3d = <button className="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
                     }else{
                       row.ready_e3d = "NOT READY"
-                      row.ready_load = <div style={{display:"inline-block"}}>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button><button class="csp_exclude_btn btn-sm btn-danger" onClick={() => this.excludeHold(json.rows[i].tag)}>EXCLUDE 3D</button></div>
+                      row.ready_load = <div style={{display:"inline-block"}}>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button><button className="csp_exclude_btn btn-sm btn-danger" onClick={() => this.excludeHold(json.rows[i].tag)}>EXCLUDE 3D</button></div>
                     }
                   }
                   
@@ -383,10 +383,10 @@ class CSPTrackerdDataTable extends React.Component{
                   row.ready_load = "NOT READY"
                   row.color = "white"
                   if(this.props.currentRole === "3D Admin"){
-                    row.ready_e3d = <button disabled class="ready__disabled btn-sm btn-success">READY</button>
+                    row.ready_e3d = <button disabled className="ready__disabled btn-sm btn-success">READY</button>
                   }else{
                     row.ready_e3d = "NOT READY"
-                    row.ready_load = <div>NOT READY<button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                    row.ready_load = <div>NOT READY<button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                   }
                 }
               }
@@ -492,7 +492,7 @@ class CSPTrackerdDataTable extends React.Component{
                     row.ready_load = "UPDATED"
                     row.color = "#yyy"
                       if(this.props.currentRole === "3D Admin"){
-                        row.ready_e3d = <button class="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
+                        row.ready_e3d = <button className="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
                       }else{
                         row.ready_e3d = "NOT READY"
                       }
@@ -502,28 +502,28 @@ class CSPTrackerdDataTable extends React.Component{
                       if(json.rows[i].updated === 0){
                         row.color = "#ggg"
                         if(this.props.currentRole === "3D Admin"){
-                          row.ready_e3d = <button class="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
+                          row.ready_e3d = <button className="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
                         }else{
                           row.ready_e3d = "READY"
-                          row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                          row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                         }
                       }else{
                         row.color = "#bbb"
                         if(this.props.currentRole === "3D Admin"){
-                          row.ready_e3d = <button class="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
+                          row.ready_e3d = <button className="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
                         }else{
                           row.ready_e3d = "READY"
-                          row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                          row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                         }
                       }
                       
                     }else{
                       row.color = "#yyy"
                       if(this.props.currentRole === "3D Admin"){
-                        row.ready_e3d = <button class="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
+                        row.ready_e3d = <button className="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
                       }else{
                         row.ready_e3d = "NOT READY"
-                        row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button><button class="csp_exclude_btn btn-sm btn-danger" onClick={() => this.excludeSP(json.rows[i].tag)}>EXCLUDE 3D</button></div>
+                        row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button><button className="csp_exclude_btn btn-sm btn-danger" onClick={() => this.excludeSP(json.rows[i].tag)}>EXCLUDE 3D</button></div>
                       }
                     }
                     
@@ -531,10 +531,10 @@ class CSPTrackerdDataTable extends React.Component{
                     row.ready_load = "NOT READY"
                     row.color = "white"
                     if(this.props.currentRole === "3D Admin"){
-                      row.ready_e3d = <button disabled class="ready__disabled btn-sm btn-success">READY</button>
+                      row.ready_e3d = <button disabled className="ready__disabled btn-sm btn-success">READY</button>
                     }else{
                       row.ready_e3d = "NOT READY"
-                      row.ready_load = <div>NOT READY<button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                      row.ready_load = <div>NOT READY<button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                     }
                   }
                 }
@@ -604,7 +604,7 @@ class CSPTrackerdDataTable extends React.Component{
                     row.ready_load = "UPDATED"
                     row.color = "#yyy"
                       if(this.props.currentRole === "3D Admin"){
-                        row.ready_e3d = <button class="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
+                        row.ready_e3d = <button className="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
                       }else{
                         row.ready_e3d = "NOT READY"
                       }
@@ -614,28 +614,28 @@ class CSPTrackerdDataTable extends React.Component{
                       if(json.rows[i].updated === 0){
                         row.color = "#ggg"
                         if(this.props.currentRole === "3D Admin"){
-                          row.ready_e3d = <button class="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
+                          row.ready_e3d = <button className="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
                         }else{
                           row.ready_e3d = "READY"
-                          row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                          row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                         }
                       }else{
                         row.color = "#bbb"
                         if(this.props.currentRole === "3D Admin"){
-                          row.ready_e3d = <button class="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
+                          row.ready_e3d = <button className="csp__cancel__btn btn-sm btn-danger" onClick={() => this.cancelReadyE3D(json.rows[i].tag)}>CANCEL</button>
                         }else{
                           row.ready_e3d = "READY"
-                          row.ready_load = <div>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                          row.ready_load = <div>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                         }
                       }
                       
                     }else{
                       row.color = "#yyy"
                       if(this.props.currentRole === "3D Admin"){
-                        row.ready_e3d = <button class="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
+                        row.ready_e3d = <button className="ready__btn btn-sm btn-success" onClick={() => this.readyE3D(json.rows[i].tag)}>READY</button>
                       }else{
                         row.ready_e3d = "NOT READY"
-                        row.ready_load = <div style={{display:"inline-block"}}>READY <button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button><button class="csp_exclude_btn btn-sm btn-warning" onClick={() => this.excludeSP(json.rows[i].tag)}>EXCLUDE 3D</button></div>
+                        row.ready_load = <div style={{display:"inline-block"}}>READY <button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button><button className="csp_exclude_btn btn-sm btn-warning" onClick={() => this.excludeSP(json.rows[i].tag)}>EXCLUDE 3D</button></div>
                       }
                     }
                     
@@ -643,10 +643,10 @@ class CSPTrackerdDataTable extends React.Component{
                     row.ready_load = "NOT READY"
                     row.color = "white"
                     if(this.props.currentRole === "3D Admin"){
-                      row.ready_e3d = <button disabled class="ready__disabled btn-sm btn-success">READY</button>
+                      row.ready_e3d = <button disabled className="ready__disabled btn-sm btn-success">READY</button>
                     }else{
                       row.ready_e3d = "NOT READY"
-                      row.ready_load = <div>NOT READY<button class="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
+                      row.ready_load = <div>NOT READY<button className="csp_delete_btn btn-sm btn-danger" onClick={() => this.deleteSP(json.rows[i].tag)}>DELETE</button></div>
                     }
                   }
                 }

@@ -223,8 +223,8 @@ export default class QtrackerNRBPopUp extends Component {
 
                             <input type="file" id="attach"className="qtrackerPopUp__input__file"  ref="attach" style={{marginBottom: "30px"}} onChange={(e) => this.setState({attach: e.target.files[0]})} ></input>
                             <label for="attach" className="attach__label">Attach: </label>
-                            <button class="btn btn-sm btn-success" onClick={() => this.request()} style={{marginRight:"5px", fontSize:"20px"}}>Submit</button>
-                            <button class="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"20px"}}>Cancel</button>
+                            <button className="btn btn-sm btn-success" onClick={() => this.request()} style={{marginRight:"5px", fontSize:"20px"}}>Submit</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"20px"}}>Cancel</button>
                         </div>
                     </Modal>
                 </div>

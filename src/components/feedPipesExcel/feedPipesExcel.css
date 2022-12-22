@@ -1,0 +1,8 @@
+.ht_master tr td {
+  line-height: 18px
+}
+
+.handsontable tr {
+  font-size: 14px;
+  height: 25px
+}

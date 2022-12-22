@@ -207,8 +207,8 @@ class ElecExcel extends React.Component{
               />
               <br></br>
               <center>
-                  <button class="btn btn-sm btn-info" onClick={() => this.addRowTypes()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px"}}>Add</button>
-                  <button class="btn btn-sm btn-success" onClick={() => this.submitChangesTypes()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px"}}>Save</button>
+                  <button className="btn btn-sm btn-info" onClick={() => this.addRowTypes()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px"}}>Add</button>
+                  <button className="btn btn-sm btn-success" onClick={() => this.submitChangesTypes()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px"}}>Save</button>
               </center>
             </div>
           </div>
@@ -244,8 +244,8 @@ class ElecExcel extends React.Component{
               />
               <br></br>
               <center>
-                  <button class="btn btn-sm btn-info" onClick={() => this.addRowProgress()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px"}}>Add</button>
-                  <button class="btn btn-sm btn-success" onClick={() => this.submitChangesProgress()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px"}}>Save</button>
+                  <button className="btn btn-sm btn-info" onClick={() => this.addRowProgress()} style={{marginRight:"5px", fontSize:"16px",width:"60px", borderRadius:"10px"}}>Add</button>
+                  <button className="btn btn-sm btn-success" onClick={() => this.submitChangesProgress()} style={{marginRight:"5px", fontSize:"16px", width:"60px", borderRadius:"10px"}}>Save</button>
               </center>
               <br></br>
             </div>

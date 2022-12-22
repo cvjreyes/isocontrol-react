@@ -45,7 +45,7 @@ export default class UpdateMassivePopUp extends Component {
                         <center className="popUp__massive__warning__title">***WARNING!*** This action will replace the current(s) file(s). Take appropiate cautions.</center>
                         <center className="popUp__warning__subtitle">If you are not sure of this action, click cancel and contact your supervisor.</center>
                         <div className="popUp__buttons__container">
-                            <button class="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginRight:"5px", fontSize:"16px"}}>Close</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginRight:"5px", fontSize:"16px"}}>Close</button>
                         </div>
                     </Modal>
                 </div>

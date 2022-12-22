@@ -112,7 +112,7 @@ export default class QtrackerNRISpecPopUp extends Component {
     render() {
         return (
             <div style={{marginRight:"5px", marginLeft:"5px", float:"left"}}>
-                <button class="btn btn-info" style={{fontSize:"16px", padding:"2px 5px 2px 5px"}} onClick={() => this.openModal()}>Details</button>
+                <button className="btn btn-info" style={{fontSize:"16px", padding:"2px 5px 2px 5px"}} onClick={() => this.openModal()}>Details</button>
                 <div>
                     <Modal visible={this.state.visible} width="700" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <center className="popUp__title"><h3><strong>{this.props.incidence_number}</strong></h3></center>

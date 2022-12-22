@@ -71,8 +71,8 @@ export default class AcceptByPassPopUp extends Component {
                             </select>
                         </center>
                         <center className="popUp__buttons__container__users">
-                            <button class="btn btn-sm btn-success" onClick={() => this.acceptByPass()} style={{marginRight:"5px", fontSize:"16px"}}>Accept</button>
-                            <button class="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
+                            <button className="btn btn-sm btn-success" onClick={() => this.acceptByPass()} style={{marginRight:"5px", fontSize:"16px"}}>Accept</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Cancel</button>
                         </center>
                     </Modal>
                 </div>

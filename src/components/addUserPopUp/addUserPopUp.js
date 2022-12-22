@@ -158,9 +158,9 @@ export default class AddUserPopUp extends Component {
                             </select>
                         </div>
 
-                        <div class='table__columns__adduser'>
+                        <div className='table__columns__adduser'>
                             {/* Grupo Main */}
-                            <div class="column main__class">
+                            <div className="column main__class">
 
                                 <label className="titulo__grupos__adduser" >Main</label>
                                 <br></br>
@@ -189,7 +189,7 @@ export default class AddUserPopUp extends Component {
                             </div>
 
                             {/* Grupo Leads */}
-                            <div class="column leads__class">
+                            <div className="column leads__class">
                             
                                 <label className="titulo__grupos__adduser" >Leads</label>
                                 <br></br>
@@ -214,7 +214,7 @@ export default class AddUserPopUp extends Component {
                             </div>
 
                             {/* Grupo Foreing Checkers */}
-                            <div class="column fk__class">
+                            <div className="column fk__class">
                             
                                 <label className="titulo__grupos__adduser" >Foreign Checkers</label>
                                 <br></br>
@@ -231,7 +231,7 @@ export default class AddUserPopUp extends Component {
                             </div>
 
                             {/* Grupo Miscellaneous */}
-                            <div class="column misc__class">
+                            <div className="column misc__class">
                                 
                                 <label className="titulo__grupos__adduser" >Miscellaneous</label>
                                 <br></br>
@@ -256,8 +256,8 @@ export default class AddUserPopUp extends Component {
                             </div>
                         </div>
                         <div className="popUp__buttons__container__users">
-                            <button class="btn__submit__adduser" onClick={() => this.addUser()}>Add user</button>
-                            <button class="btn__cancel__adduser" onClick={() => this.closeModal()}>Cancel</button>
+                            <button className="btn__submit__adduser" onClick={() => this.addUser()}>Add user</button>
+                            <button className="btn__cancel__adduser" onClick={() => this.closeModal()}>Cancel</button>
                         </div>
                     </Modal>
                 </div>

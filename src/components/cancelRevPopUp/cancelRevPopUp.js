@@ -44,8 +44,8 @@ export default class CancelRevPopUp extends Component {
                         </div> 
 
                         <div className="popUp__buttons__container__manage">
-                            <button class="btn btn-sm btn-danger" onClick={() => this.cancelRev()} style={{marginRight:"5px", fontSize:"16px"}}>Cancel</button>
-                            <button class="btn btn-sm btn-warning" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Back</button>
+                            <button className="btn btn-sm btn-danger" onClick={() => this.cancelRev()} style={{marginRight:"5px", fontSize:"16px"}}>Cancel</button>
+                            <button className="btn btn-sm btn-warning" onClick={() => this.closeModal()} style={{marginLeft:"5px", fontSize:"16px"}}>Back</button>
                         </div>
                     </Modal>
                 </div>

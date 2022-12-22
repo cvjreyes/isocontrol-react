@@ -44,8 +44,8 @@ export default class DeleteUserConfPopUp extends Component {
                         </div> 
 
                         <div className="popUp__buttons__container__manage" style={{marginTop: "30px"}}>
-                            <button class="btn__delete__user" onClick={() => this.deleteUser()}>Delete</button>
-                            <button class="btn__cancel__user" onClick={() => this.closeModal()}>Cancel</button>
+                            <button className="btn__delete__user" onClick={() => this.deleteUser()}>Delete</button>
+                            <button className="btn__cancel__user" onClick={() => this.closeModal()}>Cancel</button>
                         </div>
                     </Modal>
                 </div>

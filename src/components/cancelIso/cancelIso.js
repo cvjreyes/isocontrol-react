@@ -55,11 +55,11 @@ export default class CancelIso extends Component {
                         </div>
                         <div className="body__container">   
                             {traySelect}
-                            <textarea id="comments" class="comments" cols="51" rows="6" required="" maxlength="400" name="comments" className='popUp__textarea__return' style={{marginTop: "20px"}}></textarea>
+                            <textarea id="comments" className="comments" cols="51" rows="6" required="" maxlength="400" name="comments" className='popUp__textarea__return' style={{marginTop: "20px"}}></textarea>
                         </div>
                         <center className="popUpP__buttons__container__return">
-                            <button class="btn__confirm__return" onClick={()=>this.return()}>Confirm</button>
-                            <button class="btn__cancel__return" onClick={()=>this.closeModal()}>Cancel</button>
+                            <button className="btn__confirm__return" onClick={()=>this.return()}>Confirm</button>
+                            <button className="btn__cancel__return" onClick={()=>this.closeModal()}>Cancel</button>
                         </center>
                     </Modal>
                 </div>

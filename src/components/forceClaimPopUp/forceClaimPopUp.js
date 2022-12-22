@@ -150,7 +150,7 @@ export default class UploadPopUp extends Component {
                                 ))}
                             </select>
                                 
-                            <button class="btn__assign__user" onClick={()=>this.getUser()}>Assign</button>
+                            <button className="btn__assign__user" onClick={()=>this.getUser()}>Assign</button>
                         </div>
                     </Modal>
                 </div>
