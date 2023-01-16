@@ -162,6 +162,7 @@ const Piping = ({ secureStorage }) => {
   }, []);
 
   document.title = process.env.REACT_APP_APP_NAMEPROJ;
+
   if (currentTab === "" || currentTab === null) {
     if (secureStorage.getItem("role") === "SpecialityLead") {
       setCurrentTab("FeedPipes");

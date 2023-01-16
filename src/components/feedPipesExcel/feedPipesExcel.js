@@ -29,6 +29,20 @@ export default function FeedPipesExcel(props) {
     },
   };
 
+  const getFeedPipes = async () => {
+    try {
+      const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/feedPipes`;
+      const res = await fetch(url, getOptions);
+      const { rows: resRows } = await res.json();
+      console.log(resRows);
+      const { rows } = prepareFeedPipesData(resRows);
+      setData(rows);
+      setDisplayData(rows);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // ! promise all?
   useEffect(() => {
     const getAllAreas = async () => {
@@ -71,19 +85,6 @@ export default function FeedPipesExcel(props) {
         const { designers: resDesigners } = await res.json();
         const tempDesigners = resDesigners.map((item) => item.name);
         setDesigners(tempDesigners);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    const getFeedPipes = async () => {
-      try {
-        const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/feedPipes`;
-        const res = await fetch(url, getOptions);
-        const { rows: resRows } = await res.json();
-        console.log(resRows);
-        const { rows } = prepareFeedPipesData(resRows);
-        setData(rows);
-        setDisplayData(rows);
       } catch (err) {
         console.error(err);
       }
@@ -197,11 +198,12 @@ export default function FeedPipesExcel(props) {
     };
     const url = `http://${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_NODE_PORT}/submitFeedPipes`;
     const res = await fetch(url, options);
-    const { success, err } = await res.json();
-    if (success) {
+    const resJson = await res.json();
+    console.log(resJson);
+    if (resJson.success) {
       props.alert("Changes saved!", "success");
       // await this.props.updateData();
-    } else if (err) props.alert("Something went wrong", "warning");
+    } else props.alert("Something went wrong", "warning");
   };
 
   const handleOneChange = (idx, key) => {
