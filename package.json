@@ -15,7 +15,7 @@
     "@mui/styled-engine-sc": "^5.8.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
-    "antd": "^4.12.2",
+    "antd": "^4.24.6",
     "bootstrap": "^4.6.1",
     "crypto-js": "^4.0.0",
     "downloadjs": "^1.4.7",
